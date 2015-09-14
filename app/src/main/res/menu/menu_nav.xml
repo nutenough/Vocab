@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navItem1"
+            android:checked="true"
+            android:icon="@drawable/ic_vocabs"
+            android:title="@string/vocabs" /> <!-- Checked by default -->
+        <item
+            android:id="@+id/navItem2"
+            android:icon="@drawable/ic_lists"
+            android:title="@string/lists" />
+        <item
+            android:id="@+id/navItem3"
+            android:icon="@drawable/ic_learn"
+            android:title="@string/learn" />
+        <item
+            android:id="@+id/navItem4"
+            android:icon="@drawable/ic_last_entries"
+            android:title="@string/last_entries" />
+        <item
+            android:id="@+id/navItem5"
+            android:icon="@drawable/ic_trophies"
+            android:title="@string/trophies" />
+        <item
+            android:id="@+id/navItem6"
+            android:icon="@drawable/ic_statistics"
+            android:title="@string/statistics" />
+        <item
+            android:id="@+id/navItem7"
+            android:icon="@drawable/ic_about"
+            android:title="@string/about" />
+        <item
+            android:id="@+id/navItem8"
+            android:icon="@drawable/ic_language_change"
+            android:title="@string/language_change" />
+    </group>
+</menu>

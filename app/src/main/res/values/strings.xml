@@ -1,6 +1,19 @@
 <resources>
     <string name="app_name">ViCab</string>
+    <string name="title_activity_navigation_drawer">Navigation</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <!-- Nav items -->
+    <string name="vocabs">Meine Vokabeln</string>
+    <string name="lists">Meine Listen</string>
+    <string name="learn">Lernen</string>
+    <string name="last_entries">Meine letzten Einträge</string>
+    <string name="trophies">Auszeichnungen</string>
+    <string name="statistics">Statistiken</string>
+    <string name="about">Über uns</string>
+    <string name="language_change">Sprache wechseln</string>
+    <string name="error">Ein unerwarteter Fehler ist aufgetreten</string>
+
+    <!-- For ActionBarDrawerToggle -->
+    <string name="drawer_open">Öffne NavigationDrawer</string>
+    <string name="drawer_close">Schließe NavigationDrawer</string>
 </resources>
