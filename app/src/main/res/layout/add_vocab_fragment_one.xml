@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/sourceVocabTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="16dp"
+        android:text="@string/source_language"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/sourceVocabET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sourceVocabTV"
+        android:layout_margin="16dp"
+        android:hint="z.B. Sonne" />
+
+    <Button
+        android:id="@+id/translateBTN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sourceVocabET"
+        android:layout_margin="16dp"
+        android:background="@color/color_primary"
+        android:text="@string/translate"
+        android:textColor="@color/color_white" />
+
+    <TextView
+        android:id="@+id/targetVocabTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/translateBTN"
+        android:layout_margin="16dp"
+        android:text="@string/target_language"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/targetVocabET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/targetVocabTV"
+        android:layout_margin="16dp"
+        android:hint="z.B. sun" />
+
+    <TextView
+        android:id="@+id/selectListTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/targetVocabET"
+        android:layout_margin="16dp"
+        android:text="@string/select_list"
+        android:textSize="20sp" />
+
+    <Spinner
+        android:id="@+id/selectListSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/selectListTV"
+        android:layout_margin="16dp" />
+</RelativeLayout>

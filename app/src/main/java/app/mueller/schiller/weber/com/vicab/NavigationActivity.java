@@ -47,7 +47,7 @@ public class NavigationActivity extends AppCompatActivity {
         // Setup NavigationView
         setupDrawerContent(navigationView);
 
-        // Start FragmentOne
+        // Start NavigationFragmentOne
         navigationView.getMenu().performIdentifierAction(R.id.navItem1, 0);
     }
 
@@ -69,28 +69,28 @@ public class NavigationActivity extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.navItem1:
-                fragmentClass = FragmentOne.class;
+                fragmentClass = NavigationFragmentOne.class;
                 break;
             case R.id.navItem2:
-                fragmentClass = FragmentTwo.class;
+                fragmentClass = NavigationFragmentTwo.class;
                 break;
             case R.id.navItem3:
-                fragmentClass = FragmentThree.class;
+                fragmentClass = NavigationFragmentThree.class;
                 break;
             case R.id.navItem4:
-                fragmentClass = FragmentFour.class;
+                fragmentClass = NavigationFragmentFour.class;
                 break;
             case R.id.navItem5:
-                fragmentClass = FragmentFive.class;
+                fragmentClass = NavigationFragmentFive.class;
                 break;
             case R.id.navItem6:
-                fragmentClass = FragmentSix.class;
+                fragmentClass = NavigationFragmentSix.class;
                 break;
             case R.id.navItem7:
-                fragmentClass = FragmentSeven.class;
+                fragmentClass = NavigationFragmentSeven.class;
                 break;
             case R.id.navItem8:
-                fragmentClass = FragmentEight.class;
+                fragmentClass = NavigationFragmentEight.class;
                 break;
             default:
                 Toast.makeText(getApplicationContext(), R.string.error, Toast.LENGTH_LONG).show();

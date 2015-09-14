@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">ViCab</string>
-    <string name="title_activity_navigation_drawer">Navigation</string>
+    <string name="title_activity_navigation_drawer">NavigationActivity</string>
+    <string name="title_activity_add_vocab">Neue Vokabel anlegen</string>
+
+    <string name="source_language">Ausgangssprache</string>
+    <string name="target_language">Zielsprache</string>
+    <string name="translate">Übersetzen</string>
+    <string name="select_list">Zu Liste hinzufügen</string>
+    <string name="all_vocabs">Alle Vokabeln</string>
 
     <!-- Nav items -->
     <string name="vocabs">Meine Vokabeln</string>
@@ -16,4 +23,7 @@
     <!-- For ActionBarDrawerToggle -->
     <string name="drawer_open">Öffne NavigationDrawer</string>
     <string name="drawer_close">Schließe NavigationDrawer</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>
