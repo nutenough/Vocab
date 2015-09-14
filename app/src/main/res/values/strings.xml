@@ -3,11 +3,17 @@
     <string name="title_activity_navigation_drawer">NavigationActivity</string>
     <string name="title_activity_add_vocab">Neue Vokabel anlegen</string>
 
+    <!-- Sample String -->
+    <string name="sample_string">Beispieltext</string>
+
+    <!-- LanguageActivity AlertDialog -->
     <string name="source_language">Ausgangssprache</string>
     <string name="target_language">Zielsprache</string>
-    <string name="translate">Übersetzen</string>
-    <string name="select_list">Zu Liste hinzufügen</string>
-    <string name="all_vocabs">Alle Vokabeln</string>
+    <string name="language_title">Sprachen festlegen</string>
+    <string name="lang_message">Bitte geben Sie die gewünschte Ausgangssprache und Zielsprache ein.</string>
+    <string name="language_positive_button">Erstellen</string>
+    <string name="language_negative_button">Abbrechen</string>
+    <string name="no_lang_input">Bitte Sprachbeziehung eingeben</string>
 
     <!-- Nav items -->
     <string name="vocabs">Meine Vokabeln</string>
@@ -23,6 +29,12 @@
     <!-- For ActionBarDrawerToggle -->
     <string name="drawer_open">Öffne NavigationDrawer</string>
     <string name="drawer_close">Schließe NavigationDrawer</string>
+
+    <!-- AddVocabFragmentOne -->
+    <string name="source_vocab">Deutsch</string>
+    <string name="target_vocab">Englisch</string>
+    <string name="translate">Übersetzen</string>
+    <string name="select_list">Zu Liste hinzufügen</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

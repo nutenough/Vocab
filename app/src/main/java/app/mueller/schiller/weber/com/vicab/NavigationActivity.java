@@ -1,6 +1,8 @@
 package app.mueller.schiller.weber.com.vicab;
 
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -33,6 +35,11 @@ public class NavigationActivity extends AppCompatActivity {
         // Set a Toolbar to replace the ActionBar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Generate shadow for toolbar (ab API 21)
+        if (Build.VERSION.SDK_INT >= 21) {
+            toolbar.setElevation(25);
+        }
 
         // Find DrawerLayout
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -90,7 +97,9 @@ public class NavigationActivity extends AppCompatActivity {
                 fragmentClass = NavigationFragmentSeven.class;
                 break;
             case R.id.navItem8:
-                fragmentClass = NavigationFragmentEight.class;
+                Intent intent = new Intent(NavigationActivity.this, LanguageActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
                 break;
             default:
                 Toast.makeText(getApplicationContext(), R.string.error, Toast.LENGTH_LONG).show();

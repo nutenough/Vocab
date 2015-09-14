@@ -26,6 +26,7 @@ public class AddVocabActivity extends AppCompatActivity {
     private void setupUIComponents() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         // For going back to the parent activity
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -72,7 +73,7 @@ public class AddVocabActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if(id == android.R.id.home) {
+        if (id == android.R.id.home) {
             NavUtils.navigateUpFromSameTask(this);
         }
 
