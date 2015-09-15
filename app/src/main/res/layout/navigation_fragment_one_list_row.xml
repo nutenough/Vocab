@@ -7,7 +7,7 @@
     android:paddingTop="16dp">
 
     <ImageView
-        android:id="@+id/folderIV"
+        android:id="@+id/vocabIV"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentLeft="true"
@@ -15,16 +15,16 @@
         android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="16dp"
-        android:src="@drawable/ic_folder" />
+        android:src="@drawable/ic_vocabs" />
 
     <TextView
-        android:id="@+id/languageCoupleTV"
+        android:id="@+id/vocabCoupleTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
-        android:layout_toRightOf="@+id/folderIV"
+        android:layout_toRightOf="@+id/vocabIV"
         android:text="@string/sample_string"
         android:textColor="@color/color_text_primary"
         android:textSize="20sp" />
