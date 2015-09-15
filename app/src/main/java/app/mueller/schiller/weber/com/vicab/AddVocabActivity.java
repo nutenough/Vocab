@@ -20,7 +20,7 @@ public class AddVocabActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_vocab);
         setupUIComponents();
-        handleEvents();
+        handleTabEvent();
     }
 
     private void setupUIComponents() {
@@ -37,7 +37,7 @@ public class AddVocabActivity extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL); // For landscape mode
     }
 
-    private void handleEvents() {
+    private void handleTabEvent() {
         AddVocabAdapter viewPageAdapter = new AddVocabAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPageAdapter);
         tabLayout.setupWithViewPager(viewPager);

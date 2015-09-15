@@ -35,6 +35,12 @@
     <string name="target_vocab">Englisch</string>
     <string name="translate">Übersetzen</string>
     <string name="select_list">Zu Liste hinzufügen</string>
+    <string name="vocab_negative_button">Abbrechen</string>
+    <string name="vocab_positive_button">Hinzufügen</string>
+
+    <!-- AddVocabFragmentTwo -->
+    <string name="add_foto">Foto einbinden</string>
+    <string name="add_sound">Sprachaufnahme</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
