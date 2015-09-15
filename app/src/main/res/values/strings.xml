@@ -32,9 +32,12 @@
 
     <!-- AddVocabFragmentOne -->
     <string name="source_vocab">Deutsch</string>
+    <string name="source_vocab_hint">Beispiel: lernen</string>
     <string name="target_vocab">Englisch</string>
+    <string name="target_vocab_hint">Beispiel: to learn</string>
     <string name="translate">Übersetzen</string>
     <string name="select_list">Zu Liste hinzufügen</string>
+    <string name="list_prompt">Liste auswählen</string>
     <string name="vocab_negative_button">Abbrechen</string>
     <string name="vocab_positive_button">Hinzufügen</string>
 

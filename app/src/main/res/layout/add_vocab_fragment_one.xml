@@ -6,11 +6,9 @@
 
     <TextView
         android:id="@+id/sourceVocabTV"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_margin="16dp"
         android:text="@string/source_language"
         android:textSize="20sp" />
@@ -20,8 +18,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/sourceVocabTV"
-        android:layout_margin="16dp"
-        android:hint="z.B. Sonne" />
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:hint="@string/source_vocab_hint"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/translateBTN"
@@ -35,9 +36,10 @@
 
     <TextView
         android:id="@+id/targetVocabTV"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/translateBTN"
+        android:layout_centerHorizontal="true"
         android:layout_margin="16dp"
         android:text="@string/target_language"
         android:textSize="20sp" />
@@ -47,39 +49,55 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/targetVocabTV"
-        android:layout_margin="16dp"
-        android:hint="z.B. sun" />
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:hint="@string/target_vocab_hint"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/selectListTV"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/targetVocabET"
+        android:layout_centerHorizontal="true"
         android:layout_margin="16dp"
         android:text="@string/select_list"
         android:textSize="20sp" />
 
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/selectListTV"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:prompt="@string/list_prompt" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom" >
+        android:gravity="bottom">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/vocabCancelBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/color_primary_light"
-            android:padding="16dp"
             android:layout_weight="0"
-            android:text="@string/language_negative_button" />
+            android:background="@color/color_primary"
+            android:padding="30dp"
+            android:text="@string/language_negative_button"
+            android:textColor="@color/color_white" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/vocabAddBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/color_primary"
             android:layout_weight="1"
-            android:text="Hinzufügen" />
+            android:background="@color/color_accent"
+            android:padding="30dp"
+            android:text="Hinzufügen"
+            android:textColor="@color/color_white" />
 
     </LinearLayout>
 
