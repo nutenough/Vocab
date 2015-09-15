@@ -112,6 +112,8 @@ public class LanguageActivity extends AppCompatActivity {
         sourceLanguageET = (EditText) view.findViewById(R.id.sourceLanguageET);
         targetLanguageET = (EditText) view.findViewById(R.id.targetLanguageET);
 
+        sourceLanguage = sourceLanguageET.getText().toString();
+        targetLanguage = targetLanguageET.getText().toString();
         languageCouple = sourceLanguage + " - " + targetLanguage;
     }
 
