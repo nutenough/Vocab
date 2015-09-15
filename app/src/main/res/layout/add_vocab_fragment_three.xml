@@ -6,21 +6,22 @@
 
     <TextView
         android:id="@+id/wordClassTV"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="16dp"
+        android:layout_centerHorizontal="true"
+        android:padding="16dp"
         android:text="Wortart"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/wordClassET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/wordClassTV"
-        android:layout_margin="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:hint="z.B. Substantiv" />
 
     <TextView
@@ -28,17 +29,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/wordClassET"
-        android:layout_margin="16dp"
+        android:layout_centerHorizontal="true"
+        android:padding="16dp"
         android:text="Wichtigkeit"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <RatingBar
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/wordClassET"
-        android:layout_toEndOf="@+id/importanceTV"
-        android:layout_toRightOf="@+id/importanceTV"
+        android:layout_below="@+id/importanceTV"
+        android:layout_centerHorizontal="true"
         android:numStars="3" />
 
 </RelativeLayout>
