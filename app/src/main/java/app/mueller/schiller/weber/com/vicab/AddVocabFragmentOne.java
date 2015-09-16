@@ -1,5 +1,6 @@
 package app.mueller.schiller.weber.com.vicab;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -38,39 +39,30 @@ public class AddVocabFragmentOne extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        vocabAddBTN = (Button) getActivity().findViewById(R.id.vocabAddBTN);
-        vocabsLV = (ListView) view.findViewById(R.id.vocabsLV);
-        vocabAddBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setupUIComponents();
-                getInput();
-                putInArrayList();
-                attachAdapter();
-            }
-        });
+        setupUIComponents();
+        getInput();
     }
 
     private void setupUIComponents() {
         sourceVocabET = (EditText) getActivity().findViewById(R.id.sourceVocabET);
         targetVocabET = (EditText) getActivity().findViewById(R.id.targetVocabET);
+        vocabAddBTN = (Button) getActivity().findViewById(R.id.vocabAddBTN);
+        vocabAddBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getInput();
+                Toast.makeText(getActivity(), vocabCouple + " wurde hinzugefügt", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                intent.putExtra("VOCAB_COUPLE", vocabCouple);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getInput() {
         sourceVocab = sourceVocabET.getText().toString();
         targetVocab = targetVocabET.getText().toString();
         vocabCouple = sourceVocab + " - " + targetVocab;
-    }
-
-    private void putInArrayList() {
-        listItems.add(vocabCouple);
-        adapter.notifyDataSetChanged();
-        Toast.makeText(getActivity(), vocabCouple + " angelegt", Toast.LENGTH_LONG).show();
-    }
-
-    private void attachAdapter() {
-        adapter = new AddVocabFragmentAdapter(getActivity(), listItems);
-        vocabsLV.setAdapter(adapter);
     }
 
 }

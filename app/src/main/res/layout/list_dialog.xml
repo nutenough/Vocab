@@ -14,6 +14,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:hint="@string/list_name"
+        android:singleLine="true"
         android:textColor="@color/color_text_primary"
         android:textColorHint="@color/color_text_secondary" />
 

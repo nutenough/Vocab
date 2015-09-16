@@ -34,10 +34,10 @@ public class NavigationFragmentTwo extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         setupUIComponents();
         handleFabEvent();
         attachAdapter();
-        super.onViewCreated(view, savedInstanceState);
     }
 
     private void setupUIComponents() {
