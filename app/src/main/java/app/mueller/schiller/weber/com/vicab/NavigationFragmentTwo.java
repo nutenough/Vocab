@@ -56,7 +56,7 @@ public class NavigationFragmentTwo extends Fragment {
 
     private void showAlertDialog() {
         // Setup View for AlertDialog
-        final View view = LayoutInflater.from(getActivity()).inflate(R.layout.list_dialog, null);
+        final View view = LayoutInflater.from(getActivity()).inflate(R.layout.navigation_fragment_two_dialog, null);
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
         alertDialogBuilder.setView(view);
 

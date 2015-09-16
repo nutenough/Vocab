@@ -9,10 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class AddVocabFragmentOne extends Fragment {
     View contentView;
@@ -22,10 +19,6 @@ public class AddVocabFragmentOne extends Fragment {
     private String sourceVocab;
     private String targetVocab;
     private String vocabCouple;
-    private ArrayList<String> listItems = new ArrayList<>();
-    private AddVocabFragmentAdapter adapter;
-    private ListView vocabsLV;
-
 
     // The view
     @Nullable

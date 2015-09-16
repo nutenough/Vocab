@@ -30,6 +30,7 @@ public class NavigationFragmentOne extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         setupUIComponents();
         handleEvents();
         getInput();
@@ -37,16 +38,9 @@ public class NavigationFragmentOne extends Fragment {
         putInArrayList();
     }
 
-    private void getInput() {
-        Bundle extras = getActivity().getIntent().getExtras();
-        if (extras != null) {
-            vocabCouple = extras.getString("VOCAB_COUPLE");
-        }
-    }
-
     private void setupUIComponents() {
-        fab = (FloatingActionButton) view.findViewById(R.id.fabVocab);
-        vocabsLV = (ListView) view.findViewById(R.id.vocabsLV);
+        fab = (FloatingActionButton) getActivity().findViewById(R.id.fabVocab);
+        vocabsLV = (ListView) getActivity().findViewById(R.id.vocabsLV);
     }
 
     private void handleEvents() {
@@ -57,6 +51,13 @@ public class NavigationFragmentOne extends Fragment {
                 startActivity(intent);
             }
         });
+    }
+
+    private void getInput() {
+        Bundle extras = getActivity().getIntent().getExtras();
+        if (extras != null) {
+            vocabCouple = extras.getString("VOCAB_COUPLE");
+        }
     }
 
     private void putInArrayList() {
