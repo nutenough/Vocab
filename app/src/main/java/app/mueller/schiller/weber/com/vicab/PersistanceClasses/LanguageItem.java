@@ -3,12 +3,22 @@ package app.mueller.schiller.weber.com.vicab.PersistanceClasses;
 
 public class LanguageItem {
 
-    private String sourceLanguage, targetLanguage;
-    private int _id = 0;
 
-    public LanguageItem (String sourceLanguage, String targetLanguage) {
+    private String couple, sourceLanguage, targetLanguage;
+
+
+    public LanguageItem (String couple, String sourceLanguage, String targetLanguage) {
+        this.couple = couple;
         this.sourceLanguage = sourceLanguage;
         this.targetLanguage = targetLanguage;
+    }
+
+    public String getCouple() {
+        return couple;
+    }
+
+    public void setCouple(String couple) {
+        this.couple = couple;
     }
 
     public void setSourceLanguage(String sourceLanguage) {
@@ -17,14 +27,6 @@ public class LanguageItem {
 
     public void setTargetLanguage(String targetLanguage) {
         this.targetLanguage = targetLanguage;
-    }
-
-    public int get_id() {
-        return _id;
-    }
-
-    public void set_id (int dbID) {
-        _id = dbID;
     }
 
     public String getSourceLanguage() {

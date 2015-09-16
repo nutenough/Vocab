@@ -3,7 +3,7 @@ package app.mueller.schiller.weber.com.vicab.Database;
 import android.provider.BaseColumns;
 
 public final class ViCabContract {
-    public static final String DATA_BASE_NAME = "vicab";
+    public static final String DATA_BASE_NAME = "vicab.db";
     public static final int DATABASE_VERSION = 1;
     // To prevent someone from accidentally instantiating the contract class,
     // give it an empty constructor.
@@ -14,12 +14,14 @@ public final class ViCabContract {
     public static abstract class LanguageEntry implements BaseColumns {
         public static final String TABLE_NAME = "language";
         public static final String COLUMN_NAME_ENTRY_ID = "language_id";
+        public static final String COLUMN_NAME_COUPLE = "couple";
         public static final String COLUMN_NAME_SOURCE_LANGUAGE = "source_language";
         public static final String COLUMN_NAME_TARGET_LANGUAGE = "target_language";
 
         public static final int COLUMN_ID_INDEX = 0;
-        public static final int COLUMN_SOURCE_LANGUAGE_INDEX = 1;
-        public static final int COLUMN_TARGET_LANGUAGE_INDEX = 2;
+        public static final int COLUMN_COUPLE_INDEX = 1;
+        public static final int COLUMN_SOURCE_LANGUAGE_INDEX = 2;
+        public static final int COLUMN_TARGET_LANGUAGE_INDEX = 3;
     }
 
     public static abstract class ListEntry implements BaseColumns {

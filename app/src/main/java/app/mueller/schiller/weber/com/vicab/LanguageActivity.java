@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +18,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import app.mueller.schiller.weber.com.vicab.Database.DBAdmin;
+import app.mueller.schiller.weber.com.vicab.Database.ViCabContract;
+import app.mueller.schiller.weber.com.vicab.PersistanceClasses.LanguageItem;
 
 public class LanguageActivity extends AppCompatActivity {
 
@@ -29,16 +34,41 @@ public class LanguageActivity extends AppCompatActivity {
     private String targetLanguage;
     private AlertDialog alertDialog;
     private ListView languageLV;
-    private ArrayList<String> listItems = new ArrayList<>();
+    private ArrayList<LanguageItem> listItems = new ArrayList<LanguageItem>();
     private LanguageAdapter adapter;
+
+    private LanguageItem newLangItem;
+
+    private DBAdmin dbAdmin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language);
+
+        initDB();
         setupUIComponents();
         handleFabEvent();
         attachAdapter();
+        updateList();
+    }
+
+    private void updateList() {
+        listItems.clear();
+        listItems.addAll(dbAdmin.getAllLanguages());
+        Log.d("listitems", "li: " + listItems + "allL: " + dbAdmin.getAllLanguages());
+        adapter.notifyDataSetChanged();
+    }
+
+
+    protected void onDestroy () {
+        dbAdmin.close();
+        super.onDestroy();
+    }
+
+    private void initDB(){
+        dbAdmin = new DBAdmin(this);
+        dbAdmin.open();
     }
 
     private void setupUIComponents() {
@@ -113,13 +143,21 @@ public class LanguageActivity extends AppCompatActivity {
         sourceLanguage = sourceLanguageET.getText().toString();
         targetLanguage = targetLanguageET.getText().toString();
         languageCouple = sourceLanguage + " - " + targetLanguage;
+        newLangItem = new LanguageItem(languageCouple, sourceLanguage,targetLanguage);
+        safeInDB(newLangItem);
+
     }
 
     // Puts the input from the alertDialog in ListView items
     private void putInArrayList() {
-        listItems.add(languageCouple);
-        adapter.notifyDataSetChanged();
+        listItems.add(newLangItem);
+        updateList();
         Toast.makeText(getApplicationContext(), "Sprachbeziehung " + languageCouple + " festgelegt", Toast.LENGTH_LONG).show();
+
+    }
+
+    private void safeInDB(LanguageItem langItem){
+        dbAdmin.addLanguage(langItem);
     }
 
     private void attachAdapter() {
