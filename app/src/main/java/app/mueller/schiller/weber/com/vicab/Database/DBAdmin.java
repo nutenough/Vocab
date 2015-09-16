@@ -111,8 +111,10 @@ public class DBAdmin {
         return langItem;
     }
 
+    */
+
     public ArrayList<LanguageItem> getAllLanguages() {
-        ArrayList<LanguageItem> items = new ArrayList<LanguageItem>();
+        ArrayList<LanguageItem> items = new ArrayList<>();
         Cursor cursor = db.query(ViCabContract.LanguageEntry.TABLE_NAME, new String[] { ViCabContract.LanguageEntry.COLUMN_NAME_ENTRY_ID, ViCabContract.LanguageEntry.COLUMN_NAME_COUPLE,
                 ViCabContract.LanguageEntry.COLUMN_NAME_SOURCE_LANGUAGE, ViCabContract.LanguageEntry.COLUMN_NAME_TARGET_LANGUAGE }, null, null, null, null, null);
 
@@ -129,6 +131,7 @@ public class DBAdmin {
         }
         return items;
     }
+
 
     /*
     public ArrayList<LanguageItem> getAllLists() {
@@ -259,7 +262,7 @@ public class DBAdmin {
                 " text, " + ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK + " text, " + ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE +
                 " text, " + ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE + " integer, " + ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST +
                 " integer)";
-        ;
+
 
 
         public ToDoDBOpenHelper(Context c, String dbname,

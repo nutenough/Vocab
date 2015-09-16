@@ -34,7 +34,7 @@ public class LanguageActivity extends AppCompatActivity {
     private String targetLanguage;
     private AlertDialog alertDialog;
     private ListView languageLV;
-    private ArrayList<LanguageItem> listItems = new ArrayList<LanguageItem>();
+    private ArrayList<LanguageItem> listItems = new ArrayList<>();
     private LanguageAdapter adapter;
 
     private LanguageItem newLangItem;
@@ -60,13 +60,12 @@ public class LanguageActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-
-    protected void onDestroy () {
+    protected void onDestroy() {
         dbAdmin.close();
         super.onDestroy();
     }
 
-    private void initDB(){
+    private void initDB() {
         dbAdmin = new DBAdmin(this);
         dbAdmin.open();
     }
@@ -143,7 +142,7 @@ public class LanguageActivity extends AppCompatActivity {
         sourceLanguage = sourceLanguageET.getText().toString();
         targetLanguage = targetLanguageET.getText().toString();
         languageCouple = sourceLanguage + " - " + targetLanguage;
-        newLangItem = new LanguageItem(languageCouple, sourceLanguage,targetLanguage);
+        newLangItem = new LanguageItem(languageCouple, sourceLanguage, targetLanguage);
         safeInDB(newLangItem);
 
     }
@@ -153,10 +152,9 @@ public class LanguageActivity extends AppCompatActivity {
         listItems.add(newLangItem);
         updateList();
         Toast.makeText(getApplicationContext(), "Sprachbeziehung " + languageCouple + " festgelegt", Toast.LENGTH_LONG).show();
-
     }
 
-    private void safeInDB(LanguageItem langItem){
+    private void safeInDB(LanguageItem langItem) {
         dbAdmin.addLanguage(langItem);
     }
 

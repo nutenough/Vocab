@@ -9,7 +9,7 @@
     <!-- LanguageActivity AlertDialog -->
     <string name="source_language">Ausgangssprache</string>
     <string name="target_language">Zielsprache</string>
-    <string name="language_title">Sprachen festlegen</string>
+    <string name="language_title">Sprachbeziehung festlegen</string>
     <string name="lang_message">Bitte geben Sie die gewünschte Ausgangssprache und Zielsprache ein.</string>
     <string name="language_positive_button">Erstellen</string>
     <string name="language_negative_button">Abbrechen</string>
@@ -44,6 +44,14 @@
     <!-- AddVocabFragmentTwo -->
     <string name="add_foto">Foto einbinden</string>
     <string name="add_sound">Sprachaufnahme</string>
+
+    <!-- NavigationFragmentTwo AlertDialog-->
+    <string name="list_name">Name der Liste</string>
+    <string name="list_title">Liste erstellen</string>
+    <string name="list_message">Bitte geben Sie einen Namen für die Liste ein.</string>
+    <string name="list_positive_button">Erstellen</string>
+    <string name="list_negative_button">Abbrechen</string>
+    <string name="no_list_input">Bitte Name der Liste eingeben</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
