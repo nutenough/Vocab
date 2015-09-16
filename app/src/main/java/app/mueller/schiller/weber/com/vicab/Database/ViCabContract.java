@@ -38,6 +38,7 @@ public final class ViCabContract {
     public static abstract class VocabEntry implements BaseColumns {
         public static final String TABLE_NAME = "vocab";
         public static final String COLUMN_NAME_ENTRY_ID = "vocab_id";
+        public static final String COLUMN_MIX_SOURCE_TARGET = "source_target";
         public static final String COLUMN_NAME_SOURCE_VOCAB = "source_vocab";
         public static final String COLUMN_NAME_TARGET_VOCAB = "target_vocab";
         public static final String COLUMN_NAME_FOTO_LINK = "foto_link";
@@ -47,13 +48,14 @@ public final class ViCabContract {
         public static final String COLUMN_NAME_HAS_LIST = "has_list";
 
         public static final int COLUMN_ID_INDEX = 0;
-        public static final int COLUMN_SOURCE_VOCAB_INDEX = 1;
-        public static final int COLUMN_TARGET_VOCAB_INDEX = 2;
-        public static final int COLUMN_FOTO_LINK_INDEX = 3;
-        public static final int COLUMN_SOUND_LINK_INDEX = 4;
-        public static final int COLUMN_WORD_TYPE_INDEX = 5;
-        public static final int COLUMN_IMPORTANCE_INDEX = 6;
-        public static final int COLUMN_HAS_LIST_INDEX = 7;
+        public static final int COLUMN_MIX_INDEX = 1;
+        public static final int COLUMN_SOURCE_VOCAB_INDEX = 2;
+        public static final int COLUMN_TARGET_VOCAB_INDEX = 3;
+        public static final int COLUMN_FOTO_LINK_INDEX = 4;
+        public static final int COLUMN_SOUND_LINK_INDEX = 5;
+        public static final int COLUMN_WORD_TYPE_INDEX = 6;
+        public static final int COLUMN_IMPORTANCE_INDEX = 7;
+        public static final int COLUMN_HAS_LIST_INDEX = 8;
     }
 }
 

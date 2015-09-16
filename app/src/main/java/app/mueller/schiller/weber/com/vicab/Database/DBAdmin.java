@@ -82,7 +82,7 @@ public class DBAdmin {
 
         db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
     }
-
+    /*
     public void removeList(ListItem item) {
 
         String whereClause = ViCabContract.ListEntry.COLUMN_ID_INDEX + " = '" + item.get_id() ;
@@ -256,9 +256,9 @@ public class DBAdmin {
         private static final String TABLE_VOCAB_CREATE = "create table " + ViCabContract.VocabEntry.TABLE_NAME + "(" +
                 ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " integer primary key autoincrement , " + ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB +
                 " text not null , " + ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB + " text not null , " + ViCabContract.VocabEntry.COLUMN_NAME_FOTO_LINK +
-                " text not null , " + ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK + " text not null , " + ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE +
-                " text not null , " + ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE + " integer not null , " + ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST +
-                " integer not null)";
+                " text, " + ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK + " text, " + ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE +
+                " text, " + ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE + " integer, " + ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST +
+                " integer)";
         ;
 
 

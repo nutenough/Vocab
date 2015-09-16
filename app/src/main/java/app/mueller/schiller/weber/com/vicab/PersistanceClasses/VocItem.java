@@ -6,8 +6,6 @@ public class VocItem {
     private String sourceVocab, targetVocab, fotoLink, soundLink, wordType, hasLanguage;
     private int importance;
 
-    private int _id = 0;
-
 
     public VocItem(String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, String hasLanguage, int importance) {
         this.sourceVocab = sourceVocab;
@@ -77,13 +75,6 @@ public class VocItem {
         this.importance = importance;
     }
 
-    public int get_id() {
-        return _id;
-    }
-
-    public void set_id(int _id) {
-        this._id = _id;
-    }
 
 
 
