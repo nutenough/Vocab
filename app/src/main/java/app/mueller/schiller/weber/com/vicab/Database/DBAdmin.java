@@ -1,0 +1,268 @@
+package app.mueller.schiller.weber.com.vicab.Database;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import java.util.ArrayList;
+import app.mueller.schiller.weber.com.vicab.PersistanceClasses.LanguageItem;
+import app.mueller.schiller.weber.com.vicab.PersistanceClasses.ListItem;
+import app.mueller.schiller.weber.com.vicab.PersistanceClasses.VocItem;
+
+
+public class DBAdmin {
+
+    private ToDoDBOpenHelper dbHelper;
+
+    private SQLiteDatabase db;
+
+    public DBAdmin(Context context) {
+        dbHelper = new ToDoDBOpenHelper(context, ViCabContract.DATA_BASE_NAME, null,
+                ViCabContract.DATABASE_VERSION);
+    }
+
+    public void open() throws SQLException {
+        try {
+            db = dbHelper.getWritableDatabase();
+        } catch (SQLException e) {
+            db = dbHelper.getReadableDatabase();
+        }
+    }
+
+    public void close() {
+        db.close();
+    }
+
+    public long addLanguage(String targetLanguage, String sourceLanguage) {
+        ContentValues languageItem = new ContentValues();
+
+
+        languageItem.put(ViCabContract.LanguageEntry.COLUMN_NAME_SOURCE_LANGUAGE, sourceLanguage);
+        languageItem.put(ViCabContract.LanguageEntry.COLUMN_NAME_TARGET_LANGUAGE, targetLanguage);
+
+        return db.insert(ViCabContract.LanguageEntry.TABLE_NAME, null, languageItem);
+    }
+
+
+    public long addList(String listName, String hasLanguage) {
+        ContentValues listItem = new ContentValues();
+
+        listItem.put(ViCabContract.ListEntry.COLUMN_NAME_NAME, listName);
+        listItem.put(ViCabContract.ListEntry.COLUMN_NAME_HAS_LANGUAGE, hasLanguage);
+
+        return db.insert(ViCabContract.ListEntry.TABLE_NAME, null, listItem);
+    }
+
+
+    public long addVocab(String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, String importance, String hasList) {
+        ContentValues vocItem = new ContentValues();
+
+        vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB, sourceVocab);
+        vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB, targetVocab);
+        vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_FOTO_LINK, fotoLink);
+        vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK, soundLink);
+        vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE, wordType);
+        vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE, importance);
+        vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE, hasList);
+
+        return db.insert(ViCabContract.ListEntry.TABLE_NAME, null, vocItem);
+    }
+
+
+    public void removeLanguage(LanguageItem item) {
+
+        String whereClause = ViCabContract.LanguageEntry.COLUMN_SOURCE_LANGUAGE_INDEX + " = '" + item.getSourceLanguage() + "' AND "
+                + ViCabContract.LanguageEntry.COLUMN_TARGET_LANGUAGE_INDEX + " = '" + item.getTargetLanguage() + "'";
+
+
+
+        db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
+    }
+
+    public void removeList(ListItem item) {
+
+        String whereClause = ViCabContract.ListEntry.COLUMN_ID_INDEX + " = '" + item.get_id() ;
+
+        db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
+    }
+
+    public void removeVocab(VocItem item) {
+
+        String whereClause = ViCabContract.VocabEntry.COLUMN_ID_INDEX + " = '" + item.get_id() ;
+
+        db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
+    }
+
+
+    public ArrayList<LanguageItem> getAllLanguages() {
+        ArrayList<LanguageItem> items = new ArrayList<LanguageItem>();
+        Cursor cursor = db.query(ViCabContract.LanguageEntry.TABLE_NAME, new String[] { ViCabContract.LanguageEntry.COLUMN_NAME_ENTRY_ID,
+                ViCabContract.LanguageEntry.COLUMN_NAME_SOURCE_LANGUAGE, ViCabContract.LanguageEntry.COLUMN_NAME_TARGET_LANGUAGE }, null, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String sourceLanguage = cursor.getString(ViCabContract.LanguageEntry.COLUMN_SOURCE_LANGUAGE_INDEX);
+                String targetLanguage= cursor.getString(ViCabContract.LanguageEntry.COLUMN_TARGET_LANGUAGE_INDEX);
+                Log.d("String: uri " + sourceLanguage,", title: " + targetLanguage);
+
+                items.add(new LanguageItem(sourceLanguage, targetLanguage));
+
+            } while (cursor.moveToNext());
+        }
+        return items;
+    }
+
+
+    public ArrayList<LanguageItem> getAllLists() {
+        ArrayList<LanguageItem> items = new ArrayList<LanguageItem>();
+        Cursor cursor = db.query(ViCabContract.LanguageEntry.TABLE_NAME, new String[] { ViCabContract.LanguageEntry.COLUMN_NAME_ENTRY_ID,
+                ViCabContract.LanguageEntry.COLUMN_NAME_SOURCE_LANGUAGE, ViCabContract.LanguageEntry.COLUMN_NAME_TARGET_LANGUAGE }, null, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String sourceLanguage = cursor.getString(ViCabContract.LanguageEntry.COLUMN_SOURCE_LANGUAGE_INDEX);
+                String targetLanguage= cursor.getString(ViCabContract.LanguageEntry.COLUMN_TARGET_LANGUAGE_INDEX);
+                Log.d("String: uri " + sourceLanguage,", title: " + targetLanguage);
+
+                items.add(new LanguageItem(sourceLanguage, targetLanguage));
+
+            } while (cursor.moveToNext());
+        }
+        return items;
+    }
+
+
+    public ArrayList<LanguageItem> getAllVocab() {
+        ArrayList<LanguageItem> items = new ArrayList<LanguageItem>();
+        Cursor cursor = db.query(ViCabContract.LanguageEntry.TABLE_NAME, new String[] { ViCabContract.LanguageEntry.COLUMN_NAME_ENTRY_ID,
+                ViCabContract.LanguageEntry.COLUMN_NAME_SOURCE_LANGUAGE, ViCabContract.LanguageEntry.COLUMN_NAME_TARGET_LANGUAGE }, null, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String sourceLanguage = cursor.getString(ViCabContract.LanguageEntry.COLUMN_SOURCE_LANGUAGE_INDEX);
+                String targetLanguage= cursor.getString(ViCabContract.LanguageEntry.COLUMN_TARGET_LANGUAGE_INDEX);
+                Log.d("String: uri " + sourceLanguage,", title: " + targetLanguage);
+
+                items.add(new LanguageItem(sourceLanguage, targetLanguage));
+
+            } while (cursor.moveToNext());
+        }
+        return items;
+    }
+
+    public ArrayList<LanguageItem> getVocabItem() {
+        ArrayList<LanguageItem> items = new ArrayList<LanguageItem>();
+        Cursor cursor = db.query(ViCabContract.LanguageEntry.TABLE_NAME, new String[] { ViCabContract.LanguageEntry.COLUMN_NAME_ENTRY_ID,
+                ViCabContract.LanguageEntry.COLUMN_NAME_SOURCE_LANGUAGE, ViCabContract.LanguageEntry.COLUMN_NAME_TARGET_LANGUAGE }, null, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String sourceLanguage = cursor.getString(ViCabContract.LanguageEntry.COLUMN_SOURCE_LANGUAGE_INDEX);
+                String targetLanguage= cursor.getString(ViCabContract.LanguageEntry.COLUMN_TARGET_LANGUAGE_INDEX);
+                Log.d("String: uri " + sourceLanguage,", title: " + targetLanguage);
+
+                items.add(new LanguageItem(sourceLanguage, targetLanguage));
+
+            } while (cursor.moveToNext());
+        }
+        return items;
+    }
+
+    // Update VocabItem
+    public long updateVocabSource(String vocabItemID, String sourceVoc){
+        String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " = '" + vocabItemID + "'";
+        ContentValues cv = new ContentValues();
+        cv.put(ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB, sourceVoc);
+        return db.update(ViCabContract.VocabEntry.TABLE_NAME, cv, whereClause, null);
+    }
+
+    public long updateVocabTarget(String vocabItemID, String targetVoc){
+        String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " = '" + vocabItemID + "'";
+        ContentValues cv = new ContentValues();
+        cv.put(ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB, targetVoc);
+        return db.update(ViCabContract.VocabEntry.TABLE_NAME, cv, whereClause, null);
+    }
+
+    public long updateVocabFoto(String vocabItemID, String fotoLink){
+        String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " = '" + vocabItemID + "'";
+        ContentValues cv = new ContentValues();
+        cv.put(ViCabContract.VocabEntry.COLUMN_NAME_FOTO_LINK, fotoLink);
+        return db.update(ViCabContract.VocabEntry.TABLE_NAME, cv, whereClause, null);
+    }
+
+    public long updateVocabSound(String vocabItemID, String soundLink){
+        String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " = '" + vocabItemID + "'";
+        ContentValues cv = new ContentValues();
+        cv.put(ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK, soundLink);
+        return db.update(ViCabContract.VocabEntry.TABLE_NAME, cv, whereClause, null);
+    }
+
+    public long updateVocabWordType(String vocabItemID, String wordType){
+        String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " = '" + vocabItemID + "'";
+        ContentValues cv = new ContentValues();
+        cv.put(ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE, wordType);
+        return db.update(ViCabContract.VocabEntry.TABLE_NAME, cv, whereClause, null);
+    }
+
+    public long updateVocabImportance(String vocabItemID, String importance){
+        String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " = '" + vocabItemID + "'";
+        ContentValues cv = new ContentValues();
+        cv.put(ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE, importance);
+        return db.update(ViCabContract.VocabEntry.TABLE_NAME, cv, whereClause, null);
+    }
+
+    // Update Name
+    public long updateListName(String listItemID,String name){
+        String whereClause = ViCabContract.ListEntry.COLUMN_NAME_ENTRY_ID + " = '" + listItemID + "'";
+        ContentValues cv = new ContentValues();
+        cv.put(ViCabContract.ListEntry.COLUMN_NAME_NAME, name);
+        return db.update(ViCabContract.ListEntry.TABLE_NAME, cv, whereClause, null);
+    }
+
+
+    private class ToDoDBOpenHelper extends SQLiteOpenHelper {
+        private static final String TABLE_LANGUAGE_CREATE = "CREATE TABLE " + ViCabContract.DATA_BASE_NAME+"."
+                + ViCabContract.LanguageEntry.TABLE_NAME + "(" + ViCabContract.LanguageEntry.COLUMN_NAME_ENTRY_ID +
+                "INT(10) UNSIGNED NOT NULL AUTO_INCREMENT , " + ViCabContract.LanguageEntry.COLUMN_NAME_SOURCE_LANGUAGE +
+                "VARCHAR(255) NOT NULL , " + ViCabContract.LanguageEntry.COLUMN_NAME_TARGET_LANGUAGE +
+                "VARCHAR(255) NOT NULL , PRIMARY KEY (" + ViCabContract.LanguageEntry.COLUMN_NAME_ENTRY_ID + "))";
+
+        private static final String TABLE_LIST_CREATE = "CREATE TABLE" + ViCabContract.DATA_BASE_NAME+"." + ViCabContract.ListEntry.TABLE_NAME +
+                "(" + ViCabContract.ListEntry.COLUMN_NAME_ENTRY_ID +  "INT(10) UNSIGNED NOT NULL AUTO_INCREMENT , " + ViCabContract.ListEntry.COLUMN_NAME_NAME +
+                "VARCHAR(255) NOT NULL , " + ViCabContract.ListEntry.COLUMN_NAME_HAS_LANGUAGE + "INT(10) UNSIGNED NOT NULL , PRIMARY KEY (" +
+                ViCabContract.ListEntry.COLUMN_NAME_ENTRY_ID + "), FOREIGN KEY (" + ViCabContract.ListEntry.COLUMN_NAME_HAS_LANGUAGE + ") REFERENCES " +
+                ViCabContract.DATA_BASE_NAME+"." + ViCabContract.LanguageEntry.TABLE_NAME + "(" + ViCabContract.LanguageEntry.COLUMN_NAME_ENTRY_ID + "))";
+
+
+        private static final String TABLE_VOCAB_CREATE = "CREATE TABLE " + ViCabContract.DATA_BASE_NAME + "." + ViCabContract.VocabEntry.TABLE_NAME + "(" +
+                ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + "INT(10) UNSIGNED NOT NULL AUTO_INCREMENT , " + ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB +
+                "VARCHAR(255) NOT NULL , " + ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB + "VARCHAR(255) NOT NULL , " + ViCabContract.VocabEntry.COLUMN_NAME_FOTO_LINK +
+                "VARCHAR(255) NOT NULL , " + ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK + "VARCHAR(255) NOT NULL , " + ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE +
+                "VARCHAR(255) NOT NULL , " + ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE + "INTNOT NULL , " + ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST +
+                "INT UNSIGNED NOT NULL , PRIMARY KEY("+ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID+ "), FOREIGN KEY(" + ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST +
+                ") REFERENCES " + ViCabContract.DATA_BASE_NAME+"."+ ViCabContract.ListEntry.TABLE_NAME+ "(" + ViCabContract.ListEntry.TABLE_NAME + "))";
+        ;
+
+
+        public ToDoDBOpenHelper(Context c, String dbname,
+                                SQLiteDatabase.CursorFactory factory, int version) {
+            super(c, dbname, factory, version);
+        }
+
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+            db.execSQL(TABLE_LANGUAGE_CREATE);
+            db.execSQL(TABLE_LIST_CREATE);
+            db.execSQL(TABLE_VOCAB_CREATE);
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+        }
+    }
+}
