@@ -16,6 +16,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import app.mueller.schiller.weber.com.vicab.Database.DBAdmin;
+import app.mueller.schiller.weber.com.vicab.PersistanceClasses.LanguageItem;
+
 public class NavigationFragmentTwo extends Fragment {
 
     private FloatingActionButton fab;
@@ -26,6 +29,8 @@ public class NavigationFragmentTwo extends Fragment {
     private ArrayList<String> listItems = new ArrayList<>();
     private NavigationFragmentTwoAdapter adapter;
 
+    private DBAdmin dbAdmin;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,9 +40,20 @@ public class NavigationFragmentTwo extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initDB();
         setupUIComponents();
         handleFabEvent();
         attachAdapter();
+    }
+
+    private void initDB() {
+        dbAdmin = new DBAdmin(getActivity());
+        dbAdmin.open();
+    }
+
+    public void onDestroy() {
+        dbAdmin.close();
+        super.onDestroy();
     }
 
     private void setupUIComponents() {

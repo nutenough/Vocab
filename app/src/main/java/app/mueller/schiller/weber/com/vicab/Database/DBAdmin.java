@@ -78,8 +78,6 @@ public class DBAdmin {
         String whereClause = ViCabContract.LanguageEntry.COLUMN_SOURCE_LANGUAGE_INDEX + " = '" + item.getSourceLanguage() + "' AND "
                 + ViCabContract.LanguageEntry.COLUMN_TARGET_LANGUAGE_INDEX + " = '" + item.getTargetLanguage() + "'";
 
-
-
         db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
     }
     /*
