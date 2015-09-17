@@ -31,6 +31,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".NavigationActivity" />
         </activity>
+        <activity
+            android:name=".ExpressLearnActivity"
+            android:label="@string/title_activity_express_learn">
+        </activity>
     </application>
 
 </manifest>

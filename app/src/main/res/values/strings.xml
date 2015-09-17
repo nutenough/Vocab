@@ -2,6 +2,7 @@
     <string name="app_name">ViCab</string>
     <string name="title_activity_navigation_drawer">NavigationActivity</string>
     <string name="title_activity_add_vocab">Neue Vokabel anlegen</string>
+    <string name="title_activity_express_learn">Express-Modus</string>
 
     <!-- Sample String -->
     <string name="sample_string">Beispieltext</string>
@@ -55,4 +56,30 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <!-- LearnVocabFragmentThree -->
+    <string name="learning_direction">Lern-Richtung</string>
+    <string name="learning_1_2">Ausgangssprache zu Zielsprache</string>
+    <string name="learning_2_1">Zielsprache zu Ausgangssprache</string>
+    <string name="learning_mixed">gemischt</string>
+
+    <string name="learning_media">Medien</string>
+    <string name="learning_media_audio_response">Sprachausgabe</string>
+    <string name="learning_media_text_input">Texteingabe</string>
+    <string name="learning_media_picture">Bilder</string>
+
+    <string name="learning_meta">Metadaten</string>
+    <string name="learning_meta_word_class">Wortart</string>
+    <string name="learning_meta_importance">Wichtigkeit</string>
+    <string name="learning_meta_phase">Phase</string>
+    <string name="learning_meta_number_of_meanings">Anzahl der Bedeutungen</string>
+    <string name="learning_meta_all">Alle</string>
+
+    <string name="learning_button_learn">Lernen</string>
+
+    <string name="vocab_learning_language">to learn</string>
+    <string name="vocab_knowing_language">lernen</string>
+    <string name="vocab_counter">25 / 76</string>
+    <string name="number_of_meanings">*</string>
+    <string name="learning_button_express_modus">Express-Modus</string>
 </resources>
