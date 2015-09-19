@@ -35,7 +35,7 @@ public class NavigationFragmentOne extends Fragment {
         handleEvents();
         getInput();
         attachAdapter();
-        putInArrayList();
+        updateList();
     }
 
     private void setupUIComponents() {
@@ -62,6 +62,9 @@ public class NavigationFragmentOne extends Fragment {
 
     private void putInArrayList() {
         listItems.add(vocabCouple);
+    }
+
+    private void updateList(){
         adapter.notifyDataSetChanged();
     }
 

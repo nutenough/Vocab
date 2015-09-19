@@ -9,15 +9,17 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class NavigationFragmentTwoAdapter extends ArrayAdapter<String> {
-    public NavigationFragmentTwoAdapter(Context context, ArrayList<String> data) {
+import app.mueller.schiller.weber.com.vicab.PersistanceClasses.ListItem;
+
+public class NavigationFragmentTwoAdapter extends ArrayAdapter<ListItem> {
+    public NavigationFragmentTwoAdapter(Context context, ArrayList<ListItem> data) {
         super(context, 0, data);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        String dataItem = getItem(position);
+        ListItem dataItem = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.navigation_fragment_two_list_row, parent, false);
@@ -25,7 +27,7 @@ public class NavigationFragmentTwoAdapter extends ArrayAdapter<String> {
         // Lookup view for data population
         TextView title = (TextView) convertView.findViewById(R.id.listTV);
         // Populate the data into the template view using the data object
-        title.setText(dataItem);
+        title.setText(dataItem.getName());
         // Return the completed view to render on screen
         return convertView;
     }

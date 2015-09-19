@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import app.mueller.schiller.weber.com.vicab.Database.DBAdmin;
 import app.mueller.schiller.weber.com.vicab.PersistanceClasses.LanguageItem;
+import app.mueller.schiller.weber.com.vicab.PersistanceClasses.ListItem;
 
 public class NavigationFragmentTwo extends Fragment {
 
@@ -26,7 +27,7 @@ public class NavigationFragmentTwo extends Fragment {
     private EditText listNameET;
     private String listName;
     private AlertDialog alertDialog;
-    private ArrayList<String> listItems = new ArrayList<>();
+    private ArrayList<ListItem> listItems = new ArrayList<ListItem>();
     private NavigationFragmentTwoAdapter adapter;
 
     private DBAdmin dbAdmin;
@@ -44,6 +45,13 @@ public class NavigationFragmentTwo extends Fragment {
         setupUIComponents();
         handleFabEvent();
         attachAdapter();
+        updateList();
+    }
+
+    private void updateList() {
+        listItems.clear();
+        listItems.addAll(dbAdmin.getAllLists());
+        adapter.notifyDataSetChanged();
     }
 
     private void initDB() {
@@ -121,9 +129,13 @@ public class NavigationFragmentTwo extends Fragment {
     }
 
     private void putInArrayList() {
-        listItems.add(listName);
-        adapter.notifyDataSetChanged();
+        addToDB();
+        updateList();
         Toast.makeText(getActivity(), listName + " wurde erstellt", Toast.LENGTH_LONG).show();
+    }
+
+    private void addToDB(){
+        dbAdmin.addList(listName, "lang");
     }
 
     private void attachAdapter() {

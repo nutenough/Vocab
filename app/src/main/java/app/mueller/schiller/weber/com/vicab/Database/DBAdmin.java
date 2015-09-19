@@ -131,19 +131,18 @@ public class DBAdmin {
     }
 
 
-    /*
-    public ArrayList<LanguageItem> getAllLists() {
-        ArrayList<LanguageItem> items = new ArrayList<LanguageItem>();
-        Cursor cursor = db.query(ViCabContract.LanguageEntry.TABLE_NAME, new String[] { ViCabContract.LanguageEntry.COLUMN_NAME_ENTRY_ID,
-                ViCabContract.LanguageEntry.COLUMN_NAME_SOURCE_LANGUAGE, ViCabContract.LanguageEntry.COLUMN_NAME_TARGET_LANGUAGE }, null, null, null, null, null);
+
+    public ArrayList<ListItem> getAllLists() {
+        ArrayList<ListItem> items = new ArrayList<ListItem>();
+        Cursor cursor = db.query(ViCabContract.ListEntry.TABLE_NAME, new String[] { ViCabContract.ListEntry.COLUMN_NAME_ENTRY_ID,
+                ViCabContract.ListEntry.COLUMN_NAME_NAME, ViCabContract.ListEntry.COLUMN_NAME_HAS_LANGUAGE }, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
-                String sourceLanguage = cursor.getString(ViCabContract.LanguageEntry.COLUMN_SOURCE_LANGUAGE_INDEX);
-                String targetLanguage= cursor.getString(ViCabContract.LanguageEntry.COLUMN_TARGET_LANGUAGE_INDEX);
-                Log.d("String: uri " + sourceLanguage,", title: " + targetLanguage);
+                String name = cursor.getString(ViCabContract.ListEntry.COLUMN_NAME_INDEX);
+                String hasLanguage= cursor.getString(ViCabContract.ListEntry.COLUMN_HAS_LANGUAGE_INDEX);
 
-                items.add(new ListItem(sourceLanguage, targetLanguage));
+                items.add(new ListItem(name, hasLanguage));
 
             } while (cursor.moveToNext());
         }
@@ -151,6 +150,7 @@ public class DBAdmin {
     }
 
 
+    /*
     public ArrayList<LanguageItem> getAllVocab() {
         ArrayList<LanguageItem> items = new ArrayList<LanguageItem>();
         Cursor cursor = db.query(ViCabContract.LanguageEntry.TABLE_NAME, new String[] { ViCabContract.LanguageEntry.COLUMN_NAME_ENTRY_ID,
