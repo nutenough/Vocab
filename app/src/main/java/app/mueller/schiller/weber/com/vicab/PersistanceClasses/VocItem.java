@@ -7,7 +7,7 @@ public class VocItem {
     private int importance;
 
 
-    public VocItem(String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, String hasLanguage, int importance) {
+    public VocItem(String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, int importance, String hasLanguage) {
         this.sourceVocab = sourceVocab;
         this.targetVocab = targetVocab;
         this.fotoLink = fotoLink;

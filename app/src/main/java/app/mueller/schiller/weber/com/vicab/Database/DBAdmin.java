@@ -58,7 +58,7 @@ public class DBAdmin {
     }
 
 
-    public long addVocab(String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, String importance, String hasList) {
+    public long addVocab(String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, int importance, String hasList) {
         ContentValues vocItem = new ContentValues();
 
         vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB, sourceVocab);
@@ -67,9 +67,9 @@ public class DBAdmin {
         vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK, soundLink);
         vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE, wordType);
         vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE, importance);
-        vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE, hasList);
+        vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST, hasList);
 
-        return db.insert(ViCabContract.ListEntry.TABLE_NAME, null, vocItem);
+        return db.insert(ViCabContract.VocabEntry.TABLE_NAME, null, vocItem);
     }
 
 
@@ -133,7 +133,7 @@ public class DBAdmin {
 
 
     public ArrayList<ListItem> getAllLists() {
-        ArrayList<ListItem> items = new ArrayList<ListItem>();
+        ArrayList<ListItem> items = new ArrayList<>();
         Cursor cursor = db.query(ViCabContract.ListEntry.TABLE_NAME, new String[] { ViCabContract.ListEntry.COLUMN_NAME_ENTRY_ID,
                 ViCabContract.ListEntry.COLUMN_NAME_NAME, ViCabContract.ListEntry.COLUMN_NAME_HAS_LANGUAGE }, null, null, null, null, null);
 
@@ -150,26 +150,31 @@ public class DBAdmin {
     }
 
 
-    /*
-    public ArrayList<LanguageItem> getAllVocab() {
-        ArrayList<LanguageItem> items = new ArrayList<LanguageItem>();
-        Cursor cursor = db.query(ViCabContract.LanguageEntry.TABLE_NAME, new String[] { ViCabContract.LanguageEntry.COLUMN_NAME_ENTRY_ID,
-                ViCabContract.LanguageEntry.COLUMN_NAME_SOURCE_LANGUAGE, ViCabContract.LanguageEntry.COLUMN_NAME_TARGET_LANGUAGE }, null, null, null, null, null);
+    public ArrayList<VocItem> getAllVocab() {
+        ArrayList<VocItem> items = new ArrayList<>();
+        Cursor cursor = db.query(ViCabContract.VocabEntry.TABLE_NAME, new String[] { ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID,
+                ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB, ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB, ViCabContract.VocabEntry.COLUMN_NAME_FOTO_LINK,
+                ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK, ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE,
+                ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE, ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST}, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
-                String sourceLanguage = cursor.getString(ViCabContract.LanguageEntry.COLUMN_SOURCE_LANGUAGE_INDEX);
-                String targetLanguage= cursor.getString(ViCabContract.LanguageEntry.COLUMN_TARGET_LANGUAGE_INDEX);
-                Log.d("String: uri " + sourceLanguage,", title: " + targetLanguage);
+                String sourceVocab = cursor.getString(ViCabContract.VocabEntry.COLUMN_SOURCE_VOCAB_INDEX);
+                String targetVocab= cursor.getString(ViCabContract.VocabEntry.COLUMN_TARGET_VOCAB_INDEX);
+                String foto= cursor.getString(ViCabContract.VocabEntry.COLUMN_FOTO_LINK_INDEX);
+                String sound= cursor.getString(ViCabContract.VocabEntry.COLUMN_SOUND_LINK_INDEX);
+                String wordType= cursor.getString(ViCabContract.VocabEntry.COLUMN_WORD_TYPE_INDEX);
+                int importance= cursor.getInt(ViCabContract.VocabEntry.COLUMN_IMPORTANCE_INDEX);
+                String hasList= cursor.getString(ViCabContract.VocabEntry.COLUMN_HAS_LIST_INDEX);
 
-                items.add(new VocItem());
+                items.add(new VocItem(sourceVocab, targetVocab, foto, sound, wordType, importance, hasList));
 
             } while (cursor.moveToNext());
         }
         return items;
     }
 
-
+    /*
     public ArrayList<LanguageItem> getVocabItem() {
         ArrayList<LanguageItem> items = new ArrayList<LanguageItem>();
         Cursor cursor = db.query(ViCabContract.LanguageEntry.TABLE_NAME, new String[] { ViCabContract.LanguageEntry.COLUMN_NAME_ENTRY_ID,
@@ -257,9 +262,9 @@ public class DBAdmin {
         private static final String TABLE_VOCAB_CREATE = "create table " + ViCabContract.VocabEntry.TABLE_NAME + "(" +
                 ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " integer primary key autoincrement , " + ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB +
                 " text not null , " + ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB + " text not null , " + ViCabContract.VocabEntry.COLUMN_NAME_FOTO_LINK +
-                " text, " + ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK + " text, " + ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE +
-                " text, " + ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE + " integer, " + ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST +
-                " integer)";
+                " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK + " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE +
+                " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE + " integer not null, " + ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST +
+                " text not null)";
 
 
 

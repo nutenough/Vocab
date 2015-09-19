@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import app.mueller.schiller.weber.com.vicab.Database.DBAdmin;
+
 public class AddVocabFragmentOne extends Fragment {
     View contentView;
     private Button vocabAddBTN;
@@ -19,6 +21,9 @@ public class AddVocabFragmentOne extends Fragment {
     private String sourceVocab;
     private String targetVocab;
     private String vocabCouple;
+
+    private DBAdmin dbAdmin;
+
 
     // The view
     @Nullable
@@ -33,7 +38,17 @@ public class AddVocabFragmentOne extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setupUIComponents();
-        getInput();
+        initDB();
+    }
+
+    private void initDB() {
+        dbAdmin = new DBAdmin(getActivity());
+        dbAdmin.open();
+    }
+
+    public void onDestroy() {
+        dbAdmin.close();
+        super.onDestroy();
     }
 
     private void setupUIComponents() {
@@ -46,7 +61,6 @@ public class AddVocabFragmentOne extends Fragment {
                 getInput();
                 Toast.makeText(getActivity(), vocabCouple + " wurde hinzugefügt", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getActivity(), NavigationActivity.class);
-                intent.putExtra("VOCAB_COUPLE", vocabCouple);
                 startActivity(intent);
             }
         });
@@ -56,6 +70,8 @@ public class AddVocabFragmentOne extends Fragment {
         sourceVocab = sourceVocabET.getText().toString();
         targetVocab = targetVocabET.getText().toString();
         vocabCouple = sourceVocab + " - " + targetVocab;
+        // addVocab method wants this: String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, String importance, String hasList
+        dbAdmin.addVocab(sourceVocab,targetVocab, "", "", "", 0, "");
     }
 
 }
