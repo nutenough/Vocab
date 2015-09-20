@@ -75,11 +75,12 @@
     <string name="learning_meta_number_of_meanings">Anzahl der Bedeutungen</string>
     <string name="learning_meta_all">Alle</string>
 
-    <string name="learning_button_learn">Lernen</string>
+    <string name="learning_button_learn">Eintipp-Modus</string>
+    <string name="learning_button_express_modus">Express-Modus</string>
 
     <string name="vocab_learning_language">to learn</string>
     <string name="vocab_knowing_language">lernen</string>
     <string name="vocab_counter">25 / 76</string>
     <string name="number_of_meanings">*</string>
-    <string name="learning_button_express_modus">Express-Modus</string>
+
 </resources>

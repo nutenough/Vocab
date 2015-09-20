@@ -2,25 +2,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:id="@+id/vocab_knowing_language"
     tools:context=".ExpressLearnActivity">
 
 
-    <TextView
-        android:id="@+id/vocab_learning_language"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:text="@string/vocab_learning_language"
-        android:background="@color/color_white"
-        android:textColor="@color/color_express_black"
-        android:textSize="40sp" />
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/vocab_knowing_language">
+        >
+
+        <TextView
+            android:id="@+id/vocab_learning_language_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/vocab_learning_language"
+            android:background="@color/color_white"
+            android:textColor="@color/color_express_black"
+            android:textSize="40sp" />
 
 
         <TextView
@@ -31,8 +33,8 @@
             android:text="@string/vocab_knowing_language"
             android:textColor="@color/color_white"
             android:background="@color/color_express_black"
-            android:textSize="40sp"/>
-
+            android:textSize="40sp"
+            android:id="@+id/vocab_knowing_language_text_view"/>
 
 
 
