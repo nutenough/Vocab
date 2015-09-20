@@ -9,4 +9,6 @@
     <color name="color_white">#FFFFFF</color>
 
     <color name= "color_express_black">#212121</color>
+    <color name= "color_correct">#388E3C</color>
+    <color name= "color_wrong">#D32F2F</color>
 </resources>

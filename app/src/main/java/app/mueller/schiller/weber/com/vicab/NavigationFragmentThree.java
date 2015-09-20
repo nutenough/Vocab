@@ -12,7 +12,8 @@ import android.widget.Button;
 public class NavigationFragmentThree extends Fragment {
 
     private View view;
-    private Button learning_button;
+    private Button button_express;
+    private Button button_text_input;
 
     @Nullable
     @Override
@@ -29,14 +30,23 @@ public class NavigationFragmentThree extends Fragment {
     }
 
     private void setupUIComponents() {
-        learning_button = (Button) getActivity().findViewById(R.id.button);
+        button_express = (Button) getActivity().findViewById(R.id.button_express);
+        button_text_input = (Button) getActivity().findViewById(R.id.button_text_input);
     }
 
     private void handleEvents() {
-        learning_button.setOnClickListener(new View.OnClickListener() {
+        button_express.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ExpressLearnActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        button_text_input.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), TextInputLearnActivity.class);
                 startActivity(intent);
             }
         });

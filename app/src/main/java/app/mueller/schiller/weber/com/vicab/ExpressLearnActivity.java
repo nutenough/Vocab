@@ -50,12 +50,12 @@ public class ExpressLearnActivity extends AppCompatActivity {
 
     private void fillVocabCounter() {
         listSize = allVocab.size();
-        vocab_counter_button.setText("0/" + listSize);
+        vocab_counter_button.setText("0 / " + listSize);
     }
 
     private void updateCounter() {
         counter++;
-        vocab_counter_button.setText(counter + "/" + listSize);
+        vocab_counter_button.setText(counter + " / " + listSize);
     }
 
     private void fillListFromDB(){
@@ -103,11 +103,26 @@ public class ExpressLearnActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!isBackVisible) {
+
+                    vocab_knowing_language.setClickable(false);
+
                     setRightOut.setTarget(vocab_knowing_language_text_view);
                     setLeftIn.setTarget(vocab_learning_language_text_view);
                     setRightOut.start();
                     setLeftIn.start();
                     isBackVisible = true;
+
+                    handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            vocab_knowing_language.setClickable(true);
+
+
+                        }
+                    }, 500);
+
                 }
 
                 /*else{
@@ -152,7 +167,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
 
 
                     }
-                }, 170);
+                }, 150);
 
                 return true;
             }
