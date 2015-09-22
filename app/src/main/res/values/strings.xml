@@ -83,4 +83,8 @@
     <string name="vocab_counter">0</string>
     <string name="number_of_meanings">*</string>
 
+    <!-- Result AlertDialog -->
+    <string name="result">Ergebnis</string>
+    <string name="finished">Fertig</string>
+
 </resources>

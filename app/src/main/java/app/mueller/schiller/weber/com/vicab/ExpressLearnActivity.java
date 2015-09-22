@@ -2,12 +2,17 @@ package app.mueller.schiller.weber.com.vicab;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -28,8 +33,12 @@ public class ExpressLearnActivity extends AppCompatActivity {
     private boolean isBackVisible = false;
     private Handler handler;
     private ArrayList<VocItem> allVocab;
-    private int counter = 0;
+    private int counter_vocab = 0;
+    private int counter_vocab_num = 1;
     private int listSize;
+    private int counter_wrong_answer = 0;
+
+    private AlertDialog alertDialog;
 
     private DBAdmin dbAdmin;
 
@@ -42,26 +51,23 @@ public class ExpressLearnActivity extends AppCompatActivity {
         initDB();
         fillListFromDB();
         initUIElements();
-        fillVocabCounter();
         setupVocabAnimation();
 
 
     }
 
-    private void fillVocabCounter() {
-        listSize = allVocab.size();
-        vocab_counter_button.setText("0 / " + listSize);
-    }
 
-    private void updateCounter() {
-        counter++;
-        vocab_counter_button.setText(counter + " / " + listSize);
+
+    private void updateNumCounter() {
+        counter_vocab_num++;
+        vocab_counter_button.setText(counter_vocab_num + " / " + listSize);
     }
 
     private void fillListFromDB(){
         allVocab = new ArrayList<>();
         allVocab.addAll(dbAdmin.getAllVocab());
         Log.d("Learn", "allItems: " + allVocab);
+        listSize = allVocab.size();
     }
 
     private void initDB(){
@@ -76,9 +82,14 @@ public class ExpressLearnActivity extends AppCompatActivity {
 
     private void initUIElements() {
         vocab_knowing_language = (RelativeLayout)findViewById(R.id.vocab_knowing_language);
+
         vocab_learning_language_text_view = (TextView)findViewById(R.id.vocab_learning_language_text_view);
         vocab_knowing_language_text_view =(TextView)findViewById(R.id.vocab_knowing_language_text_view);
+        vocab_knowing_language_text_view.setText(allVocab.get(counter_vocab).getSourceVocab());
+        vocab_learning_language_text_view.setText(allVocab.get(counter_vocab).getTargetVocab());
+
         vocab_counter_button = (Button) findViewById(R.id.vocab_counter);
+        vocab_counter_button.setText(counter_vocab_num + " / " + listSize);
     }
 
     private void setupVocabAnimation(){
@@ -103,7 +114,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!isBackVisible) {
-
+                    counter_wrong_answer++;
                     vocab_knowing_language.setClickable(false);
 
                     setRightOut.setTarget(vocab_knowing_language_text_view);
@@ -139,10 +150,6 @@ public class ExpressLearnActivity extends AppCompatActivity {
 
 
             public boolean onSwipeLeft() {
-
-
-
-
                 handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -154,17 +161,16 @@ public class ExpressLearnActivity extends AppCompatActivity {
                         setLeftIn_1.start();
                         isBackVisible = false;
 
-                        if (counter < listSize) {
-                            vocab_knowing_language_text_view.setText(allVocab.get(counter).getSourceVocab());
-                            vocab_learning_language_text_view.setText(allVocab.get(counter).getTargetVocab());
-                            updateCounter();
+                        counter_vocab++;
+
+                        if (counter_vocab < listSize) {
+                            vocab_knowing_language_text_view.setText(allVocab.get(counter_vocab).getSourceVocab());
+                            vocab_learning_language_text_view.setText(allVocab.get(counter_vocab).getTargetVocab());
+                            updateNumCounter();
                         }
                         else {
-                            vocab_knowing_language_text_view.setText("Finished!");
-                            vocab_learning_language_text_view.setText("Great Job");
+                            showAlertDialog();
                         }
-
-
 
                     }
                 }, 150);
@@ -191,6 +197,49 @@ public class ExpressLearnActivity extends AppCompatActivity {
                 });
     }
 
+    private void showAlertDialog() {
+        // Setup View for AlertDialog
+        final View view = LayoutInflater.from(ExpressLearnActivity.this).inflate(R.layout.result_dialog, null);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ExpressLearnActivity.this);
+        alertDialogBuilder.setView(view);
 
+        // Dialog cancelable with back key
+        alertDialogBuilder.setCancelable(true);
+
+        // Setup title and message of alertDialog
+        alertDialogBuilder.setIcon(R.drawable.ic_trophies);
+        alertDialogBuilder.setTitle(R.string.result);
+
+        // Setup Buttons for dialog
+        alertDialogBuilder.setPositiveButton(R.string.finished, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+
+
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+        alertDialog.setCancelable(false);
+
+        // Edit Design alertDialog
+        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        positiveButton.setTextColor(getResources().getColor(R.color.color_primary));
+
+        Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        negativeButton.setTextColor(getResources().getColor(R.color.color_primary));
+
+        String sourceString = "Glückwunsch!" + "<br>" + "Du hast " + "<b>" + (listSize-counter_wrong_answer) +  " / "  + listSize +  "</b> " + " Vokabeln richtig!"+ "</br>";
+        TextView textView_result = (TextView) alertDialog.findViewById(R.id.textView_result);
+        textView_result.setText(Html.fromHtml(sourceString));
+        RatingBar ratingBar = (RatingBar) alertDialog.findViewById(R.id.ratingBarResult);
+
+        int numStars = 5;
+        float rating = (float)((listSize-counter_wrong_answer) / listSize *numStars);
+
+        ratingBar.setRating(rating);
+        ratingBar.setStepSize(0.1f);
+    }
 
 }
