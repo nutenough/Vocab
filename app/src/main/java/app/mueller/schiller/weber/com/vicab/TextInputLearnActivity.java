@@ -16,11 +16,14 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Random;
+
 import app.mueller.schiller.weber.com.vicab.Database.DBAdmin;
 import app.mueller.schiller.weber.com.vicab.PersistanceClasses.VocItem;
 
@@ -32,6 +35,7 @@ public class TextInputLearnActivity extends AppCompatActivity {
     private TextView vocab_learning_language_text_view;
     private TextView vocab_knowing_language_text_view;
     private Button vocab_counter_button;
+    private ImageButton imageButton_exit;
     private boolean isBackVisible = false;
     private Handler handler;
     private ArrayList<VocItem> allVocab;
@@ -45,6 +49,10 @@ public class TextInputLearnActivity extends AppCompatActivity {
     private int click_counter_fab = 0;
     private TextView textViewInput;
     private int counter_correct_answer = 0;
+    private String frontCard = "";
+    private String backCard ="";
+    private double randomNum;
+
 
     private AlertDialog alertDialog;
 
@@ -55,10 +63,45 @@ public class TextInputLearnActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_input_learn);
+        onBackPressed();
         initDB();
         fillListFromDB();
+        learnDirection();
         initUIElements();
         setupVocabAnimation();
+        setupExitButton();
+
+    }
+
+    private void learnDirection() {
+        Bundle bundle = getIntent().getExtras();
+        boolean knowing_to_learning = bundle.getBoolean("knowingToLearning");
+        boolean learning_to_knowing = bundle.getBoolean("learningToKnowing");
+        boolean mixed = bundle.getBoolean("mixed");
+
+        if (knowing_to_learning){
+            frontCard = allVocab.get(counter_vocab).getSourceVocab();
+            backCard = allVocab.get(counter_vocab).getTargetVocab();
+        }
+
+        if (learning_to_knowing){
+            backCard = allVocab.get(counter_vocab).getSourceVocab();
+            frontCard = allVocab.get(counter_vocab).getTargetVocab();
+        }
+
+        if (mixed){
+
+            randomNum =  Math.random();
+
+            if(randomNum < 0.5) {
+                backCard = allVocab.get(counter_vocab).getSourceVocab();
+                frontCard = allVocab.get(counter_vocab).getTargetVocab();
+            }
+            if(randomNum >= 0.5) {
+                frontCard = allVocab.get(counter_vocab).getSourceVocab();
+                backCard = allVocab.get(counter_vocab).getTargetVocab();
+            }
+        }
     }
 
     private void compareSolution(){
@@ -104,8 +147,8 @@ public class TextInputLearnActivity extends AppCompatActivity {
         vocab_learning_language_text_view = (TextView)findViewById(R.id.vocab_learning_language_text_view);
         vocab_knowing_language_text_view =(TextView)findViewById(R.id.vocab_knowing_language_text_view);
 
-        vocab_knowing_language_text_view.setText(allVocab.get(counter_vocab).getSourceVocab());
-        vocab_learning_language_text_view.setText(allVocab.get(counter_vocab).getTargetVocab());
+        vocab_knowing_language_text_view.setText(frontCard);
+        vocab_learning_language_text_view.setText(backCard);
 
         vocab_counter_button = (Button) findViewById(R.id.vocab_counter);
         vocab_counter_button.setText(counter_vocab_num + " / " + listSize);
@@ -115,6 +158,8 @@ public class TextInputLearnActivity extends AppCompatActivity {
         imageView.setVisibility(View.INVISIBLE);
 
         textViewInput = (TextView) findViewById(R.id.vocab_text_view);
+
+        imageButton_exit = (ImageButton) findViewById(R.id.imageButton_exit);
     }
 
     private void setupVocabAnimation(){
@@ -150,30 +195,31 @@ public class TextInputLearnActivity extends AppCompatActivity {
                     }, 500);
                 }
 
-                if(click_counter_fab == 0) {
+                if (click_counter_fab == 0) {
                     removeKeyboard();
                     editTextToTextView();
                     vocab_fab.setImageResource(R.drawable.ic_arrow_right);
                     compareSolution();
                     click_counter_fab++;
-                }else {
+                } else {
                     counter_vocab++;
 
-                            if (counter_vocab < listSize) {
-                                vocab_fab.setClickable(false);
+                    if (counter_vocab < listSize) {
+                        vocab_fab.setClickable(false);
 
-                                setRightOut.setTarget(vocab_learning_language_text_view);
-                                setLeftIn.setTarget(vocab_knowing_language_text_view);
-                                setRightOut.start();
-                                setLeftIn.start();
-                                isBackVisible = false;
+                        setRightOut.setTarget(vocab_learning_language_text_view);
+                        setLeftIn.setTarget(vocab_knowing_language_text_view);
+                        setRightOut.start();
+                        setLeftIn.start();
+                        isBackVisible = false;
 
-                                handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                vocab_knowing_language_text_view.setText(allVocab.get(counter_vocab).getSourceVocab());
-                                vocab_learning_language_text_view.setText(allVocab.get(counter_vocab).getTargetVocab());
+                        handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                learnDirection();
+                                vocab_knowing_language_text_view.setText(frontCard);
+                                vocab_learning_language_text_view.setText(backCard);
                                 click_counter_fab--;
 
                                 textViewToEditText();
@@ -182,23 +228,23 @@ public class TextInputLearnActivity extends AppCompatActivity {
                                 imageView.setVisibility(View.INVISIBLE);
 
                                 updateNumCounter();
-                                    }
-                                    }, 250);
-
-                            } else{
-                                showAlertDialog();
                             }
-                        }
+                        }, 250);
 
-
-                    handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            vocab_fab.setClickable(true);
-                        }
-                    }, 500);
+                    } else {
+                        showAlertDialog();
+                    }
                 }
+
+
+                handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        vocab_fab.setClickable(true);
+                    }
+                }, 500);
+            }
         });
     }
 
@@ -211,7 +257,7 @@ public class TextInputLearnActivity extends AppCompatActivity {
         alertDialogBuilder.setView(view);
 
         // Dialog cancelable with back key
-        alertDialogBuilder.setCancelable(true);
+        alertDialogBuilder.setCancelable(false);
 
         // Setup title and message of alertDialog
         alertDialogBuilder.setIcon(R.drawable.ic_trophies);
@@ -228,14 +274,11 @@ public class TextInputLearnActivity extends AppCompatActivity {
 
         alertDialog = alertDialogBuilder.create();
         alertDialog.show();
-        alertDialog.setCancelable(false);
+
 
         // Edit Design alertDialog
         Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
         positiveButton.setTextColor(getResources().getColor(R.color.color_primary));
-
-        Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-        negativeButton.setTextColor(getResources().getColor(R.color.color_primary));
 
         String sourceString = "Glückwunsch!" + "<br>" + "Du hast " + "<b>" + counter_correct_answer +  " / "  + listSize +  "</b> " + " Vokabeln richtig!"+ "</br>";
         TextView textView_result = (TextView) alertDialog.findViewById(R.id.textView_result);
@@ -247,6 +290,62 @@ public class TextInputLearnActivity extends AppCompatActivity {
 
         ratingBar.setRating(rating);
         ratingBar.setStepSize(0.1f);
+    }
+
+
+    private void setupExitButton() {
+        imageButton_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAlertDialogExit();
+
+            }
+        });
+    }
+
+    private void showAlertDialogExit() {
+        // Setup View for AlertDialog
+        final View view = LayoutInflater.from(TextInputLearnActivity.this).inflate(R.layout.exit_dialog, null);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(TextInputLearnActivity.this);
+        alertDialogBuilder.setView(view);
+
+        // Dialog cancelable with back key
+        alertDialogBuilder.setCancelable(true);
+
+        // Setup title and message of alertDialog
+        alertDialogBuilder.setIcon(R.drawable.ic_exit);
+        alertDialogBuilder.setTitle(R.string.exit_title);
+
+        // Setup Buttons for dialog
+        alertDialogBuilder.setPositiveButton(R.string.exit_title, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+
+        alertDialogBuilder.setNegativeButton(R.string.language_negative_button, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+
+        // Edit Design alertDialog
+        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        positiveButton.setTextColor(getResources().getColor(R.color.color_primary));
+
+        Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        negativeButton.setTextColor(getResources().getColor(R.color.color_primary));
+
+        String sourceString1 = "Wollen Sie die Abfrage wirklich verlassen?";
+        TextView textView_exit = (TextView) alertDialog.findViewById(R.id.textView_exit);
+        textView_exit.setText(Html.fromHtml(sourceString1));
+
     }
 
     private void textViewToEditText() {
@@ -266,4 +365,7 @@ public class TextInputLearnActivity extends AppCompatActivity {
         imm.hideSoftInputFromWindow(editTextInput.getWindowToken(), 0);
     }
 
+    @Override
+    public void onBackPressed() {
+    }
 }

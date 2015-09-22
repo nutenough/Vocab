@@ -59,8 +59,8 @@
 
     <!-- LearnVocabFragmentThree -->
     <string name="learning_direction">Lern-Richtung</string>
-    <string name="learning_1_2">Ausgangssprache zu Zielsprache</string>
-    <string name="learning_2_1">Zielsprache zu Ausgangssprache</string>
+    <string name="learning_1_2">Deutsch zu Englisch</string>
+    <string name="learning_2_1">Englisch zu Deutsch</string>
     <string name="learning_mixed">gemischt</string>
 
     <string name="learning_media">Medien</string>
@@ -86,5 +86,10 @@
     <!-- Result AlertDialog -->
     <string name="result">Ergebnis</string>
     <string name="finished">Fertig</string>
+
+    <!-- Exit AlertDialog -->
+    <string name="exit_title">Verlassen</string>
+    <string name="exit_positive_button">Verlassen</string>
+    <string name="exit_negative_button">Abbrechen</string>
 
 </resources>
