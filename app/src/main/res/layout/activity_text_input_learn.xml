@@ -2,44 +2,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/vocab_knowing_language"
-    tools:context=".ExpressLearnActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    tools:context=".TextInputLearnActivity">
 
 
-
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         >
-
-        <TextView
-            android:id="@+id/vocab_learning_language_text_view"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:text="@string/vocab_learning_language"
-            android:background="@color/color_white"
-            android:textColor="@color/color_express_black"
-            android:textSize="40sp" />
+            android:id="@+id/vocab_knowing_language"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:id="@+id/vocab_learning_language_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="@string/vocab_learning_language"
+                android:background="@color/color_white"
+                android:textColor="@color/color_express_black"
+                android:textSize="30sp" />
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:text="@string/vocab_knowing_language"
-            android:textColor="@color/color_white"
-            android:background="@color/color_express_black"
-            android:textSize="40sp"
-            android:id="@+id/vocab_knowing_language_text_view"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="@string/vocab_knowing_language"
+                android:textColor="@color/color_white"
+                android:background="@color/color_express_black"
+                android:textSize="30sp"
+                android:id="@+id/vocab_knowing_language_text_view"/>
 
 
 
 
-    </RelativeLayout>
+        </RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="32dp"
+        android:gravity="center|top"
+        android:background="@color/color_white"
+        android:textColor="@color/color_express_black"
+        android:textSize="30sp"
+        android:text=""
+        android:singleLine="true"
+        android:id="@+id/vocab_text_view"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:paddingTop="32dp"
+        android:gravity="center|top"
+        android:background="@color/color_white"
+        android:textColor="@color/color_express_black"
+        android:textSize="30sp"
+        android:hint="@string/target_vocab_hint"
+        android:singleLine="true"
+        android:id="@+id/vocab_edit_text"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:src="@drawable/smiley_happy"
+        android:visibility="invisible"
+        android:id="@+id/image_view_correct"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        android:scaleType="centerInside"/>
+
+
+</RelativeLayout>
+
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -100,7 +154,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-
+            android:id="@+id/relative_layout_learning_media_audio_response1"
             >
 
             <ImageButton
@@ -128,6 +182,19 @@
             android:textStyle="normal" />
     </LinearLayout>
 
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/vocab_fab_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_centerVertical="true"
+        android:onClick="displayEditText"
+        android:src="@drawable/ic_done"
+        app:backgroundTint="@color/color_accent"
+        app:elevation="5dp"
+        app:pressedTranslationZ="25dp" />
 
 
 </RelativeLayout>
