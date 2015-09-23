@@ -22,7 +22,6 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.Random;
 
 import app.mueller.schiller.weber.com.vicab.Database.DBAdmin;
 import app.mueller.schiller.weber.com.vicab.PersistanceClasses.VocItem;
@@ -288,8 +287,8 @@ public class TextInputLearnActivity extends AppCompatActivity {
         int numStars = 5;
         float rating = (float)(counter_correct_answer / listSize *numStars);
 
+        ratingBar.setStepSize(0.5f);
         ratingBar.setRating(rating);
-        ratingBar.setStepSize(0.1f);
     }
 
 

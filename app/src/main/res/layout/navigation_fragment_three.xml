@@ -4,6 +4,16 @@
     android:layout_height="match_parent">
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/learning_linearLayout_bottom"
+        android:background="@drawable/border_blue"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:paddingTop="16dp">
+
         <TextView
             android:id="@+id/learning_direction"
             android:layout_width="wrap_content"
@@ -15,41 +25,44 @@
             android:layout_centerHorizontal="true"
             />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/learning_direction"
-        android:id="@+id/linear_layout_checkbox_learning_direction"
-        android:padding="10dp"
-        >
-
-        <CheckBox
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/learning_1_2"
-            android:textSize="16sp"
-            android:id="@+id/checkBox_learning_1_2" />
+            android:orientation="vertical"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/learning_direction"
+            android:id="@+id/linear_layout_checkbox_learning_direction"
+            android:padding="10dp"
+            >
 
-        <CheckBox
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/learning_2_1"
-            android:textSize="16sp"
-            android:id="@+id/checkBox_learning_2_1" />
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/learning_1_2"
+                android:textSize="16sp"
+                android:id="@+id/checkBox_learning_1_2" />
 
-        <CheckBox
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="16sp"
-            android:text="@string/learning_mixed"
-            android:id="@+id/checkBox_learning_mixed" />
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/learning_2_1"
+                android:textSize="16sp"
+                android:id="@+id/checkBox_learning_2_1" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:text="@string/learning_mixed"
+                android:id="@+id/checkBox_learning_mixed" />
 
 
-    </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
 
 
 
@@ -64,31 +77,68 @@
         android:layout_alignParentBottom="true"
         android:id="@+id/learning_linearLayout_bottom">
 
-        <Button
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_orange"
             android:layout_weight="1"
-            android:text="@string/learning_button_learn"
-            android:id="@+id/button_text_input"
-            android:layout_below="@+id/linear_layout_learning_meta"
-            android:background="@color/color_accent"
-            android:textColor="@color/color_white"
-            android:textSize="20sp"
-            android:textAllCaps="false"
+            android:layout_margin="16dp"
+            android:id="@+id/text_input_mode">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:text="@string/learning_button_learn"
+                android:id="@+id/imageViewInput"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="60dp"
+                android:src="@drawable/ic_text_input" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imageViewInput"
+                android:text="@string/learning_button_learn"
+                android:textSize="20sp"
+                android:textAllCaps="false"
+                android:textColor="@color/color_express_black"
+                android:layout_centerVertical="true"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/border_black"
             android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:text="@string/learning_button_express_modus"
-            android:id="@+id/button_express"
-            android:layout_below="@+id/linear_layout_learning_meta"
-            android:background="@color/color_express_black"
-            android:textColor="@color/color_white"
-            android:textSize="20sp"
-            android:textAllCaps="false"
-            android:layout_margin="16dp"/>
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:id="@+id/express_mode">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:text="@string/learning_button_learn"
+                android:id="@+id/imageViewExpress"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_express"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="60dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imageViewExpress"
+                android:text="@string/learning_button_express_modus"
+                android:textSize="20sp"
+                android:textAllCaps="false"
+                android:textColor="@color/color_express_black"
+                android:layout_centerVertical="true"
+                android:textStyle="bold"
+
+                />
+        </RelativeLayout>
+
 
 
     </LinearLayout>

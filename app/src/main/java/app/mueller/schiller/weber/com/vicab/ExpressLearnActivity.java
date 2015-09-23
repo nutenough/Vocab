@@ -271,10 +271,11 @@ public class ExpressLearnActivity extends AppCompatActivity {
         RatingBar ratingBar = (RatingBar) alertDialog.findViewById(R.id.ratingBarResult);
 
         int numStars = 5;
-        float rating = (float)((listSize-counter_wrong_answer) / listSize *numStars);
+        float rating = (float)((listSize-counter_wrong_answer) / listSize * numStars);
 
+        ratingBar.setStepSize(0.5f);
         ratingBar.setRating(rating);
-        ratingBar.setStepSize(0.1f);
+
     }
 
     private void setupExitButton() {

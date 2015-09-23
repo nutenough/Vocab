@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
@@ -19,8 +20,8 @@ import app.mueller.schiller.weber.com.vicab.PersistanceClasses.LanguageItem;
 public class NavigationFragmentThree extends Fragment {
 
     private View view;
-    private Button button_express;
-    private Button button_text_input;
+    private RelativeLayout express_mode;
+    private RelativeLayout text_input_mode;
     private CheckBox checkBox_knowing_to_learning;
     private CheckBox checkBox_learning_to_knowing;
     private CheckBox checkBox_mixed;
@@ -93,11 +94,12 @@ public class NavigationFragmentThree extends Fragment {
         languageItems.clear();
         languageItems.addAll(dbAdmin.getAllLanguages());
 
-        String knowing_to_learning_String = languageItems.get(0).getSourceLanguage()+  "&#160&#160&#160&#160" + "&#10141"  + "&#160&#160&#160&#160" + languageItems.get(0).getTargetLanguage();
-        String learning_to_knowing_String = languageItems.get(0).getTargetLanguage() + "&#160&#160&#160&#160" + "&#10141" + "&#160&#160&#160&#160" + languageItems.get(0).getSourceLanguage();
-
+        String knowing_to_learning_String = "&#160&#160&#160&#160" + languageItems.get(0).getSourceLanguage()+  "&#160&#160&#160&#160" + "&#10141"  + "&#160&#160&#160&#160" + languageItems.get(0).getTargetLanguage() +"&#160&#160&#160&#160";
+        String learning_to_knowing_String = "&#160&#160&#160&#160" + languageItems.get(0).getTargetLanguage() + "&#160&#160&#160&#160" + "&#10141" + "&#160&#160&#160&#160" + languageItems.get(0).getSourceLanguage() +"&#160&#160&#160&#160";
+        String mixed_String = "&#160&#160&#160&#160" + "gemischt" + "&#160&#160&#160&#160";
         checkBox_knowing_to_learning.setText(Html.fromHtml(knowing_to_learning_String));
         checkBox_learning_to_knowing.setText(Html.fromHtml(learning_to_knowing_String));
+        checkBox_mixed.setText(Html.fromHtml(mixed_String));
     }
 
 
@@ -112,35 +114,38 @@ public class NavigationFragmentThree extends Fragment {
     }
 
     private void setupUIComponents() {
-        button_express = (Button) getActivity().findViewById(R.id.button_express);
-        button_text_input = (Button) getActivity().findViewById(R.id.button_text_input);
+        express_mode = (RelativeLayout) getActivity().findViewById(R.id.express_mode);
+        text_input_mode = (RelativeLayout) getActivity().findViewById(R.id.text_input_mode);
     }
 
     private void handleEvents() {
-        button_express.setOnClickListener(new View.OnClickListener() {
+        express_mode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ExpressLearnActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("knowingToLearning", knowing_to_learning);
-                bundle.putBoolean("learningToKnowing", learning_to_knowing);
-                bundle.putBoolean("mixed", mixed);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                if (knowing_to_learning || learning_to_knowing || mixed) {
+                    Intent intent = new Intent(getActivity(), ExpressLearnActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("knowingToLearning", knowing_to_learning);
+                    bundle.putBoolean("learningToKnowing", learning_to_knowing);
+                    bundle.putBoolean("mixed", mixed);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
             }
         });
 
-        button_text_input.setOnClickListener(new View.OnClickListener() {
+        text_input_mode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), TextInputLearnActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("knowingToLearning", knowing_to_learning);
-                bundle.putBoolean("learningToKnowing", learning_to_knowing);
-                bundle.putBoolean("mixed", mixed);
-                intent.putExtras(bundle);
-                startActivity(intent);
-
+                if (knowing_to_learning || learning_to_knowing || mixed) {
+                    Intent intent = new Intent(getActivity(), TextInputLearnActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("knowingToLearning", knowing_to_learning);
+                    bundle.putBoolean("learningToKnowing", learning_to_knowing);
+                    bundle.putBoolean("mixed", mixed);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
             }
         });
     }
