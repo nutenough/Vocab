@@ -123,7 +123,7 @@ public class NavigationFragmentThree extends Fragment {
         express_mode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (knowing_to_learning || learning_to_knowing || mixed) {
+                if (checkBox_mixed.isChecked() || checkBox_learning_to_knowing.isChecked() || checkBox_knowing_to_learning.isChecked()) {
                     Intent intent = new Intent(getActivity(), ExpressLearnActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putBoolean("knowingToLearning", knowing_to_learning);
@@ -140,7 +140,7 @@ public class NavigationFragmentThree extends Fragment {
         text_input_mode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (knowing_to_learning || learning_to_knowing || mixed) {
+                if (checkBox_mixed.isChecked() || checkBox_learning_to_knowing.isChecked() || checkBox_knowing_to_learning.isChecked()) {
                     Intent intent = new Intent(getActivity(), TextInputLearnActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putBoolean("knowingToLearning", knowing_to_learning);
