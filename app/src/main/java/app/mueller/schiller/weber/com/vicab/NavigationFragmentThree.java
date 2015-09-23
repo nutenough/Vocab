@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -130,6 +131,8 @@ public class NavigationFragmentThree extends Fragment {
                     bundle.putBoolean("mixed", mixed);
                     intent.putExtras(bundle);
                     startActivity(intent);
+                }else{
+                    Toast.makeText(getActivity(), getResources().getString(R.string.toast_choose_learn_direction), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -145,6 +148,8 @@ public class NavigationFragmentThree extends Fragment {
                     bundle.putBoolean("mixed", mixed);
                     intent.putExtras(bundle);
                     startActivity(intent);
+                }else{
+                    Toast.makeText(getActivity(), getResources().getString(R.string.toast_choose_learn_direction), Toast.LENGTH_SHORT).show();
                 }
             }
         });
