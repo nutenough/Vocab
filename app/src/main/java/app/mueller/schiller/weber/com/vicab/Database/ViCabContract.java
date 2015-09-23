@@ -7,6 +7,7 @@ public final class ViCabContract {
     public static final int DATABASE_VERSION = 1;
     // To prevent someone from accidentally instantiating the contract class,
     // give it an empty constructor.
+    public static String chosenLanguage = "";
 
     public ViCabContract() {}
 
@@ -45,6 +46,7 @@ public final class ViCabContract {
         public static final String COLUMN_NAME_WORD_TYPE = "word_type";
         public static final String COLUMN_NAME_IMPORTANCE = "importance";
         public static final String COLUMN_NAME_HAS_LIST = "has_list";
+        public static final String COLUMN_NAME_HAS_LANGUAGE = "has_language";
 
         public static final int COLUMN_ID_INDEX = 0;
         public static final int COLUMN_SOURCE_VOCAB_INDEX = 1;
@@ -54,6 +56,7 @@ public final class ViCabContract {
         public static final int COLUMN_WORD_TYPE_INDEX = 5;
         public static final int COLUMN_IMPORTANCE_INDEX = 6;
         public static final int COLUMN_HAS_LIST_INDEX = 7;
+        public static final int COLUMN_HAS_LANGUAGE_INDEX = 8;
     }
 }
 

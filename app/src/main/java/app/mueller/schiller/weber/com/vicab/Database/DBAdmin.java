@@ -153,9 +153,10 @@ public class DBAdmin {
     public ArrayList<VocItem> getAllVocab() {
         ArrayList<VocItem> items = new ArrayList<>();
         Cursor cursor = db.query(ViCabContract.VocabEntry.TABLE_NAME, new String[] { ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID,
-                ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB, ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB, ViCabContract.VocabEntry.COLUMN_NAME_FOTO_LINK,
-                ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK, ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE,
-                ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE, ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST}, null, null, null, null, null);
+                ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB, ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB,
+                ViCabContract.VocabEntry.COLUMN_NAME_FOTO_LINK, ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK,
+                ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE, ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE,
+                ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST, ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE}, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -166,8 +167,9 @@ public class DBAdmin {
                 String wordType= cursor.getString(ViCabContract.VocabEntry.COLUMN_WORD_TYPE_INDEX);
                 int importance= cursor.getInt(ViCabContract.VocabEntry.COLUMN_IMPORTANCE_INDEX);
                 String hasList= cursor.getString(ViCabContract.VocabEntry.COLUMN_HAS_LIST_INDEX);
+                String hasLanguage = cursor.getString(ViCabContract.VocabEntry.COLUMN_HAS_LANGUAGE_INDEX);
 
-                items.add(new VocItem(sourceVocab, targetVocab, foto, sound, wordType, importance, hasList));
+                items.add(new VocItem(sourceVocab, targetVocab, foto, sound, wordType, importance, hasList, hasLanguage));
 
             } while (cursor.moveToNext());
         }
@@ -264,7 +266,7 @@ public class DBAdmin {
                 " text not null , " + ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB + " text not null , " + ViCabContract.VocabEntry.COLUMN_NAME_FOTO_LINK +
                 " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK + " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE +
                 " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE + " integer not null, " + ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST +
-                " text not null)";
+                " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE + " text not null)";
 
 
 
