@@ -1,8 +1,8 @@
 package app.mueller.schiller.weber.com.vicab;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -19,8 +19,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import app.mueller.schiller.weber.com.vicab.Database.DBAdmin;
-import app.mueller.schiller.weber.com.vicab.Database.ViCabContract;
-import app.mueller.schiller.weber.com.vicab.PersistanceClasses.LanguageItem;
 import app.mueller.schiller.weber.com.vicab.PersistanceClasses.ListItem;
 
 public class NavigationFragmentTwo extends Fragment {
@@ -30,7 +28,7 @@ public class NavigationFragmentTwo extends Fragment {
     private EditText listNameET;
     private String listName;
     private AlertDialog alertDialog;
-    private ArrayList<ListItem> listItems = new ArrayList<ListItem>();
+    private ArrayList<ListItem> listItems = new ArrayList<>();
     private NavigationFragmentTwoAdapter adapter;
 
     private DBAdmin dbAdmin;
@@ -169,6 +167,22 @@ public class NavigationFragmentTwo extends Fragment {
 
 
     }
+
+    /* Dialogfenster mit 3 Auswahlmöglickeiten
+
+        public Dialog onCreateDialog(Bundle savedInstanceState, final int position) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle(R.string.choose)
+                    .setItems(R.array.chooseArray, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (which == 1) {
+                                removeItem(position);
+                            }
+                        }
+                    });
+            return builder.create();
+        }
+    */
 
     protected void removeItem(int position) {
         final int deletePosition = position;

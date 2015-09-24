@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="chooseArray">
+        <item>Lernen</item>
+        <item>Bearbeiten</item>
+        <item>Löschen</item>
+    </string-array>
+</resources>

@@ -106,5 +106,6 @@
     <string name="list_delete_message">Möchten Sie diese Liste wirklich löschen?</string>
     <string name="delete_positive_button">Löschen</string>
     <string name="delete_negative_button">Abbrechen</string>
+    <string name="choose">Aktion wählen</string>
 
 </resources>
