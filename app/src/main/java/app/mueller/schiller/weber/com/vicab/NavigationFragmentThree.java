@@ -15,8 +15,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import app.mueller.schiller.weber.com.vicab.Database.DBAdmin;
-import app.mueller.schiller.weber.com.vicab.PersistanceClasses.LanguageItem;
+import app.mueller.schiller.weber.com.vicab.Database.ViCabContract;
 
 public class NavigationFragmentThree extends Fragment {
 
@@ -31,8 +30,7 @@ public class NavigationFragmentThree extends Fragment {
     private boolean mixed;
 
 
-    private DBAdmin dbAdmin;
-    private ArrayList<LanguageItem> languageItems = new ArrayList<>();
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,7 +43,6 @@ public class NavigationFragmentThree extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setupUIComponents();
         handleEvents();
-        initDB();
         setupCheckBoxes();
         setupCheckBoxListener();
     }
@@ -92,27 +89,16 @@ public class NavigationFragmentThree extends Fragment {
         checkBox_learning_to_knowing = (CheckBox) getActivity().findViewById(R.id.checkBox_learning_2_1);
         checkBox_mixed = (CheckBox) getActivity().findViewById(R.id.checkBox_learning_mixed);
 
-        languageItems.clear();
-        languageItems.addAll(dbAdmin.getAllLanguages());
 
-        String knowing_to_learning_String = "&#160&#160&#160&#160" + languageItems.get(0).getSourceLanguage()+  "&#160&#160&#160&#160" + "&#10141"  + "&#160&#160&#160&#160" + languageItems.get(0).getTargetLanguage() +"&#160&#160&#160&#160";
-        String learning_to_knowing_String = "&#160&#160&#160&#160" + languageItems.get(0).getTargetLanguage() + "&#160&#160&#160&#160" + "&#10141" + "&#160&#160&#160&#160" + languageItems.get(0).getSourceLanguage() +"&#160&#160&#160&#160";
+
+        String knowing_to_learning_String = "&#160&#160&#160&#160" + ViCabContract.CHOSEN_LANGUAGE_SOURCE +  "&#160&#160&#160&#160" + "&#10141"  + "&#160&#160&#160&#160" + ViCabContract.CHOSEN_LANGUAGE_TARGET +"&#160&#160&#160&#160";
+        String learning_to_knowing_String = "&#160&#160&#160&#160" + ViCabContract.CHOSEN_LANGUAGE_TARGET + "&#160&#160&#160&#160" + "&#10141" + "&#160&#160&#160&#160" + ViCabContract.CHOSEN_LANGUAGE_SOURCE +"&#160&#160&#160&#160";
         String mixed_String = "&#160&#160&#160&#160" + "gemischt" + "&#160&#160&#160&#160";
         checkBox_knowing_to_learning.setText(Html.fromHtml(knowing_to_learning_String));
         checkBox_learning_to_knowing.setText(Html.fromHtml(learning_to_knowing_String));
         checkBox_mixed.setText(Html.fromHtml(mixed_String));
     }
 
-
-    private void initDB(){
-        dbAdmin = new DBAdmin(getActivity());
-        dbAdmin.open();
-    }
-
-    public void onDestroy() {
-        dbAdmin.close();
-        super.onDestroy();
-    }
 
     private void setupUIComponents() {
         express_mode = (RelativeLayout) getActivity().findViewById(R.id.express_mode);

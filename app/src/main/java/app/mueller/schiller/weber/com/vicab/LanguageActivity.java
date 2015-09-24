@@ -50,13 +50,13 @@ public class LanguageActivity extends AppCompatActivity {
         setupUIComponents();
         handleFabEvent();
         attachAdapter();
+        setOnClickListener();
         updateList();
     }
 
     private void updateList() {
         listItems.clear();
         listItems.addAll(dbAdmin.getAllLanguages());
-        Log.d("listitems", "li: " + listItems + "allL: " + dbAdmin.getAllLanguages());
         adapter.notifyDataSetChanged();
     }
 
@@ -142,13 +142,15 @@ public class LanguageActivity extends AppCompatActivity {
         sourceLanguage = sourceLanguageET.getText().toString();
         targetLanguage = targetLanguageET.getText().toString();
         languageCouple = sourceLanguage + " - " + targetLanguage;
-        newLangItem = new LanguageItem(languageCouple, sourceLanguage, targetLanguage);
-        safeInDB(newLangItem);
+
 
     }
 
     // Puts the input from the alertDialog in ListView items
     private void putInArrayList() {
+        newLangItem = new LanguageItem(languageCouple, sourceLanguage, targetLanguage);
+        safeInDB(newLangItem);
+
         listItems.add(newLangItem);
         updateList();
         Toast.makeText(getApplicationContext(), "Sprachbeziehung " + languageCouple + " festgelegt", Toast.LENGTH_LONG).show();
@@ -161,13 +163,40 @@ public class LanguageActivity extends AppCompatActivity {
     private void attachAdapter() {
         adapter = new LanguageAdapter(this, listItems);
         languageLV.setAdapter(adapter);
+
+    }
+
+    private void setOnClickListener() {
+
+
         languageLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+
+                ViCabContract.CHOSEN_LANGUAGE_MIX = listItems.get(position).getCouple();
+                ViCabContract.CHOSEN_LANGUAGE_SOURCE = listItems.get(position).getSourceLanguage();
+                ViCabContract.CHOSEN_LANGUAGE_TARGET = listItems.get(position).getTargetLanguage();
+
                 Intent intent = new Intent(LanguageActivity.this, NavigationActivity.class);
                 startActivity(intent);
+
+            }
+        });
+
+        languageLV.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view,
+                                           int position, long id) {
+                removeItem(position);
+                return false;
             }
         });
     }
+
+    public void removeItem(int position) {
+        dbAdmin.removeLanguage(listItems.get(position));
+        listItems.remove(position);
+        updateList();
+    }
+
 
 }

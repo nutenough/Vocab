@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import app.mueller.schiller.weber.com.vicab.Database.DBAdmin;
+import app.mueller.schiller.weber.com.vicab.Database.ViCabContract;
 
 public class AddVocabFragmentOne extends Fragment {
     View contentView;
@@ -71,7 +72,7 @@ public class AddVocabFragmentOne extends Fragment {
         targetVocab = targetVocabET.getText().toString();
         vocabCouple = sourceVocab + " - " + targetVocab;
         // addVocab method wants this: String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, String importance, String hasList
-        dbAdmin.addVocab(sourceVocab,targetVocab, "", "", "", 0, "");
+        dbAdmin.addVocab(sourceVocab,targetVocab, "", "", "", 0, "", ViCabContract.CHOSEN_LANGUAGE_MIX);
     }
 
 }

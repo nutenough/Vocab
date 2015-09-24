@@ -7,7 +7,9 @@ public final class ViCabContract {
     public static final int DATABASE_VERSION = 1;
     // To prevent someone from accidentally instantiating the contract class,
     // give it an empty constructor.
-    public static String chosenLanguage = "";
+    public static String CHOSEN_LANGUAGE_MIX = "";
+    public static String CHOSEN_LANGUAGE_SOURCE = "";
+    public static String CHOSEN_LANGUAGE_TARGET = "";
 
     public ViCabContract() {}
 
