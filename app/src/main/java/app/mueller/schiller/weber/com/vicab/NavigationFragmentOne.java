@@ -57,8 +57,6 @@ public class NavigationFragmentOne extends Fragment {
         super.onDestroy();
     }
 
-
-
     private void setupUIComponents() {
         fab = (FloatingActionButton) getActivity().findViewById(R.id.fabVocab);
         vocabsLV = (ListView) getActivity().findViewById(R.id.vocabsLV);
@@ -73,7 +71,6 @@ public class NavigationFragmentOne extends Fragment {
             }
         });
     }
-
 
     private void updateList(){
         listItems.clear();

@@ -1,25 +1,26 @@
 package app.mueller.schiller.weber.com.vicab;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 public class AddVocabFragmentTwo extends Fragment {
     View contentView;
-    private Button vocabAddBTN;
-    private Button vocabCancelBTN;
+    private RatingBar ratingBar;
+    private String ratedValue;
+    private TextView rateMessage;
 
     // The view
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         contentView = inflater.inflate(R.layout.add_vocab_fragment_two, null);
+        setupUIComponents();
         return contentView;
     }
 
@@ -27,5 +28,21 @@ public class AddVocabFragmentTwo extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        handleEvents();
+    }
+
+    private void handleEvents() {
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                ratedValue = String.valueOf(ratingBar.getRating());
+                rateMessage.setText("Rating : " + ratedValue + "/3");
+            }
+        });
+    }
+
+    private void setupUIComponents() {
+        ratingBar = (RatingBar) contentView.findViewById(R.id.ratingBar);
+        rateMessage = (TextView) contentView.findViewById(R.id.ratingMessage);
     }
 }
