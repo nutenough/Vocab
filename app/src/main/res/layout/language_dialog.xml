@@ -13,8 +13,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:hint="@string/source_language"
+        android:inputType="text"
         android:singleLine="true"
         android:textColor="@color/color_text_primary"
         android:textColorHint="@color/color_text_secondary" />
@@ -26,8 +26,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginStart="20dp"
-        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:hint="@string/target_language"
+        android:inputType="text"
         android:singleLine="true"
         android:textColor="@color/color_text_primary"
         android:textColorHint="@color/color_text_secondary" />

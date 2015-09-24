@@ -40,13 +40,14 @@ public class ExpressLearnActivity extends AppCompatActivity {
     private int listSize;
     private int counter_wrong_answer = 0;
     private String frontCard = "";
-    private String backCard ="";
+    private String backCard = "";
     private double randomNum;
+    private ImageButton knowIB;
+    private ImageButton dontKnowIB;
 
     private AlertDialog alertDialog;
 
     private DBAdmin dbAdmin;
-
 
 
     @Override
@@ -60,8 +61,6 @@ public class ExpressLearnActivity extends AppCompatActivity {
         initUIElements();
         setupVocabAnimation();
         setupExitButton();
-
-
     }
 
     private void learnDirection() {
@@ -70,45 +69,44 @@ public class ExpressLearnActivity extends AppCompatActivity {
         boolean learning_to_knowing = bundle.getBoolean("learningToKnowing");
         boolean mixed = bundle.getBoolean("mixed");
 
-        if (knowing_to_learning){
+        if (knowing_to_learning) {
             frontCard = allVocab.get(counter_vocab).getSourceVocab();
             backCard = allVocab.get(counter_vocab).getTargetVocab();
         }
 
-        if (learning_to_knowing){
+        if (learning_to_knowing) {
             backCard = allVocab.get(counter_vocab).getSourceVocab();
             frontCard = allVocab.get(counter_vocab).getTargetVocab();
         }
 
-        if (mixed){
+        if (mixed) {
 
-            randomNum =  Math.random();
+            randomNum = Math.random();
 
-            if(randomNum < 0.5) {
+            if (randomNum < 0.5) {
                 backCard = allVocab.get(counter_vocab).getSourceVocab();
                 frontCard = allVocab.get(counter_vocab).getTargetVocab();
             }
-            if(randomNum >= 0.5) {
+            if (randomNum >= 0.5) {
                 frontCard = allVocab.get(counter_vocab).getSourceVocab();
                 backCard = allVocab.get(counter_vocab).getTargetVocab();
             }
         }
     }
 
-
     private void updateNumCounter() {
         counter_vocab_num++;
         vocab_counter_button.setText(counter_vocab_num + " / " + listSize);
     }
 
-    private void fillListFromDB(){
+    private void fillListFromDB() {
         allVocab = new ArrayList<>();
         allVocab.addAll(dbAdmin.getAllVocabForLanguage());
         Log.d("Learn", "allItems: " + allVocab);
         listSize = allVocab.size();
     }
 
-    private void initDB(){
+    private void initDB() {
         dbAdmin = new DBAdmin(this);
         dbAdmin.open();
     }
@@ -119,10 +117,27 @@ public class ExpressLearnActivity extends AppCompatActivity {
     }
 
     private void initUIElements() {
-        vocab_knowing_language = (RelativeLayout)findViewById(R.id.vocab_knowing_language);
+        vocab_knowing_language = (RelativeLayout) findViewById(R.id.vocab_knowing_language);
 
-        vocab_learning_language_text_view = (TextView)findViewById(R.id.vocab_learning_language_text_view);
-        vocab_knowing_language_text_view =(TextView)findViewById(R.id.vocab_knowing_language_text_view);
+        knowIB = (ImageButton) findViewById(R.id.knowIB);
+        knowIB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        dontKnowIB = (ImageButton) findViewById(R.id.dontKnowIB);
+        dontKnowIB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+        vocab_learning_language_text_view = (TextView) findViewById(R.id.vocab_learning_language_text_view);
+        vocab_knowing_language_text_view = (TextView) findViewById(R.id.vocab_knowing_language_text_view);
         vocab_knowing_language_text_view.setText(frontCard);
         vocab_learning_language_text_view.setText(backCard);
 
@@ -132,7 +147,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
         imageButton_exit = (ImageButton) findViewById(R.id.imageButton_exit);
     }
 
-    private void setupVocabAnimation(){
+    private void setupVocabAnimation() {
 
         final AnimatorSet setRightOut = (AnimatorSet) AnimatorInflater.loadAnimator(getApplicationContext(),
                 R.animator.flip_right_out);
@@ -167,10 +182,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-
                             vocab_knowing_language.setClickable(true);
-
-
                         }
                     }, 500);
 
@@ -187,7 +199,6 @@ public class ExpressLearnActivity extends AppCompatActivity {
         });
 
         vocab_knowing_language.setOnTouchListener(new OnSwipeTouchListener() {
-
 
             public boolean onSwipeLeft() {
                 handler = new Handler();
@@ -214,10 +225,8 @@ public class ExpressLearnActivity extends AppCompatActivity {
 
                     }
                 }, 150);
-
                 return true;
             }
-
 
             @Override
             public boolean onSwipeRight() {
@@ -257,7 +266,6 @@ public class ExpressLearnActivity extends AppCompatActivity {
             }
         });
 
-
         alertDialog = alertDialogBuilder.create();
         alertDialog.show();
 
@@ -265,13 +273,13 @@ public class ExpressLearnActivity extends AppCompatActivity {
         Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
         positiveButton.setTextColor(getResources().getColor(R.color.color_primary));
 
-        String sourceString = "Glückwunsch!" + "<br>" + "Du hast " + "<b>" + (listSize-counter_wrong_answer) +  " / "  + listSize +  "</b> " + " Vokabeln richtig!"+ "</br>";
+        String sourceString = "Glückwunsch!" + "<br>" + "Du hast " + "<b>" + (listSize - counter_wrong_answer) + " / " + listSize + "</b> " + " Vokabeln richtig!" + "</br>";
         TextView textView_result = (TextView) alertDialog.findViewById(R.id.textView_result);
         textView_result.setText(Html.fromHtml(sourceString));
         RatingBar ratingBar = (RatingBar) alertDialog.findViewById(R.id.ratingBarResult);
 
         int numStars = 5;
-        float rating = (float)((listSize-counter_wrong_answer) / listSize * numStars);
+        float rating = (float) ((listSize - counter_wrong_answer) / listSize * numStars);
 
         ratingBar.setStepSize(0.5f);
         ratingBar.setRating(rating);
@@ -290,9 +298,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
 
     private void showAlertDialogExit() {
         // Setup View for AlertDialog
-        final View view = LayoutInflater.from(ExpressLearnActivity.this).inflate(R.layout.exit_dialog, null);
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ExpressLearnActivity.this);
-        alertDialogBuilder.setView(view);
 
         // Dialog cancelable with back key
         alertDialogBuilder.setCancelable(true);
@@ -300,6 +306,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
         // Setup title and message of alertDialog
         alertDialogBuilder.setIcon(R.drawable.ic_exit);
         alertDialogBuilder.setTitle(R.string.exit_title);
+        alertDialogBuilder.setMessage(R.string.exit_message);
 
         // Setup Buttons for dialog
         alertDialogBuilder.setPositiveButton(R.string.exit_title, new DialogInterface.OnClickListener() {
@@ -326,11 +333,6 @@ public class ExpressLearnActivity extends AppCompatActivity {
 
         Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
         negativeButton.setTextColor(getResources().getColor(R.color.color_primary));
-
-        String sourceString1 = "Wollen Sie die Abfrage wirklich verlassen?";
-        TextView textView_exit = (TextView) alertDialog.findViewById(R.id.textView_exit);
-        textView_exit.setText(Html.fromHtml(sourceString1));
-
     }
 
     @Override

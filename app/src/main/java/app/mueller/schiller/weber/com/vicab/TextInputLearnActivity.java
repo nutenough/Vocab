@@ -188,7 +188,6 @@ public class TextInputLearnActivity extends AppCompatActivity {
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-
                             vocab_fab.setClickable(true);
                         }
                     }, 500);
@@ -247,8 +246,6 @@ public class TextInputLearnActivity extends AppCompatActivity {
         });
     }
 
-
-
     private void showAlertDialog() {
         // Setup View for AlertDialog
         final View view = LayoutInflater.from(TextInputLearnActivity.this).inflate(R.layout.result_dialog, null);
@@ -304,9 +301,7 @@ public class TextInputLearnActivity extends AppCompatActivity {
 
     private void showAlertDialogExit() {
         // Setup View for AlertDialog
-        final View view = LayoutInflater.from(TextInputLearnActivity.this).inflate(R.layout.exit_dialog, null);
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(TextInputLearnActivity.this);
-        alertDialogBuilder.setView(view);
 
         // Dialog cancelable with back key
         alertDialogBuilder.setCancelable(true);
@@ -314,6 +309,7 @@ public class TextInputLearnActivity extends AppCompatActivity {
         // Setup title and message of alertDialog
         alertDialogBuilder.setIcon(R.drawable.ic_exit);
         alertDialogBuilder.setTitle(R.string.exit_title);
+        alertDialogBuilder.setMessage(R.string.exit_message);
 
         // Setup Buttons for dialog
         alertDialogBuilder.setPositiveButton(R.string.exit_title, new DialogInterface.OnClickListener() {
@@ -333,18 +329,12 @@ public class TextInputLearnActivity extends AppCompatActivity {
         alertDialog = alertDialogBuilder.create();
         alertDialog.show();
 
-
         // Edit Design alertDialog
         Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
         positiveButton.setTextColor(getResources().getColor(R.color.color_primary));
 
         Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
         negativeButton.setTextColor(getResources().getColor(R.color.color_primary));
-
-        String sourceString1 = "Wollen Sie die Abfrage wirklich verlassen?";
-        TextView textView_exit = (TextView) alertDialog.findViewById(R.id.textView_exit);
-        textView_exit.setText(Html.fromHtml(sourceString1));
-
     }
 
     private void textViewToEditText() {

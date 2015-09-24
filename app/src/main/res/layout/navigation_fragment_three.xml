@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/learning_linearLayout_bottom"
-        android:background="@drawable/border_blue"
+        android:background="@drawable/border_orange"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
@@ -63,12 +63,6 @@
 
     </RelativeLayout>
 
-
-
-
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -80,7 +74,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_orange"
+            android:background="@drawable/border_blue"
             android:layout_weight="1"
             android:layout_margin="16dp"
             android:id="@+id/text_input_mode">
@@ -110,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/border_black"
+            android:background="@drawable/border_blue"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"

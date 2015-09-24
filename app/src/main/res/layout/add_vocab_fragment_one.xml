@@ -6,12 +6,13 @@
 
     <TextView
         android:id="@+id/sourceVocabTV"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:background="@color/color_accent"
         android:padding="16dp"
         android:text="@string/source_language"
-        android:textSize="20sp"
+        android:textAllCaps="true"
+        android:textColor="@color/color_white"
         android:textStyle="bold" />
 
     <EditText
@@ -19,13 +20,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/sourceVocabTV"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:hint="@string/source_vocab_hint"
-        android:singleLine="true"
-        android:textSize="20sp" />
+        android:layout_margin="16dp"
+        android:hint="@string/vocab_hint"
+        android:inputType="text"
+        android:singleLine="true" />
 
-    <Button
+    <!-- <Button
         android:id="@+id/translateBTN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,17 +36,19 @@
         android:background="@color/color_primary"
         android:padding="16dp"
         android:text="@string/translate"
-        android:textColor="@color/color_white" />
+        android:textColor="@color/color_white" /> -->
 
     <TextView
         android:id="@+id/targetVocabTV"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/translateBTN"
+        android:layout_below="@id/sourceVocabET"
         android:layout_centerHorizontal="true"
+        android:background="@color/color_accent"
         android:padding="16dp"
         android:text="@string/target_language"
-        android:textSize="20sp"
+        android:textAllCaps="true"
+        android:textColor="@color/color_white"
         android:textStyle="bold" />
 
     <EditText
@@ -54,31 +56,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/targetVocabTV"
+        android:layout_margin="16dp"
         android:layout_marginBottom="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:hint="@string/target_vocab_hint"
-        android:singleLine="true"
-        android:textSize="20sp" />
+        android:hint="@string/vocab_hint"
+        android:inputType="text"
+        android:singleLine="true" />
 
     <TextView
         android:id="@+id/selectListTV"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/targetVocabET"
-        android:layout_centerHorizontal="true"
+        android:background="@color/color_accent"
         android:padding="16dp"
         android:text="@string/select_list"
-        android:textSize="20sp"
+        android:textAllCaps="true"
+        android:textColor="@color/color_white"
         android:textStyle="bold" />
 
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/addListSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/selectListTV"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_margin="16dp"
         android:prompt="@string/list_prompt" />
 
     <LinearLayout

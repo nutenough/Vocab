@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ViCab</string>
+    <string name="app_name">Vocab</string>
     <string name="title_activity_navigation_drawer">NavigationActivity</string>
     <string name="title_activity_add_vocab">Neue Vokabel anlegen</string>
     <string name="title_activity_express_learn">Express-Modus</string>
@@ -32,13 +32,13 @@
     <string name="drawer_close">Schließe NavigationDrawer</string>
 
     <!-- AddVocabFragmentOne -->
-    <string name="source_vocab">Deutsch</string>
-    <string name="source_vocab_hint">Beispiel: lernen</string>
-    <string name="target_vocab">Englisch</string>
-    <string name="target_vocab_hint">Beispiel: to learn</string>
+    <string name="vocab_hint">Vokabel eingeben</string>
     <string name="translate">Übersetzen</string>
     <string name="select_list">Zu Liste hinzufügen</string>
     <string name="list_prompt">Liste auswählen</string>
+    <string name="part_of_speech">Wortart</string>
+    <string name="part_of_speech_hint">Wortart eingeben</string>
+    <string name="importance">Wichtigkeit</string>
     <string name="vocab_negative_button">Abbrechen</string>
     <string name="vocab_positive_button">Hinzufügen</string>
 
@@ -81,8 +81,8 @@
     <string name="learning_button_learn">Eintipp-Modus</string>
     <string name="learning_button_express_modus">Express-Modus</string>
 
-    <string name="vocab_learning_language">Go!</string>
-    <string name="vocab_knowing_language">Try your best!</string>
+    <string name="vocab_learning_language">Los geht\'s!</string>
+    <string name="vocab_knowing_language">Gib dein Bestes!</string>
     <string name="vocab_counter">0</string>
     <string name="number_of_meanings">*</string>
 
@@ -92,7 +92,14 @@
 
     <!-- Exit AlertDialog -->
     <string name="exit_title">Verlassen</string>
+    <string name="exit_message">Wollen Sie die Abfrage wirklich verlassen?</string>
     <string name="exit_positive_button">Verlassen</string>
     <string name="exit_negative_button">Abbrechen</string>
+
+    <!-- Delete Language Dialog -->
+    <string name="language_delete_title">Löschen</string>
+    <string name="language_delete_message">Möchten Sie die Sprachbeziehung und die eventuell darin enthaltenen Vokabeln und Listen löschen?</string>
+    <string name="language_delete_positive_button">Löschen</string>
+    <string name="language_delete_negative_button">Abbrechen</string>
 
 </resources>

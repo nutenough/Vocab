@@ -139,11 +139,9 @@ public class LanguageActivity extends AppCompatActivity {
         sourceLanguageET = (EditText) view.findViewById(R.id.sourceLanguageET);
         targetLanguageET = (EditText) view.findViewById(R.id.targetLanguageET);
 
-        sourceLanguage = sourceLanguageET.getText().toString();
-        targetLanguage = targetLanguageET.getText().toString();
+        sourceLanguage = sourceLanguageET.getText().toString().replace(" ", "");
+        targetLanguage = targetLanguageET.getText().toString().replace(" ", "");
         languageCouple = sourceLanguage + " - " + targetLanguage;
-
-
     }
 
     // Puts the input from the alertDialog in ListView items
@@ -163,11 +161,9 @@ public class LanguageActivity extends AppCompatActivity {
     private void attachAdapter() {
         adapter = new LanguageAdapter(this, listItems);
         languageLV.setAdapter(adapter);
-
     }
 
     private void setOnClickListener() {
-
         languageLV.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view,
@@ -179,18 +175,14 @@ public class LanguageActivity extends AppCompatActivity {
 
         languageLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-
                 ViCabContract.CHOSEN_LANGUAGE_MIX = listItems.get(position).getCouple();
                 ViCabContract.CHOSEN_LANGUAGE_SOURCE = listItems.get(position).getSourceLanguage();
                 ViCabContract.CHOSEN_LANGUAGE_TARGET = listItems.get(position).getTargetLanguage();
 
                 Intent intent = new Intent(LanguageActivity.this, NavigationActivity.class);
                 startActivity(intent);
-
             }
         });
-
-
     }
 
     protected void removeItem(int position) {
@@ -199,9 +191,10 @@ public class LanguageActivity extends AppCompatActivity {
         AlertDialog.Builder alert = new AlertDialog.Builder(
                 this);
 
-        alert.setTitle("Sprache löschen");
-        alert.setMessage("Möchtest du diese Sprache wirklich löschen? Damit gehen auch alle gespeicherten Wörter verloren.");
-        alert.setPositiveButton("Ja, ich will.", new DialogInterface.OnClickListener() {
+        alert.setIcon(R.drawable.ic_delete);
+        alert.setTitle(R.string.language_delete_title);
+        alert.setMessage(R.string.language_delete_message);
+        alert.setPositiveButton(R.string.language_delete_positive_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // TOD O Auto-generated method stub
@@ -213,17 +206,13 @@ public class LanguageActivity extends AppCompatActivity {
 
             }
         });
-        alert.setNegativeButton("NEIN!", new DialogInterface.OnClickListener() {
+        alert.setNegativeButton(R.string.language_delete_negative_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO Auto-generated method stub
                 dialog.dismiss();
             }
         });
-
         alert.show();
-
     }
-
 
 }
