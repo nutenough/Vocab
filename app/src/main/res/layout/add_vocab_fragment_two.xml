@@ -43,7 +43,19 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/importanceTV"
         android:layout_centerHorizontal="true"
+        style="@style/customRatingBarStyle"
         android:layout_margin="16dp"
-        android:numStars="3" />
+        android:isIndicator="false"
+        android:numStars="3"
+        android:rating="0.0"
+        android:stepSize="1.0" />
+
+    <TextView
+        android:id="@+id/ratingMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ratingBar"
+        android:layout_centerHorizontal="true"
+        android:text="Test" />
 
 </RelativeLayout>
