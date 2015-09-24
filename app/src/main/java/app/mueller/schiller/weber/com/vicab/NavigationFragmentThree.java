@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import app.mueller.schiller.weber.com.vicab.Database.DBAdmin;
 import app.mueller.schiller.weber.com.vicab.PersistanceClasses.LanguageItem;
+import app.mueller.schiller.weber.com.vicab.PersistanceClasses.VocItem;
 
 public class NavigationFragmentThree extends Fragment {
 
@@ -33,6 +34,7 @@ public class NavigationFragmentThree extends Fragment {
 
     private DBAdmin dbAdmin;
     private ArrayList<LanguageItem> languageItems = new ArrayList<>();
+    private ArrayList<VocItem> vocItems = new ArrayList<>();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -94,6 +96,8 @@ public class NavigationFragmentThree extends Fragment {
 
         languageItems.clear();
         languageItems.addAll(dbAdmin.getAllLanguages());
+        vocItems.clear();
+        vocItems.addAll(dbAdmin.getAllVocab());
 
         String knowing_to_learning_String = "&#160&#160&#160&#160" + languageItems.get(0).getSourceLanguage()+  "&#160&#160&#160&#160" + "&#10141"  + "&#160&#160&#160&#160" + languageItems.get(0).getTargetLanguage() +"&#160&#160&#160&#160";
         String learning_to_knowing_String = "&#160&#160&#160&#160" + languageItems.get(0).getTargetLanguage() + "&#160&#160&#160&#160" + "&#10141" + "&#160&#160&#160&#160" + languageItems.get(0).getSourceLanguage() +"&#160&#160&#160&#160";
@@ -123,16 +127,20 @@ public class NavigationFragmentThree extends Fragment {
         express_mode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkBox_mixed.isChecked() || checkBox_learning_to_knowing.isChecked() || checkBox_knowing_to_learning.isChecked()) {
-                    Intent intent = new Intent(getActivity(), ExpressLearnActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putBoolean("knowingToLearning", knowing_to_learning);
-                    bundle.putBoolean("learningToKnowing", learning_to_knowing);
-                    bundle.putBoolean("mixed", mixed);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                if(vocItems.size() != 0) {
+                    if (checkBox_mixed.isChecked() || checkBox_learning_to_knowing.isChecked() || checkBox_knowing_to_learning.isChecked()) {
+                        Intent intent = new Intent(getActivity(), ExpressLearnActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putBoolean("knowingToLearning", knowing_to_learning);
+                        bundle.putBoolean("learningToKnowing", learning_to_knowing);
+                        bundle.putBoolean("mixed", mixed);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getActivity(), getResources().getString(R.string.toast_choose_learn_direction), Toast.LENGTH_SHORT).show();
+                    }
                 }else{
-                    Toast.makeText(getActivity(), getResources().getString(R.string.toast_choose_learn_direction), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getResources().getString(R.string.toast_no_vocabs), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -140,16 +148,20 @@ public class NavigationFragmentThree extends Fragment {
         text_input_mode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkBox_mixed.isChecked() || checkBox_learning_to_knowing.isChecked() || checkBox_knowing_to_learning.isChecked()) {
-                    Intent intent = new Intent(getActivity(), TextInputLearnActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putBoolean("knowingToLearning", knowing_to_learning);
-                    bundle.putBoolean("learningToKnowing", learning_to_knowing);
-                    bundle.putBoolean("mixed", mixed);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                if(vocItems.size() != 0) {
+                     if (checkBox_mixed.isChecked() || checkBox_learning_to_knowing.isChecked() || checkBox_knowing_to_learning.isChecked()) {
+                         Intent intent = new Intent(getActivity(), TextInputLearnActivity.class);
+                         Bundle bundle = new Bundle();
+                         bundle.putBoolean("knowingToLearning", knowing_to_learning);
+                         bundle.putBoolean("learningToKnowing", learning_to_knowing);
+                         bundle.putBoolean("mixed", mixed);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(getActivity(), getResources().getString(R.string.toast_choose_learn_direction), Toast.LENGTH_SHORT).show();
+                    }
                 }else{
-                    Toast.makeText(getActivity(), getResources().getString(R.string.toast_choose_learn_direction), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getResources().getString(R.string.toast_no_vocabs), Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -58,7 +58,8 @@
     <string name="action_settings">Settings</string>
 
     <!-- LearnVocabFragmentThree -->
-    <string name="toast_choose_learn_direction">"Wähle zuerst eine Lernrichtung</string>
+    <string name="toast_choose_learn_direction">Wähle zuerst eine Lernrichtung</string>
+    <string name="toast_no_vocabs">Du hast noch keine Vokabeln eingetragen</string>
 
     <string name="learning_direction">Lern-Richtung</string>
     <string name="learning_1_2">Deutsch zu Englisch</string>
