@@ -16,7 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import app.mueller.schiller.weber.com.vicab.Database.DBAdmin;
-import app.mueller.schiller.weber.com.vicab.PersistanceClasses.LanguageItem;
+import app.mueller.schiller.weber.com.vicab.Database.ViCabContract;
 import app.mueller.schiller.weber.com.vicab.PersistanceClasses.VocItem;
 
 public class NavigationFragmentThree extends Fragment {
@@ -33,7 +33,6 @@ public class NavigationFragmentThree extends Fragment {
 
 
     private DBAdmin dbAdmin;
-    private ArrayList<LanguageItem> languageItems = new ArrayList<>();
     private ArrayList<VocItem> vocItems = new ArrayList<>();
     @Nullable
     @Override
@@ -94,13 +93,12 @@ public class NavigationFragmentThree extends Fragment {
         checkBox_learning_to_knowing = (CheckBox) getActivity().findViewById(R.id.checkBox_learning_2_1);
         checkBox_mixed = (CheckBox) getActivity().findViewById(R.id.checkBox_learning_mixed);
 
-        languageItems.clear();
-        languageItems.addAll(dbAdmin.getAllLanguages());
+
         vocItems.clear();
         vocItems.addAll(dbAdmin.getAllVocab());
 
-        String knowing_to_learning_String = "&#160&#160&#160&#160" + languageItems.get(0).getSourceLanguage()+  "&#160&#160&#160&#160" + "&#10141"  + "&#160&#160&#160&#160" + languageItems.get(0).getTargetLanguage() +"&#160&#160&#160&#160";
-        String learning_to_knowing_String = "&#160&#160&#160&#160" + languageItems.get(0).getTargetLanguage() + "&#160&#160&#160&#160" + "&#10141" + "&#160&#160&#160&#160" + languageItems.get(0).getSourceLanguage() +"&#160&#160&#160&#160";
+        String knowing_to_learning_String = "&#160&#160&#160&#160" + ViCabContract.CHOSEN_LANGUAGE_SOURCE +  "&#160&#160&#160&#160" + "&#10141"  + "&#160&#160&#160&#160" + ViCabContract.CHOSEN_LANGUAGE_TARGET +"&#160&#160&#160&#160";
+        String learning_to_knowing_String = "&#160&#160&#160&#160" + ViCabContract.CHOSEN_LANGUAGE_TARGET + "&#160&#160&#160&#160" + "&#10141" + "&#160&#160&#160&#160" + ViCabContract.CHOSEN_LANGUAGE_SOURCE +"&#160&#160&#160&#160";
         String mixed_String = "&#160&#160&#160&#160" + "gemischt" + "&#160&#160&#160&#160";
         checkBox_knowing_to_learning.setText(Html.fromHtml(knowing_to_learning_String));
         checkBox_learning_to_knowing.setText(Html.fromHtml(learning_to_knowing_String));
