@@ -105,7 +105,7 @@ public class TextInputLearnActivity extends AppCompatActivity {
 
     private void compareSolution(){
         textInput = editTextInput.getText().toString();
-        String currentSolution = allVocab.get(counter_vocab).getTargetVocab();
+        String currentSolution = backCard;
         textInput.trim();
         currentSolution.trim();
 

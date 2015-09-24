@@ -11,7 +11,7 @@
     <string name="source_language">Ausgangssprache</string>
     <string name="target_language">Zielsprache</string>
     <string name="language_title">Sprachbeziehung festlegen</string>
-    <string name="lang_message">Bitte geben Sie die gewünschte Ausgangssprache und Zielsprache ein.</string>
+    <string name="lang_message">Bitte gib deine gewünschte Ausgangssprache und Zielsprache ein.</string>
     <string name="language_positive_button">Erstellen</string>
     <string name="language_negative_button">Abbrechen</string>
     <string name="no_lang_input">Bitte Sprachbeziehung eingeben</string>
@@ -49,7 +49,7 @@
     <!-- NavigationFragmentTwo AlertDialog-->
     <string name="list_name">Name der Liste</string>
     <string name="list_title">Liste erstellen</string>
-    <string name="list_message">Bitte geben Sie einen Namen für die Liste ein.</string>
+    <string name="list_message">Bitte gib einen Namen für die Liste ein.</string>
     <string name="list_positive_button">Erstellen</string>
     <string name="list_negative_button">Abbrechen</string>
     <string name="no_list_input">Bitte Name der Liste eingeben</string>
