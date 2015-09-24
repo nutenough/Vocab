@@ -24,7 +24,6 @@
                 android:layout_centerHorizontal="true"
                 android:background="@color/color_primary_light"
                 android:gravity="center"
-                android:text="@string/vocab_learning_language"
                 android:textColor="@color/color_text_primary"
                 android:textSize="30sp" />
 
@@ -101,7 +100,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:text="@string/number_of_meanings"
-            android:textColor="#2196F3"
+            android:textColor="@color/color_primary"
             android:textSize="30sp"
             android:textStyle="bold" />
 

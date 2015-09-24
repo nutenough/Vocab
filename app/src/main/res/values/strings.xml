@@ -81,8 +81,8 @@
     <string name="learning_button_learn">Eintipp-Modus</string>
     <string name="learning_button_express_modus">Express-Modus</string>
 
-    <string name="vocab_learning_language">Go!</string>
-    <string name="vocab_knowing_language">Try your best!</string>
+    <string name="vocab_learning_language">Los geht\'s!</string>
+    <string name="vocab_knowing_language">Gib dein Bestes!</string>
     <string name="vocab_counter">0</string>
     <string name="number_of_meanings">*</string>
 

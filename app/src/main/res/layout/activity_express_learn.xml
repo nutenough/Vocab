@@ -1,133 +1,117 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vocab_knowing_language"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/vocab_knowing_language"
     tools:context=".ExpressLearnActivity">
-
-
-
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/vocab_learning_language_text_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:text="@string/vocab_learning_language"
             android:background="@color/color_white"
-            android:textColor="@color/color_express_black"
+            android:gravity="center"
+            android:textColor="@color/color_text_primary"
             android:textSize="40sp" />
 
-
         <TextView
+            android:id="@+id/vocab_knowing_language_text_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
+            android:background="@color/color_primary"
             android:gravity="center"
             android:text="@string/vocab_knowing_language"
             android:textColor="@color/color_white"
-            android:background="@color/color_express_black"
-            android:textSize="40sp"
-            android:id="@+id/vocab_knowing_language_text_view"/>
-
-
-
+            android:textSize="40sp" />
 
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/learning_linearLayout_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true"
-
         android:layout_alignParentBottom="true"
-        android:id="@+id/learning_linearLayout_bottom">
 
-        <Button
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/dontKnowIB"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="80dp"
             android:layout_weight="1"
-            android:text="@string/number_of_meanings"
-            android:id="@+id/number_of_meanings_express"
-            android:textColor="#2196F3"
             android:background="@android:color/transparent"
-            android:textSize="30sp"
+            android:padding="20dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_thumbs_down"
             android:textStyle="bold" />
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:id="@+id/relative_layout_learning_media_audio_response"
-            >
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <ImageButton
+                android:id="@+id/knowIB"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:id="@+id/imageButton_audio_response_express"
-                android:src="@drawable/speaker_blue"
+                android:layout_centerHorizontal="true"
                 android:background="@android:color/transparent"
                 android:padding="20dp"
                 android:scaleType="centerInside"
-                android:layout_centerHorizontal="true"/>
-
+                android:src="@drawable/ic_thumbs_up" />
         </RelativeLayout>
-
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/learning_linearLayout_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
         android:layout_alignParentTop="true"
-        android:id="@+id/learning_linearLayout_top">
-
-
+        android:layout_centerHorizontal="true"
+        android:fitsSystemWindows="true"
+        android:orientation="horizontal">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-
-            >
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="80dp"
                 android:id="@+id/imageButton_exit"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:background="@android:color/transparent"
-                android:padding="20dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/arrow_left_blue"
-                />
+                android:padding="16dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/arrow_left_white" />
 
         </RelativeLayout>
 
         <Button
+            android:id="@+id/vocab_counter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/vocab_counter"
-            android:gravity="center"
-            android:id="@+id/vocab_counter"
-            android:textColor="@color/color_primary"
             android:background="@android:color/transparent"
-            android:textSize="30sp"
-            android:textStyle="normal" />
+            android:gravity="center_vertical|end"
+            android:paddingRight="16dp"
+            android:text="@string/vocab_counter"
+            android:textColor="@color/color_white"
+            android:textSize="24sp" />
     </LinearLayout>
-
-
 
 </RelativeLayout>

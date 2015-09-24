@@ -42,6 +42,8 @@ public class ExpressLearnActivity extends AppCompatActivity {
     private String frontCard = "";
     private String backCard = "";
     private double randomNum;
+    private ImageButton knowIB;
+    private ImageButton dontKnowIB;
 
     private AlertDialog alertDialog;
 
@@ -59,8 +61,6 @@ public class ExpressLearnActivity extends AppCompatActivity {
         initUIElements();
         setupVocabAnimation();
         setupExitButton();
-
-
     }
 
     private void learnDirection() {
@@ -94,7 +94,6 @@ public class ExpressLearnActivity extends AppCompatActivity {
         }
     }
 
-
     private void updateNumCounter() {
         counter_vocab_num++;
         vocab_counter_button.setText(counter_vocab_num + " / " + listSize);
@@ -119,6 +118,23 @@ public class ExpressLearnActivity extends AppCompatActivity {
 
     private void initUIElements() {
         vocab_knowing_language = (RelativeLayout) findViewById(R.id.vocab_knowing_language);
+
+        knowIB = (ImageButton) findViewById(R.id.knowIB);
+        knowIB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        dontKnowIB = (ImageButton) findViewById(R.id.dontKnowIB);
+        dontKnowIB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
 
         vocab_learning_language_text_view = (TextView) findViewById(R.id.vocab_learning_language_text_view);
         vocab_knowing_language_text_view = (TextView) findViewById(R.id.vocab_knowing_language_text_view);
@@ -166,10 +182,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-
                             vocab_knowing_language.setClickable(true);
-
-
                         }
                     }, 500);
 
@@ -186,7 +199,6 @@ public class ExpressLearnActivity extends AppCompatActivity {
         });
 
         vocab_knowing_language.setOnTouchListener(new OnSwipeTouchListener() {
-
 
             public boolean onSwipeLeft() {
                 handler = new Handler();
@@ -213,10 +225,8 @@ public class ExpressLearnActivity extends AppCompatActivity {
 
                     }
                 }, 150);
-
                 return true;
             }
-
 
             @Override
             public boolean onSwipeRight() {
@@ -255,7 +265,6 @@ public class ExpressLearnActivity extends AppCompatActivity {
                 finish();
             }
         });
-
 
         alertDialog = alertDialogBuilder.create();
         alertDialog.show();
