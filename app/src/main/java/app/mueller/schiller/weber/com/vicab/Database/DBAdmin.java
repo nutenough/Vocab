@@ -86,7 +86,7 @@ public class DBAdmin {
 
         String whereClause = ViCabContract.ListEntry.COLUMN_NAME_NAME + " = '" + item.getName() + "'";
 
-        return db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
+        return db.delete(ViCabContract.ListEntry.TABLE_NAME, whereClause, null);
     }
 
     public int removeVocab(VocItem item) {
@@ -94,7 +94,7 @@ public class DBAdmin {
         String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB + " = '" + item.getSourceVocab() + "' AND "
                 + ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB + " = '" + item.getTargetVocab() + "'";
 
-        return db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
+        return db.delete(ViCabContract.VocabEntry.TABLE_NAME, whereClause, null);
     }
 
     public int removeAllVocabWithSameAsDeletedLanguage(LanguageItem item) {
