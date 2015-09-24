@@ -94,7 +94,7 @@ public class AddVocabFragmentOne extends Fragment {
         targetVocab = targetVocabET.getText().toString();
         vocabCouple = sourceVocab + " - " + targetVocab;
         // addVocab method wants this: String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, String importance, String hasList
-        dbAdmin.addVocab(sourceVocab, targetVocab, "", "", "", 0, "", ViCabContract.CHOSEN_LANGUAGE_MIX);
+        dbAdmin.addVocab(sourceVocab, targetVocab, "", "", "", 0, "");
     }
 
 }
