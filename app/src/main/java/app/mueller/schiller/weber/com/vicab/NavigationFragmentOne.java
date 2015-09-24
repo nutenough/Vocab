@@ -103,7 +103,6 @@ public class NavigationFragmentOne extends Fragment {
             }
         });
 
-
     }
 
     protected void removeItem(int position) {
@@ -111,24 +110,21 @@ public class NavigationFragmentOne extends Fragment {
 
         AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
-        alert.setTitle("Vokabel löschen:");
-        alert.setMessage("Möchtest du diese Vokabel wirklich unwiderruflich löschen?");
-        alert.setPositiveButton("Ja, ich will.", new DialogInterface.OnClickListener() {
+        alert.setIcon(R.drawable.ic_delete);
+        alert.setTitle(R.string.vocab_delete_title);
+        alert.setMessage(R.string.vocab_delete_message);
+        alert.setPositiveButton(R.string.delete_positive_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TOD O Auto-generated method stub
-
                 // main code on after clicking yes
                 dbAdmin.removeVocab(listItems.get(deletePosition));
                 listItems.remove(deletePosition);
                 updateList();
-
             }
         });
-        alert.setNegativeButton("NEIN!", new DialogInterface.OnClickListener() {
+        alert.setNegativeButton(R.string.delete_negative_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO Auto-generated method stub
                 dialog.dismiss();
             }
         });

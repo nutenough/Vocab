@@ -41,6 +41,7 @@
     <string name="importance">Wichtigkeit</string>
     <string name="vocab_negative_button">Abbrechen</string>
     <string name="vocab_positive_button">Hinzufügen</string>
+    <string name="no_vocab_input">Bitte Vokabel eingeben</string>
 
     <!-- AddVocabFragmentTwo -->
     <string name="add_foto">Foto einbinden</string>
@@ -96,10 +97,14 @@
     <string name="exit_positive_button">Verlassen</string>
     <string name="exit_negative_button">Abbrechen</string>
 
-    <!-- Delete Language Dialog -->
-    <string name="language_delete_title">Löschen</string>
-    <string name="language_delete_message">Möchten Sie die Sprachbeziehung und die eventuell darin enthaltenen Vokabeln und Listen löschen?</string>
-    <string name="language_delete_positive_button">Löschen</string>
-    <string name="language_delete_negative_button">Abbrechen</string>
+    <!-- Delete AlertDialogs -->
+    <string name="language_delete_title">Sprachbeziehung löschen</string>
+    <string name="language_delete_message">Möchten Sie die Sprachbeziehung und deren enthaltene Vokabeln und Listen wirklich löschen?</string>
+    <string name="vocab_delete_title">Vokabel löschen</string>
+    <string name="vocab_delete_message">Möchten Sie diese Vokabel wirklich löschen?</string>
+    <string name="list_delete_title">Liste löschen</string>
+    <string name="list_delete_message">Möchten Sie diese Liste wirklich löschen?</string>
+    <string name="delete_positive_button">Löschen</string>
+    <string name="delete_negative_button">Abbrechen</string>
 
 </resources>

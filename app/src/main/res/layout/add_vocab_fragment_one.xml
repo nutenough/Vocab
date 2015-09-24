@@ -94,7 +94,7 @@
             android:layout_weight="0"
             android:background="@color/color_primary"
             android:padding="30dp"
-            android:text="@string/language_negative_button"
+            android:text="@string/vocab_negative_button"
             android:textColor="@color/color_white" />
 
         <Button
@@ -104,7 +104,7 @@
             android:layout_weight="1"
             android:background="@color/color_accent"
             android:padding="30dp"
-            android:text="Hinzufügen"
+            android:text="@string/vocab_positive_button"
             android:textColor="@color/color_white" />
 
     </LinearLayout>

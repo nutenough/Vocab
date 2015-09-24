@@ -15,6 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:src="@drawable/ic_folder" />
 
     <TextView
@@ -22,12 +23,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/folderIV"
+        android:layout_toLeftOf="@+id/nextArrowIV"
         android:layout_toRightOf="@+id/folderIV"
+        android:layout_toStartOf="@+id/nextArrowIV"
         android:text="@string/sample_string"
         android:textColor="@color/color_text_primary"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/nextArrowIV"
@@ -36,6 +40,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:src="@drawable/ic_next_arrow" />
 

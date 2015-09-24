@@ -71,10 +71,14 @@ public class AddVocabFragmentOne extends Fragment {
         vocabAddBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getInput();
-                Toast.makeText(getActivity(), vocabCouple + " wurde hinzugefügt", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getActivity(), NavigationActivity.class);
-                startActivity(intent);
+                saveInput();
+                if (sourceVocab.isEmpty() || targetVocab.isEmpty()) {
+                    Toast.makeText(getActivity(), R.string.no_vocab_input, Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getActivity(), vocabCouple + " wurde hinzugefügt", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -89,7 +93,7 @@ public class AddVocabFragmentOne extends Fragment {
         });
     }
 
-    private void getInput() {
+    private void saveInput() {
         sourceVocab = sourceVocabET.getText().toString();
         targetVocab = targetVocabET.getText().toString();
         vocabCouple = sourceVocab + " - " + targetVocab;

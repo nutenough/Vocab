@@ -22,10 +22,10 @@ public class NavigationFragmentOneAdapter extends ArrayAdapter<VocItem> {
         VocItem dataItem = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.vocab_list_row, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.navigation_fragment_one_list_row, parent, false);
         }
         // Lookup view for data population
-        TextView title = (TextView) convertView.findViewById(R.id.vocabTV);
+        TextView title = (TextView) convertView.findViewById(R.id.vocabCoupleTV);
         // Populate the data into the template view using the data object
         title.setText(dataItem.getSourceVocab() + " - " + dataItem.getTargetVocab());
         // Return the completed view to render on screen

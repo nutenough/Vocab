@@ -194,7 +194,7 @@ public class LanguageActivity extends AppCompatActivity {
         alert.setIcon(R.drawable.ic_delete);
         alert.setTitle(R.string.language_delete_title);
         alert.setMessage(R.string.language_delete_message);
-        alert.setPositiveButton(R.string.language_delete_positive_button, new DialogInterface.OnClickListener() {
+        alert.setPositiveButton(R.string.delete_positive_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // TOD O Auto-generated method stub
@@ -206,7 +206,7 @@ public class LanguageActivity extends AppCompatActivity {
 
             }
         });
-        alert.setNegativeButton(R.string.language_delete_negative_button, new DialogInterface.OnClickListener() {
+        alert.setNegativeButton(R.string.delete_negative_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

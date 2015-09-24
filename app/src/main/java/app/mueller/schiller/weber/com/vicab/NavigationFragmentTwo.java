@@ -175,9 +175,10 @@ public class NavigationFragmentTwo extends Fragment {
 
         AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
-        alert.setTitle("Liste löschen:");
-        alert.setMessage("Möchtest du diese Liste wirklich löschen? Darin enthaltene Vokabeln gehen NICHT verloren.");
-        alert.setPositiveButton("Ja, ich will.", new DialogInterface.OnClickListener() {
+        alert.setTitle(R.string.list_delete_title);
+        alert.setIcon(R.drawable.ic_delete);
+        alert.setMessage(R.string.list_delete_message);
+        alert.setPositiveButton(R.string.delete_positive_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // TOD O Auto-generated method stub
@@ -189,7 +190,7 @@ public class NavigationFragmentTwo extends Fragment {
 
             }
         });
-        alert.setNegativeButton("NEIN!", new DialogInterface.OnClickListener() {
+        alert.setNegativeButton(R.string.delete_negative_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // TODO Auto-generated method stub
