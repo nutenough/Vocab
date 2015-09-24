@@ -168,6 +168,14 @@ public class LanguageActivity extends AppCompatActivity {
 
     private void setOnClickListener() {
 
+        languageLV.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view,
+                                           int position, long id) {
+                removeItem(position);
+                return true;
+            }
+        });
 
         languageLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
@@ -182,20 +190,41 @@ public class LanguageActivity extends AppCompatActivity {
             }
         });
 
-        languageLV.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view,
-                                           int position, long id) {
-                removeItem(position);
-                return false;
-            }
-        });
+
     }
 
-    public void removeItem(int position) {
-        dbAdmin.removeLanguage(listItems.get(position));
-        listItems.remove(position);
-        updateList();
+
+
+    protected void removeItem(int position) {
+        final int deletePosition = position;
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(
+                this);
+
+        alert.setTitle("Sprache löschen");
+        alert.setMessage("Möchtest du diese Sprache wirklich löschen? Damit gehen auch alle gespeicherten Wörter verloren.");
+        alert.setPositiveButton("Ja, ich will.", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TOD O Auto-generated method stub
+
+                // main code on after clicking yes
+                dbAdmin.removeLanguage(listItems.get(deletePosition));
+                listItems.remove(deletePosition);
+                updateList();
+
+            }
+        });
+        alert.setNegativeButton("NEIN!", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO Auto-generated method stub
+                dialog.dismiss();
+            }
+        });
+
+        alert.show();
+
     }
 
 
