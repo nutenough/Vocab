@@ -103,7 +103,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
 
     private void fillListFromDB(){
         allVocab = new ArrayList<>();
-        allVocab.addAll(dbAdmin.getAllVocab());
+        allVocab.addAll(dbAdmin.getAllVocabForLanguage());
         Log.d("Learn", "allItems: " + allVocab);
         listSize = allVocab.size();
     }

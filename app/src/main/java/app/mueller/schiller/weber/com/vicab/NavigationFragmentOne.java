@@ -1,5 +1,7 @@
 package app.mueller.schiller.weber.com.vicab;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -41,6 +44,7 @@ public class NavigationFragmentOne extends Fragment {
         handleEvents();
         attachAdapter();
         updateList();
+        setOnClickListener();
     }
 
     private void initDB() {
@@ -73,14 +77,67 @@ public class NavigationFragmentOne extends Fragment {
 
     private void updateList(){
         listItems.clear();
-        listItems.addAll(dbAdmin.getAllVocab());
-        Log.d("MyDebug", "items: " + dbAdmin.getAllVocab());
+        listItems.addAll(dbAdmin.getAllVocabForLanguage());
+        Log.d("MyDebug", "items: " + dbAdmin.getAllVocabForLanguage());
         adapter.notifyDataSetChanged();
     }
 
     private void attachAdapter() {
         adapter = new NavigationFragmentOneAdapter(getActivity(), listItems);
         vocabsLV.setAdapter(adapter);
+    }
+
+    private void setOnClickListener() {
+
+        vocabsLV.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view,
+                                           int position, long id) {
+                removeItem(position);
+                return true;
+            }
+        });
+
+        vocabsLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+
+                // Vokabel bearbeiten
+
+            }
+        });
+
+
+    }
+
+    protected void removeItem(int position) {
+        final int deletePosition = position;
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+
+        alert.setTitle("Vokabel löschen:");
+        alert.setMessage("Möchtest du diese Vokabel wirklich unwiderruflich löschen?");
+        alert.setPositiveButton("Ja, ich will.", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TOD O Auto-generated method stub
+
+                // main code on after clicking yes
+                dbAdmin.removeVocab(listItems.get(deletePosition));
+                listItems.remove(deletePosition);
+                updateList();
+
+            }
+        });
+        alert.setNegativeButton("NEIN!", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO Auto-generated method stub
+                dialog.dismiss();
+            }
+        });
+
+        alert.show();
+
     }
 
 }

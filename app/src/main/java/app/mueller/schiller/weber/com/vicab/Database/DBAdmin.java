@@ -81,21 +81,31 @@ public class DBAdmin {
 
         return db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
     }
+
+    public int removeList(ListItem item) {
+
+        String whereClause = ViCabContract.ListEntry.COLUMN_NAME_NAME + " = '" + item.getName() + "'";
+
+        return db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
+    }
+
+    public int removeVocab(VocItem item) {
+
+        String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB + " = '" + item.getSourceVocab() + "' AND "
+                + ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB + " = '" + item.getTargetVocab() + "'";
+
+        return db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
+    }
+
+    public int removeAllVocabWithSameAsDeletedLanguage(LanguageItem item) {
+
+        String language = item.getCouple();
+        String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE + " = '" + language + "'";
+
+        return db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
+    }
+
     /*
-    public void removeList(ListItem item) {
-
-        String whereClause = ViCabContract.ListEntry.COLUMN_ID_INDEX + " = '" + item.get_id() ;
-
-        db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
-    }
-
-    public void removeVocab(VocItem item) {
-
-        String whereClause = ViCabContract.VocabEntry.COLUMN_ID_INDEX + " = '" + item.get_id() ;
-
-        db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
-    }
-
 
     public LanguageItem getOneLanguageItem (String id) {
         String whereClause = ViCabContract.LanguageEntry.COLUMN_NAME_ENTRY_ID + " = '" + id + "'";
@@ -151,8 +161,9 @@ public class DBAdmin {
     }
 
 
-    public ArrayList<VocItem> getAllVocab() {
+    public ArrayList<VocItem> getAllVocabForLanguage() {
         ArrayList<VocItem> items = new ArrayList<>();
+       // String args = "WHERE '" + ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE + "' = '" + ViCabContract.CHOSEN_LANGUAGE_SOURCE + "'";
         Cursor cursor = db.query(ViCabContract.VocabEntry.TABLE_NAME, new String[] { ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID,
                 ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB, ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB,
                 ViCabContract.VocabEntry.COLUMN_NAME_FOTO_LINK, ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK,

@@ -193,8 +193,6 @@ public class LanguageActivity extends AppCompatActivity {
 
     }
 
-
-
     protected void removeItem(int position) {
         final int deletePosition = position;
 

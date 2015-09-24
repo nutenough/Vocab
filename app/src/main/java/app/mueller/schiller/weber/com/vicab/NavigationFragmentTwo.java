@@ -2,6 +2,7 @@ package app.mueller.schiller.weber.com.vicab;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import app.mueller.schiller.weber.com.vicab.Database.DBAdmin;
+import app.mueller.schiller.weber.com.vicab.Database.ViCabContract;
 import app.mueller.schiller.weber.com.vicab.PersistanceClasses.LanguageItem;
 import app.mueller.schiller.weber.com.vicab.PersistanceClasses.ListItem;
 
@@ -45,6 +48,7 @@ public class NavigationFragmentTwo extends Fragment {
         setupUIComponents();
         handleFabEvent();
         attachAdapter();
+        setOnClickListener();
         updateList();
     }
 
@@ -141,5 +145,59 @@ public class NavigationFragmentTwo extends Fragment {
     private void attachAdapter() {
         adapter = new NavigationFragmentTwoAdapter(getActivity(), listItems);
         listsLV.setAdapter(adapter);
+    }
+
+
+    private void setOnClickListener() {
+
+        listsLV.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view,
+                                           int position, long id) {
+                removeItem(position);
+                return true;
+            }
+        });
+
+        listsLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+
+                // Liste lernen im Lernmodus mit den darin enthaltenen Vokabeln
+
+            }
+        });
+
+
+    }
+
+    protected void removeItem(int position) {
+        final int deletePosition = position;
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+
+        alert.setTitle("Liste löschen:");
+        alert.setMessage("Möchtest du diese Liste wirklich löschen? Darin enthaltene Vokabeln gehen NICHT verloren.");
+        alert.setPositiveButton("Ja, ich will.", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TOD O Auto-generated method stub
+
+                // main code on after clicking yes
+                dbAdmin.removeList(listItems.get(deletePosition));
+                listItems.remove(deletePosition);
+                updateList();
+
+            }
+        });
+        alert.setNegativeButton("NEIN!", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO Auto-generated method stub
+                dialog.dismiss();
+            }
+        });
+
+        alert.show();
+
     }
 }
