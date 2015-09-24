@@ -1,185 +1,172 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-
     tools:context=".TextInputLearnActivity">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <RelativeLayout
+            android:id="@+id/vocab_knowing_language"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/vocab_knowing_language"
-            android:layout_weight="1"
-            >
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/vocab_learning_language_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
+                android:background="@color/color_primary_light"
                 android:gravity="center"
                 android:text="@string/vocab_learning_language"
-                android:background="@color/color_white"
-                android:textColor="@color/color_express_black"
+                android:textColor="@color/color_text_primary"
                 android:textSize="30sp" />
 
-
             <TextView
+                android:id="@+id/vocab_knowing_language_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
+                android:background="@color/color_primary"
                 android:gravity="center"
                 android:text="@string/vocab_knowing_language"
                 android:textColor="@color/color_white"
-                android:background="@color/color_express_black"
-                android:textSize="30sp"
-                android:id="@+id/vocab_knowing_language_text_view"/>
-
-
-
+                android:textSize="30sp" />
 
         </RelativeLayout>
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_weight="1">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="32dp"
-        android:gravity="center|top"
-        android:background="@color/color_white"
-        android:textColor="@color/color_express_black"
-        android:textSize="30sp"
-        android:text=""
-        android:singleLine="true"
-        android:id="@+id/vocab_text_view"/>
+            <TextView
+                android:id="@+id/vocab_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_white"
+                android:gravity="center|top"
+                android:paddingTop="32dp"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/color_text_primary"
+                android:textSize="30sp" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+            <EditText
+                android:id="@+id/vocab_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_white"
+                android:gravity="center|top"
+                android:hint="@string/vocab_hint"
+                android:paddingTop="32dp"
+                android:singleLine="true"
+                android:textColor="@color/color_text_primary"
+                android:textSize="30sp" />
 
-        android:paddingTop="32dp"
-        android:gravity="center|top"
-        android:background="@color/color_white"
-        android:textColor="@color/color_express_black"
-        android:textSize="30sp"
-        android:hint="@string/target_vocab_hint"
-        android:singleLine="true"
-        android:id="@+id/vocab_edit_text"/>
+            <ImageView
+                android:id="@+id/image_view_correct"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/smiley_happy"
+                android:visibility="invisible" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:src="@drawable/smiley_happy"
-        android:visibility="invisible"
-        android:id="@+id/image_view_correct"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:padding="10dp"
-        android:scaleType="centerInside"/>
-
-
-</RelativeLayout>
-
+        </RelativeLayout>
 
     </LinearLayout>
 
-
     <LinearLayout
+        android:id="@+id/learning_linearLayout_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true"
-
         android:layout_alignParentBottom="true"
-        android:id="@+id/learning_linearLayout_bottom">
+
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
 
         <Button
+            android:id="@+id/number_of_meanings_express"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/number_of_meanings"
-            android:id="@+id/number_of_meanings_express"
-            android:textColor="#2196F3"
             android:background="@android:color/transparent"
+            android:text="@string/number_of_meanings"
+            android:textColor="#2196F3"
             android:textSize="30sp"
             android:textStyle="bold" />
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:id="@+id/relative_layout_learning_media_audio_response"
-            >
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <ImageButton
+                android:id="@+id/imageButton_audio_response_express"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:id="@+id/imageButton_audio_response_express"
-                android:src="@drawable/speaker_blue"
+                android:layout_centerHorizontal="true"
                 android:background="@android:color/transparent"
                 android:padding="20dp"
                 android:scaleType="centerInside"
-                android:layout_centerHorizontal="true"/>
+                android:src="@drawable/speaker_blue" />
 
         </RelativeLayout>
-
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/learning_linearLayout_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
         android:layout_alignParentTop="true"
-        android:id="@+id/learning_linearLayout_top">
-
-
+        android:layout_centerHorizontal="true"
+        android:fitsSystemWindows="true"
+        android:orientation="horizontal">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:id="@+id/relative_layout_learning_media_audio_response1"
-            >
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="80dp"
                 android:id="@+id/imageButton_exit"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:background="@android:color/transparent"
-                android:padding="20dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/arrow_left_blue"
-                />
+                android:padding="16dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/arrow_left_white" />
 
         </RelativeLayout>
 
         <Button
+            android:id="@+id/vocab_counter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/vocab_counter"
-            android:gravity="center"
-            android:id="@+id/vocab_counter"
-            android:textColor="@color/color_primary"
             android:background="@android:color/transparent"
-            android:textSize="30sp"
-            android:textStyle="normal" />
+            android:gravity="center_vertical|end"
+            android:paddingRight="16dp"
+            android:text="@string/vocab_counter"
+            android:textColor="@color/color_white"
+            android:textSize="24sp" />
     </LinearLayout>
 
 
@@ -188,13 +175,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/fab_margin"
         android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/fab_margin"
         android:onClick="displayEditText"
         android:src="@drawable/ic_done"
         app:backgroundTint="@color/color_accent"
         app:elevation="5dp"
         app:pressedTranslationZ="25dp" />
-
 
 </RelativeLayout>

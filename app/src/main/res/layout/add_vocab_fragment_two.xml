@@ -5,56 +5,45 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/addFotoTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:padding="16dp"
-        android:text="@string/add_foto"
-        android:textColor="@color/color_text_primary"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <ImageView
-        android:id="@+id/addFotoIV"
+        android:id="@+id/wordClassTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/addFotoTV"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:clickable="true"
-        android:src="@drawable/camera_blue" />
-
-    <TextView
-        android:id="@+id/addSoundTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/addFotoIV"
         android:layout_centerHorizontal="true"
-        android:layout_margin="16dp"
-        android:text="@string/add_sound"
-        android:textSize="20sp"
+        android:background="@color/color_accent"
+        android:padding="16dp"
+        android:text="@string/part_of_speech"
+        android:textAllCaps="true"
+        android:textColor="@color/color_white"
         android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/addSoundIV"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/wordClassET"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/addSoundTV"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/microphone_blue" />
+        android:layout_below="@id/wordClassTV"
+        android:layout_margin="16dp"
+        android:hint="@string/part_of_speech_hint" />
 
-    <ImageView
-        android:id="@+id/hearSoundIV"
+    <TextView
+        android:id="@+id/importanceTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wordClassET"
+        android:layout_centerHorizontal="true"
+        android:background="@color/color_accent"
+        android:padding="16dp"
+        android:text="@string/importance"
+        android:textAllCaps="true"
+        android:textColor="@color/color_white"
+        android:textStyle="bold" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/addSoundIV"
-        android:layout_alignStart="@+id/addSoundIV"
-        android:layout_below="@+id/addSoundIV"
-        android:src="@drawable/speaker_blue"
-        android:visibility="invisible" />
+        android:layout_below="@+id/importanceTV"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="16dp"
+        android:numStars="3" />
 
 </RelativeLayout>

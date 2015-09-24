@@ -87,12 +87,10 @@ public class NavigationFragmentThree extends Fragment {
 
     }
 
-
     private void setupCheckBoxes() {
         checkBox_knowing_to_learning = (CheckBox) getActivity().findViewById(R.id.checkBox_learning_1_2);
         checkBox_learning_to_knowing = (CheckBox) getActivity().findViewById(R.id.checkBox_learning_2_1);
         checkBox_mixed = (CheckBox) getActivity().findViewById(R.id.checkBox_learning_mixed);
-
 
         vocItems.clear();
         vocItems.addAll(dbAdmin.getAllVocab());
@@ -104,7 +102,6 @@ public class NavigationFragmentThree extends Fragment {
         checkBox_learning_to_knowing.setText(Html.fromHtml(learning_to_knowing_String));
         checkBox_mixed.setText(Html.fromHtml(mixed_String));
     }
-
 
     private void initDB(){
         dbAdmin = new DBAdmin(getActivity());
