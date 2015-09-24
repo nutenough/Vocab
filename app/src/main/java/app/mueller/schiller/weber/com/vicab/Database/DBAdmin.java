@@ -58,7 +58,7 @@ public class DBAdmin {
     }
 
 
-    public long addVocab(String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, int importance, String hasList, String hasLang) {
+    public long addVocab(String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, int importance, String hasList) {
         ContentValues vocItem = new ContentValues();
 
         vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB, sourceVocab);
@@ -68,7 +68,7 @@ public class DBAdmin {
         vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE, wordType);
         vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE, importance);
         vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST, hasList);
-        vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE, hasLang);
+        vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE, ViCabContract.CHOSEN_LANGUAGE_MIX);
 
         return db.insert(ViCabContract.VocabEntry.TABLE_NAME, null, vocItem);
     }
@@ -81,21 +81,31 @@ public class DBAdmin {
 
         return db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
     }
+
+    public int removeList(ListItem item) {
+
+        String whereClause = ViCabContract.ListEntry.COLUMN_NAME_NAME + " = '" + item.getName() + "'";
+
+        return db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
+    }
+
+    public int removeVocab(VocItem item) {
+
+        String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB + " = '" + item.getSourceVocab() + "' AND "
+                + ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB + " = '" + item.getTargetVocab() + "'";
+
+        return db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
+    }
+
+    public int removeAllVocabWithSameAsDeletedLanguage(LanguageItem item) {
+
+        String language = item.getCouple();
+        String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE + " = '" + language + "'";
+
+        return db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
+    }
+
     /*
-    public void removeList(ListItem item) {
-
-        String whereClause = ViCabContract.ListEntry.COLUMN_ID_INDEX + " = '" + item.get_id() ;
-
-        db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
-    }
-
-    public void removeVocab(VocItem item) {
-
-        String whereClause = ViCabContract.VocabEntry.COLUMN_ID_INDEX + " = '" + item.get_id() ;
-
-        db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
-    }
-
 
     public LanguageItem getOneLanguageItem (String id) {
         String whereClause = ViCabContract.LanguageEntry.COLUMN_NAME_ENTRY_ID + " = '" + id + "'";
@@ -151,13 +161,15 @@ public class DBAdmin {
     }
 
 
-    public ArrayList<VocItem> getAllVocab() {
+    public ArrayList<VocItem> getAllVocabForLanguage() {
         ArrayList<VocItem> items = new ArrayList<>();
+        String selection = ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE + " = ?";
+        String[] args = {ViCabContract.CHOSEN_LANGUAGE_MIX};
         Cursor cursor = db.query(ViCabContract.VocabEntry.TABLE_NAME, new String[] { ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID,
                 ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB, ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB,
                 ViCabContract.VocabEntry.COLUMN_NAME_FOTO_LINK, ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK,
                 ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE, ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE,
-                ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST, ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE}, null, null, null, null, null);
+                ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST, ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE}, selection, args, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
