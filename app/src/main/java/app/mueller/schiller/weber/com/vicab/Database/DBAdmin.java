@@ -48,11 +48,11 @@ public class DBAdmin {
     }
 
 
-    public long addList(String listName, String hasLanguage) {
+    public long addList(String listName) {
         ContentValues listItem = new ContentValues();
 
         listItem.put(ViCabContract.ListEntry.COLUMN_NAME_NAME, listName);
-        listItem.put(ViCabContract.ListEntry.COLUMN_NAME_HAS_LANGUAGE, hasLanguage);
+        listItem.put(ViCabContract.ListEntry.COLUMN_NAME_HAS_LANGUAGE, ViCabContract.CHOSEN_LANGUAGE_MIX);
 
         return db.insert(ViCabContract.ListEntry.TABLE_NAME, null, listItem);
     }
@@ -143,10 +143,12 @@ public class DBAdmin {
 
 
 
-    public ArrayList<ListItem> getAllLists() {
+    public ArrayList<ListItem> getAllListsForChosenLanguage() {
         ArrayList<ListItem> items = new ArrayList<>();
+        String selection = ViCabContract.ListEntry.COLUMN_NAME_HAS_LANGUAGE + " = ?";
+        String[] args = {ViCabContract.CHOSEN_LANGUAGE_MIX};
         Cursor cursor = db.query(ViCabContract.ListEntry.TABLE_NAME, new String[] { ViCabContract.ListEntry.COLUMN_NAME_ENTRY_ID,
-                ViCabContract.ListEntry.COLUMN_NAME_NAME, ViCabContract.ListEntry.COLUMN_NAME_HAS_LANGUAGE }, null, null, null, null, null);
+                ViCabContract.ListEntry.COLUMN_NAME_NAME, ViCabContract.ListEntry.COLUMN_NAME_HAS_LANGUAGE }, selection, args, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {

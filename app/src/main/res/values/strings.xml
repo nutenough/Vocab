@@ -55,6 +55,7 @@
     <string name="list_negative_button">Abbrechen</string>
     <string name="no_list_input">Bitte Name der Liste eingeben</string>
 
+    <string name="no_edit_input">Bitte neuen Namen eingeben</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
@@ -106,6 +107,11 @@
     <string name="list_delete_message">Möchten Sie diese Liste wirklich löschen?</string>
     <string name="delete_positive_button">Löschen</string>
     <string name="delete_negative_button">Abbrechen</string>
-    <string name="choose">Aktion wählen</string>
+
+    <!-- Option AlertDialogs -->
+    <string name="option_choose">Aktion wählen</string>
+    <string name="option_edit">Umbenennen</string>
+    <string name="option_learnList">Lernen</string>
+    <string name="option_delete">LÖSCHEN</string>
 
 </resources>
