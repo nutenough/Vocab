@@ -189,9 +189,8 @@ public class NavigationFragmentTwo extends Fragment {
                new DialogInterface.OnClickListener() {
                    @Override
                    public void onClick(DialogInterface dialog, int which) {
-                       String listItem = arrayAdapter.getItem(which);
                        if (which == 1) {
-                           renameList(listItems.get(position));
+                            showEdit(position);
                        }
                        if (which == 2) {
                            removeItem(position);
@@ -201,7 +200,7 @@ public class NavigationFragmentTwo extends Fragment {
        builderSingle.show();
    }
 
-    private void showEdit() {
+    private void showEdit(final int position) {
         // Setup View for AlertDialog
         final View view = LayoutInflater.from(getActivity()).inflate(R.layout.navigation_fragment_two_dialog, null);
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
@@ -212,18 +211,17 @@ public class NavigationFragmentTwo extends Fragment {
 
         // Setup title and message of alertDialog
         alertDialogBuilder.setIcon(R.drawable.ic_lists);
-        alertDialogBuilder.setTitle(R.string.list_title);
-        alertDialogBuilder.setMessage(R.string.list_message);
+        alertDialogBuilder.setTitle(R.string.list_edit_title);
 
         // Setup Buttons for dialog
-        alertDialogBuilder.setPositiveButton(R.string.list_positive_button, new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setPositiveButton(R.string.list_edit_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 getInput(view);
                 if (listName.isEmpty()) {
-                    Toast.makeText(getActivity(), R.string.no_edit_input, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), R.string.list_edit_title, Toast.LENGTH_LONG).show();
                 } else {
-                    putInArrayList();
+                    renameList(listItems.get(position));
                 }
             }
         });
@@ -246,7 +244,8 @@ public class NavigationFragmentTwo extends Fragment {
     }
     
     protected void renameList (ListItem listItem) {
-        Log.d("SUPERDB", "ich bin renameList");
+        dbAdmin.renameList(listItem, listName);
+        updateList();
     }
 
     protected void removeItem(int position) {

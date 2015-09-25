@@ -43,7 +43,7 @@ public class DBAdmin {
         languageItem.put(ViCabContract.LanguageEntry.COLUMN_NAME_COUPLE, langItem.getCouple());
         languageItem.put(ViCabContract.LanguageEntry.COLUMN_NAME_SOURCE_LANGUAGE, langItem.getSourceLanguage());
         languageItem.put(ViCabContract.LanguageEntry.COLUMN_NAME_TARGET_LANGUAGE, langItem.getTargetLanguage());
-        Log.d("MyDB", "added");
+
         return db.insert(ViCabContract.LanguageEntry.TABLE_NAME, null, languageItem);
     }
 
@@ -210,6 +210,14 @@ public class DBAdmin {
         return items;
     }
     */
+
+    public int renameList(ListItem item, String newName) {
+
+        String whereClause = ViCabContract.ListEntry.COLUMN_NAME_NAME + " = '" + item.getName() + "'";
+        ContentValues cv = new ContentValues();
+        cv.put(ViCabContract.ListEntry.COLUMN_NAME_NAME, newName);
+        return db.update(ViCabContract.ListEntry.TABLE_NAME,cv, whereClause, null);
+    }
 
     // Update VocabItem
     public long updateVocabSource(String vocabItemID, String sourceVoc){

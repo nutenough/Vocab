@@ -55,9 +55,17 @@
     <string name="list_negative_button">Abbrechen</string>
     <string name="no_list_input">Bitte Name der Liste eingeben</string>
 
-    <string name="no_edit_input">Bitte neuen Namen eingeben</string>
+    <!-- NavigationFragmentTwo AlertDialog-->
+    <string name="list_edit_title">Bitte neuen Namen eingeben</string>
+    <string name="list_edit_button">Umbennen</string>
+
+
+
+
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+
 
     <!-- LearnVocabFragmentThree -->
     <string name="toast_choose_learn_direction">Wähle zuerst eine Lernrichtung</string>
