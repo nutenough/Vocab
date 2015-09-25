@@ -88,6 +88,8 @@
     <string name="vocab_counter">0</string>
     <string name="number_of_meanings">*</string>
 
+    <string name="toast_manual">Swipe nach links, wenn du dir sicher bist, dass du die Vokabel weißt und um zur nächsten Vokabel zu kommen. \nKlicke, wenn du die Vokabel nicht weißt.</string>
+
     <!-- Result AlertDialog -->
     <string name="result">Ergebnis</string>
     <string name="finished">Fertig</string>
@@ -113,5 +115,9 @@
     <string name="option_edit">Umbenennen</string>
     <string name="option_learnList">Lernen</string>
     <string name="option_delete">LÖSCHEN</string>
+
+    <string name="tab">\t</string>
+
+
 
 </resources>

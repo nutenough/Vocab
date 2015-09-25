@@ -100,6 +100,7 @@ public class NavigationActivity extends AppCompatActivity {
                 Intent intent = new Intent(NavigationActivity.this, LanguageActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
+                finish();
                 break;
             default:
                 Toast.makeText(getApplicationContext(), R.string.error, Toast.LENGTH_LONG).show();

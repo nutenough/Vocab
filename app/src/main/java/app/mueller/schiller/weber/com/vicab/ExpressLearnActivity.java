@@ -5,6 +5,7 @@ import android.animation.AnimatorSet;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
@@ -13,9 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -44,6 +47,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
     private double randomNum;
     private ImageButton knowIB;
     private ImageButton dontKnowIB;
+    private double result = 0.0;
 
     private AlertDialog alertDialog;
 
@@ -61,6 +65,22 @@ public class ExpressLearnActivity extends AppCompatActivity {
         initUIElements();
         setupVocabAnimation();
         setupExitButton();
+        setupToastManual();
+    }
+
+    private void setupToastManual() {
+        final Toast tag = Toast.makeText(getBaseContext(), getResources().getString(R.string.toast_manual), Toast.LENGTH_SHORT);
+
+        tag.show();
+
+        new CountDownTimer(6000, 1000)
+        {
+
+            public void onTick(long millisUntilFinished) {tag.show();}
+            public void onFinish() {tag.show();}
+
+        }.start();
+
     }
 
     private void learnDirection() {
@@ -183,6 +203,10 @@ public class ExpressLearnActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             vocab_knowing_language.setClickable(true);
+                            vocab_counter_button.setTextColor(getResources().getColor(R.color.color_primary));
+                            imageButton_exit.setImageResource(R.drawable.arrow_left_blue);
+                            knowIB.setImageResource(R.drawable.arrow_right_blue);
+
                         }
                     }, 500);
 
@@ -213,6 +237,9 @@ public class ExpressLearnActivity extends AppCompatActivity {
                         isBackVisible = false;
 
                         counter_vocab++;
+                        vocab_counter_button.setTextColor(getResources().getColor(R.color.color_white));
+                        imageButton_exit.setImageResource(R.drawable.arrow_left_white);
+                        knowIB.setImageResource(R.drawable.ic_thumbs_up);
 
                         if (counter_vocab < listSize) {
                             learnDirection();
@@ -222,6 +249,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
                         } else {
                             showAlertDialogFinished();
                         }
+
 
                     }
                 }, 150);
@@ -243,6 +271,70 @@ public class ExpressLearnActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        dontKnowIB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isBackVisible) {
+                    counter_wrong_answer++;
+                    vocab_knowing_language.setClickable(false);
+
+                    setRightOut.setTarget(vocab_knowing_language_text_view);
+                    setLeftIn.setTarget(vocab_learning_language_text_view);
+                    setRightOut.start();
+                    setLeftIn.start();
+                    isBackVisible = true;
+
+                    handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            vocab_knowing_language.setClickable(true);
+                            vocab_counter_button.setTextColor(getResources().getColor(R.color.color_primary));
+                            imageButton_exit.setImageResource(R.drawable.arrow_left_blue);
+                            knowIB.setImageResource(R.drawable.arrow_right_blue);
+                        }
+                    }, 500);
+
+                }
+            }
+        });
+
+        knowIB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        setRightOut_1.setTarget(vocab_learning_language_text_view);
+                        setLeftIn_1.setTarget(vocab_knowing_language_text_view);
+                        setRightOut_1.start();
+                        setLeftIn_1.start();
+                        isBackVisible = false;
+
+                        counter_vocab++;
+
+                        vocab_counter_button.setTextColor(getResources().getColor(R.color.color_white));
+                        imageButton_exit.setImageResource(R.drawable.arrow_left_white);
+                        knowIB.setImageResource(R.drawable.ic_thumbs_up);
+
+                        if (counter_vocab < listSize) {
+                            learnDirection();
+                            vocab_knowing_language_text_view.setText(frontCard);
+                            vocab_learning_language_text_view.setText(backCard);
+                            updateNumCounter();
+                        } else {
+                            showAlertDialogFinished();
+                        }
+
+                    }
+                }, 150);
+            }
+        });
+
+
     }
 
     private void showAlertDialogFinished() {
@@ -273,16 +365,30 @@ public class ExpressLearnActivity extends AppCompatActivity {
         Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
         positiveButton.setTextColor(getResources().getColor(R.color.color_primary));
 
-        String sourceString = "Glückwunsch!" + "<br>" + "Du hast " + "<b>" + (listSize - counter_wrong_answer) + " / " + listSize + "</b> " + " Vokabeln richtig!" + "</br>";
+        String sourceString = "";
+
+        ImageView smileyIV = (ImageView) alertDialog.findViewById(R.id.image_view_smiley);
+
+        result= ((double) listSize - (double) counter_wrong_answer) / (double)listSize;
+
+        if(result >= 0.90){
+            smileyIV.setImageResource(R.drawable.smiley_cool);
+            sourceString = "Super!" + "<br>" + "Du hast " + "<b>" + (listSize - counter_wrong_answer)+  " / "  + listSize +  "</b> " + " Vokabeln richtig!"+ "</br>";
+        }else if(result < 0.90 && result >= 0.60){
+            smileyIV.setImageResource(R.drawable.smiley_happy);
+            sourceString = "Glückwunsch!" + "<br>" + "Du hast " + "<b>" + (listSize - counter_wrong_answer) + " / " + listSize + "</b> " + " Vokabeln richtig!" + "</br>";
+        }
+        else if(result < 0.60 && result >= 0.20){
+            smileyIV.setImageResource(R.drawable.smiley_question);
+            sourceString = "Schade!" + "<br>" + "Du hast nur " + "<b>" + (listSize - counter_wrong_answer) +  " / "  + listSize +  "</b> " + " Vokabeln richtig!"+ "</br>";
+        }else{
+            smileyIV.setImageResource(R.drawable.smiley_sad);
+            sourceString = "Schade!" + "<br>" + "Du hast " + "<b>" + "keine einzige" + "</b> " + " Vokabel richtig!"+ "</br>";
+        }
         TextView textView_result = (TextView) alertDialog.findViewById(R.id.textView_result);
         textView_result.setText(Html.fromHtml(sourceString));
-        RatingBar ratingBar = (RatingBar) alertDialog.findViewById(R.id.ratingBarResult);
 
-        int numStars = 5;
-        float rating = (float) ((listSize - counter_wrong_answer) / listSize * numStars);
 
-        ratingBar.setStepSize(0.5f);
-        ratingBar.setRating(rating);
 
     }
 

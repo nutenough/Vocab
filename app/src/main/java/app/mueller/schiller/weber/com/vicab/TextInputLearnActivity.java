@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
@@ -51,6 +50,7 @@ public class TextInputLearnActivity extends AppCompatActivity {
     private String frontCard = "";
     private String backCard ="";
     private double randomNum;
+    private double result = 0.0;
 
 
     private AlertDialog alertDialog;
@@ -276,16 +276,27 @@ public class TextInputLearnActivity extends AppCompatActivity {
         Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
         positiveButton.setTextColor(getResources().getColor(R.color.color_primary));
 
-        String sourceString = "Glückwunsch!" + "<br>" + "Du hast " + "<b>" + counter_correct_answer +  " / "  + listSize +  "</b> " + " Vokabeln richtig!"+ "</br>";
+        ImageView smileyIV = (ImageView) alertDialog.findViewById(R.id.image_view_smiley);
+        String sourceString = "";
+        result= (double) counter_correct_answer / (double)listSize;
+
+        if(result >= 0.90){
+            smileyIV.setImageResource(R.drawable.smiley_cool);
+            sourceString = "Super!" + "<br>" + "Du hast " + "<b>" + counter_correct_answer +  " / "  + listSize +  "</b> " + " Vokabeln richtig!"+ "</br>";
+        }else if(result < 0.90 && result >= 0.60){
+            smileyIV.setImageResource(R.drawable.smiley_happy);
+            sourceString = "Glückwunsch!" + "<br>" + "Du hast " + "<b>" + counter_correct_answer +  " / "  + listSize +  "</b> " + " Vokabeln richtig!"+ "</br>";
+        }
+        else if(result < 0.60 && result >= 0.20){
+            smileyIV.setImageResource(R.drawable.smiley_question);
+            sourceString = "Schade!" + "<br>" + "Du hast nur " + "<b>" + counter_correct_answer +  " / "  + listSize +  "</b> " + " Vokabeln richtig!"+ "</br>";
+        }else{
+            smileyIV.setImageResource(R.drawable.smiley_sad);
+            sourceString = "Schade!" + "<br>" + "Du hast " + "<b>" + "keine einzige" + "</b> " + " Vokabel richtig!"+ "</br>";
+        }
         TextView textView_result = (TextView) alertDialog.findViewById(R.id.textView_result);
         textView_result.setText(Html.fromHtml(sourceString));
-        RatingBar ratingBar = (RatingBar) alertDialog.findViewById(R.id.ratingBarResult);
 
-        int numStars = 5;
-        float rating = (float)(counter_correct_answer / listSize *numStars);
-
-        ratingBar.setStepSize(0.5f);
-        ratingBar.setRating(rating);
     }
 
 
