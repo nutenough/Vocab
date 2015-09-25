@@ -60,6 +60,9 @@
     <string name="list_edit_button">Umbennen</string>
 
 
+    <!-- NavigationFragmentTwo AlertDialog-->
+    <string name="spinner_no_list">In keine Liste speichern</string>
+
 
 
     <string name="hello_world">Hello world!</string>
