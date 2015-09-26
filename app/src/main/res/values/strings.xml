@@ -21,7 +21,7 @@
     <string name="lists">Meine Listen</string>
     <string name="learn">Lernen</string>
     <string name="last_entries">Meine letzten Einträge</string>
-    <string name="trophies">Auszeichnungen</string>
+    <string name="trophies">Erfolge</string>
     <string name="statistics">Statistiken</string>
     <string name="about">Über uns</string>
     <string name="language_change">Sprache wechseln</string>
@@ -59,16 +59,11 @@
     <string name="list_edit_title">Bitte neuen Namen eingeben</string>
     <string name="list_edit_button">Umbennen</string>
 
-
     <!-- NavigationFragmentTwo AlertDialog-->
     <string name="spinner_no_list">In keine Liste speichern</string>
 
-
-
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
-
 
     <!-- LearnVocabFragmentThree -->
     <string name="toast_choose_learn_direction">Wähle zuerst eine Lernrichtung</string>
@@ -99,11 +94,11 @@
     <string name="vocab_counter">0</string>
     <string name="number_of_meanings">*</string>
 
-    <string name="toast_manual">Swipe nach links, wenn du dir sicher bist, dass du die Vokabel weißt und um zur nächsten Vokabel zu kommen. \nKlicke, wenn du die Vokabel nicht weißt.</string>
+    <string name="toast_manual">Swipe nach links: Du weißt die Vokabel \n\nTap auf Bildschirm: Du weißt die Vokabel nicht. \n\nAlternativ: Benutze Daumen hoch und runter</string>
 
     <!-- Result AlertDialog -->
     <string name="result">Ergebnis</string>
-    <string name="finished">Fertig</string>
+    <string name="finished">OK</string>
 
     <!-- Exit AlertDialog -->
     <string name="exit_title">Verlassen</string>
@@ -113,7 +108,7 @@
 
     <!-- Delete AlertDialogs -->
     <string name="language_delete_title">Sprachbeziehung löschen</string>
-    <string name="language_delete_message">Möchten Sie die Sprachbeziehung und deren enthaltene Vokabeln und Listen wirklich löschen?</string>
+    <string name="language_delete_message">Möchten Sie die Sprachbeziehung und darin enthaltene Vokabeln und Listen wirklich löschen?</string>
     <string name="vocab_delete_title">Vokabel löschen</string>
     <string name="vocab_delete_message">Möchten Sie diese Vokabel wirklich löschen?</string>
     <string name="list_delete_title">Liste löschen</string>
@@ -129,7 +124,5 @@
     <string name="option_delete">Löschen</string>
 
     <string name="tab">\t</string>
-
-
 
 </resources>

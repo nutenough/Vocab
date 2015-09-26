@@ -149,8 +149,8 @@ public class AddVocabFragmentOne extends Fragment implements
     }
 
     private void saveInput() {
-        sourceVocab = sourceVocabET.getText().toString();
-        targetVocab = targetVocabET.getText().toString();
+        sourceVocab = sourceVocabET.getText().toString().trim();
+        targetVocab = targetVocabET.getText().toString().trim();
         vocabCouple = sourceVocab + " - " + targetVocab;
         // addVocab method wants this: String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, String importance, String hasList
         dbAdmin.addVocab(sourceVocab, targetVocab, "", "", "", 0, spinner.getSelectedItem().toString());
