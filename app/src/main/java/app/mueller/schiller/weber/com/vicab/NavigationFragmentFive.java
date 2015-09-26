@@ -16,16 +16,22 @@ public class NavigationFragmentFive extends Fragment {
     View contentView;
     private ImageView startIV;
     private ImageView directionIV;
+    private ImageView bagIV;
     private ImageView noteIV;
+    private ImageView toolboxIV;
     private ImageView serverIV;
     private ImageView expressIV;
     private ImageView ueberfliegerIV;
+    private ImageView spracheIV;
+    private TextView startTV;
+    private TextView directionTV;
+    private TextView bagTV;
     private TextView noteTV;
+    private TextView toolboxTV;
     private TextView serverTV;
     private TextView expressTV;
     private TextView ueberfliegerTV;
-    private TextView startTV;
-    private TextView directionTV;
+    private TextView spracheTV;
     private DBAdmin dbAdmin;
 
     @Nullable
@@ -47,17 +53,23 @@ public class NavigationFragmentFive extends Fragment {
         // Images
         startIV = (ImageView) contentView.findViewById(R.id.startIV);
         directionIV = (ImageView) contentView.findViewById(R.id.directionIV);
+        bagIV = (ImageView) contentView.findViewById(R.id.bagIV);
         noteIV = (ImageView) contentView.findViewById(R.id.noteIV);
+        toolboxIV = (ImageView) contentView.findViewById(R.id.toolboxIV);
         serverIV = (ImageView) contentView.findViewById(R.id.serverIV);
         expressIV = (ImageView) contentView.findViewById(R.id.expressIV);
         ueberfliegerIV = (ImageView) contentView.findViewById(R.id.ueberfliegerIV);
+        spracheIV = (ImageView) contentView.findViewById(R.id.spracheIV);
         // Texts
         startTV = (TextView) contentView.findViewById(R.id.startTV);
         directionTV = (TextView) contentView.findViewById(R.id.directionTV);
+        bagTV = (TextView) contentView.findViewById(R.id.bagTV);
         noteTV = (TextView) contentView.findViewById(R.id.noteTV);
+        toolboxTV = (TextView) contentView.findViewById(R.id.toolboxTV);
         serverTV = (TextView) contentView.findViewById(R.id.serverTV);
         expressTV = (TextView) contentView.findViewById(R.id.expressTV);
         ueberfliegerTV = (TextView) contentView.findViewById(R.id.ueberfliegerTV);
+        spracheTV = (TextView) contentView.findViewById(R.id.spracheTV);
     }
 
     private void initDB() {
@@ -70,23 +82,35 @@ public class NavigationFragmentFive extends Fragment {
         super.onDestroy();
     }
 
+    // Display trophies for success
     private void updateSuccess() {
         if (dbAdmin.getAllVocabForLanguage().size() >= 1) {
             startIV.setImageResource(R.drawable.start);
-            startTV.setText("Klappe Auf: Dein erster Vokabeleintrag");
+            startTV.setText("Klappe auf: Erster Vokabeleintrag");
         }
         if (dbAdmin.getAllVocabForLanguage().size() >= 25) {
             directionIV.setImageResource(R.drawable.direction);
             directionTV.setText("Richtige Richtung: 25 Vokabeleinträge");
         }
+        if (dbAdmin.getAllVocabForLanguage().size() >= 100) {
+            bagIV.setImageResource(R.drawable.bag);
+            bagTV.setText("Vollbepackt: 100 Vokabeleinträge");
+        }
         if (dbAdmin.getAllListsForChosenLanguage().size() >= 1) {
             noteIV.setImageResource(R.drawable.note);
-            noteTV.setText("Klemmbrett: Deine erste Liste");
+            noteTV.setText("Klemmbrett: Erste Liste");
         }
         if (dbAdmin.getAllListsForChosenLanguage().size() >= 5) {
-            serverIV.setImageResource(R.drawable.server);
-            serverTV.setText("Organizer: Fünf Listen erstellt");
+            toolboxIV.setImageResource(R.drawable.toolbox);
+            toolboxTV.setText("Handwerkszeug: Fünf Listen");
         }
-
+        if (dbAdmin.getAllListsForChosenLanguage().size() >= 20) {
+            serverIV.setImageResource(R.drawable.server);
+            serverTV.setText("Organizer: 20 Listen");
+        }
+        if (dbAdmin.getAllLanguages().size() >= 3) {
+            spracheIV.setImageResource(R.drawable.sprache);
+            spracheTV.setText("Sprachkünstler: Drei Sprachen");
+        }
     }
 }
