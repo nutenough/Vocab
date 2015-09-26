@@ -79,8 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/selectListTV"
-        android:layout_margin="16dp"
-        android:prompt="@string/list_prompt" />
+        android:layout_margin="16dp" />
 
     <LinearLayout
         android:layout_width="match_parent"

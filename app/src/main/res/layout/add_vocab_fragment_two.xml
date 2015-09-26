@@ -16,19 +16,18 @@
         android:textColor="@color/color_white"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/wordClassET"
+    <Spinner
+        android:id="@+id/wordClassSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/wordClassTV"
-        android:layout_margin="16dp"
-        android:hint="@string/part_of_speech_hint" />
+        android:layout_margin="16dp" />
 
     <TextView
         android:id="@+id/importanceTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/wordClassET"
+        android:layout_below="@+id/wordClassSpinner"
         android:layout_centerHorizontal="true"
         android:background="@color/color_accent"
         android:padding="16dp"
@@ -39,23 +38,15 @@
 
     <RatingBar
         android:id="@+id/ratingBar"
+        style="@style/customRatingBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/importanceTV"
         android:layout_centerHorizontal="true"
-        style="@style/customRatingBarStyle"
         android:layout_margin="16dp"
         android:isIndicator="false"
         android:numStars="3"
         android:rating="0.0"
         android:stepSize="1.0" />
-
-    <TextView
-        android:id="@+id/ratingMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ratingBar"
-        android:layout_centerHorizontal="true"
-        android:text="Test" />
 
 </RelativeLayout>

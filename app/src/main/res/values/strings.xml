@@ -33,11 +33,8 @@
 
     <!-- AddVocabFragmentOne -->
     <string name="vocab_hint">Vokabel eingeben</string>
-    <string name="translate">Übersetzen</string>
-    <string name="select_list">Zu Liste hinzufügen</string>
-    <string name="list_prompt">Liste auswählen</string>
+    <string name="select_list">Zu Liste hinzufügen (optional)</string>
     <string name="part_of_speech">Wortart</string>
-    <string name="part_of_speech_hint">Wortart eingeben</string>
     <string name="importance">Wichtigkeit</string>
     <string name="vocab_negative_button">Abbrechen</string>
     <string name="vocab_positive_button">Hinzufügen</string>
@@ -61,14 +58,10 @@
 
 
     <!-- NavigationFragmentTwo AlertDialog-->
-    <string name="spinner_no_list">In keine Liste speichern</string>
-
-
+    <string name="spinner_no_list">Liste auswählen</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
-
 
     <!-- LearnVocabFragmentThree -->
     <string name="toast_choose_learn_direction">Wähle zuerst eine Lernrichtung</string>
@@ -77,7 +70,7 @@
     <string name="learning_direction">Lern-Richtung</string>
     <string name="learning_1_2">Deutsch zu Englisch</string>
     <string name="learning_2_1">Englisch zu Deutsch</string>
-    <string name="learning_mixed">gemischt</string>
+    <string name="learning_mixed">Gemischt</string>
 
     <string name="learning_media">Medien</string>
     <string name="learning_media_audio_response">Sprachausgabe</string>
@@ -99,11 +92,11 @@
     <string name="vocab_counter">0</string>
     <string name="number_of_meanings">*</string>
 
-    <string name="toast_manual">Swipe nach links, wenn du dir sicher bist, dass du die Vokabel weißt und um zur nächsten Vokabel zu kommen. \nKlicke, wenn du die Vokabel nicht weißt.</string>
+    <string name="toast_manual">Swipe nach links: Du weißt die Vokabel und die nächste Vokabel wird angezeigt. \n\nTap Bildschirm: Du weißt die Vokabel nicht und die Lösung wird angezeigt.</string>
 
     <!-- Result AlertDialog -->
     <string name="result">Ergebnis</string>
-    <string name="finished">Fertig</string>
+    <string name="finished">Ok</string>
 
     <!-- Exit AlertDialog -->
     <string name="exit_title">Verlassen</string>
@@ -128,7 +121,6 @@
     <string name="option_delete">Löschen</string>
 
     <string name="tab">\t</string>
-
 
 
 </resources>
