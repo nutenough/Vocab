@@ -33,8 +33,8 @@ public class VocItem {
         known++;
     }
 
-    public void decreaseKnown() {
-        known--;
+    public void resetKnown() {
+        known = 0;
     }
 
     public int getAsked() {
