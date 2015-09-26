@@ -125,6 +125,7 @@
     <string name="option_choose">Aktion wählen</string>
     <string name="option_edit">Umbenennen</string>
     <string name="option_learnList">Lernen</string>
+    <string name="option_look_vocab">Vokabeln ansehen</string>
     <string name="option_delete">LÖSCHEN</string>
 
     <string name="tab">\t</string>

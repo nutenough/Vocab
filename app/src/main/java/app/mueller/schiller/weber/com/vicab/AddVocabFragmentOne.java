@@ -125,6 +125,7 @@ public class AddVocabFragmentOne extends Fragment implements
 
     public void onDestroy() {
         dbAdmin.close();
+        dbAdmin.close();
         super.onDestroy();
     }
 
@@ -152,7 +153,7 @@ public class AddVocabFragmentOne extends Fragment implements
         targetVocab = targetVocabET.getText().toString();
         vocabCouple = sourceVocab + " - " + targetVocab;
         // addVocab method wants this: String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, String importance, String hasList
-        dbAdmin.addVocab(sourceVocab, targetVocab, "", "", "", 0, "");
+        dbAdmin.addVocab(sourceVocab, targetVocab, "", "", "", 0, spinner.getSelectedItem().toString());
     }
 
 }

@@ -2,11 +2,11 @@ package app.mueller.schiller.weber.com.vicab;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -155,7 +155,6 @@ public class NavigationFragmentTwo extends Fragment {
                                            int position, long id) {
 
                 showOptionDialog(position);
-
                 return true;
             }
         });
@@ -163,8 +162,8 @@ public class NavigationFragmentTwo extends Fragment {
         listsLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, final int position, long id) {
 
-
                 // Liste lernen im Lernmodus mit den darin enthaltenen Vokabeln
+
 
             }
         });
@@ -180,6 +179,7 @@ public class NavigationFragmentTwo extends Fragment {
 
        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1);
        arrayAdapter.add(getResources().getString(R.string.option_learnList));
+       arrayAdapter.add(getResources().getString(R.string.option_look_vocab));
        arrayAdapter.add(getResources().getString(R.string.option_edit));
        arrayAdapter.add(getResources().getString(R.string.option_delete));
 
@@ -189,10 +189,21 @@ public class NavigationFragmentTwo extends Fragment {
                new DialogInterface.OnClickListener() {
                    @Override
                    public void onClick(DialogInterface dialog, int which) {
+                       if (which == 0) {
+                           // Lernen. genau so wie normaler klick
+                       }
                        if (which == 1) {
-                            showEdit(position);
+                           Intent intent = new Intent(getActivity(), ListVocabActivity.class);
+                           Bundle bundle = new Bundle();
+                           bundle.putString("listName", listItems.get(position).getName());
+
+                           intent.putExtras(bundle);
+                           startActivity(intent);
                        }
                        if (which == 2) {
+                            showEdit(position);
+                       }
+                       if (which == 3) {
                            removeItem(position);
                        }
                    }

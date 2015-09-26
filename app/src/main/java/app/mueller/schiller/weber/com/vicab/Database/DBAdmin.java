@@ -191,6 +191,34 @@ public class DBAdmin {
         return items;
     }
 
+    public ArrayList<VocItem> getAllVocabForList(String listName) {
+        ArrayList<VocItem> items = new ArrayList<>();
+        String selection = ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE + " = ? AND " + ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST + "= ?";
+        String[] args = {ViCabContract.CHOSEN_LANGUAGE_MIX, listName};
+        Cursor cursor = db.query(ViCabContract.VocabEntry.TABLE_NAME, new String[] { ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID,
+                ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB, ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB,
+                ViCabContract.VocabEntry.COLUMN_NAME_FOTO_LINK, ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK,
+                ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE, ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE,
+                ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST, ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE}, selection, args, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String sourceVocab = cursor.getString(ViCabContract.VocabEntry.COLUMN_SOURCE_VOCAB_INDEX);
+                String targetVocab= cursor.getString(ViCabContract.VocabEntry.COLUMN_TARGET_VOCAB_INDEX);
+                String foto= cursor.getString(ViCabContract.VocabEntry.COLUMN_FOTO_LINK_INDEX);
+                String sound= cursor.getString(ViCabContract.VocabEntry.COLUMN_SOUND_LINK_INDEX);
+                String wordType= cursor.getString(ViCabContract.VocabEntry.COLUMN_WORD_TYPE_INDEX);
+                int importance= cursor.getInt(ViCabContract.VocabEntry.COLUMN_IMPORTANCE_INDEX);
+                String hasList= cursor.getString(ViCabContract.VocabEntry.COLUMN_HAS_LIST_INDEX);
+                String hasLanguage = cursor.getString(ViCabContract.VocabEntry.COLUMN_HAS_LANGUAGE_INDEX);
+
+                items.add(new VocItem(sourceVocab, targetVocab, foto, sound, wordType, importance, hasList, hasLanguage));
+
+            } while (cursor.moveToNext());
+        }
+        return items;
+    }
+
     /*
     public ArrayList<LanguageItem> getVocabItem() {
         ArrayList<LanguageItem> items = new ArrayList<LanguageItem>();
