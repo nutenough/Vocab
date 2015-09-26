@@ -4,11 +4,12 @@ package app.mueller.schiller.weber.com.vicab.PersistanceClasses;
 public class VocItem {
 
     private String sourceVocab, targetVocab, fotoLink, soundLink, wordType, hasLanguage, hasList;
-    private int importance;
+    private int importance, known, asked;
+    long time;
 
 
 
-    public VocItem(String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, int importance, String hasList, String hasLanguage) {
+    public VocItem(String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, int importance, String hasList, String hasLanguage, int known, int asked, long time) {
         this.sourceVocab = sourceVocab;
         this.targetVocab = targetVocab;
         this.fotoLink = fotoLink;
@@ -18,6 +19,38 @@ public class VocItem {
         this.importance = importance;
         this.hasLanguage = hasLanguage;
         this.hasList = hasList;
+
+        this.known = known;
+        this.asked = asked;
+        this.time = time;
+    }
+
+    public int getKnown() {
+        return known;
+    }
+
+    public void increaseKnown() {
+        known++;
+    }
+
+    public void decreaseKnown() {
+        known--;
+    }
+
+    public int getAsked() {
+        return asked;
+    }
+
+    public void increaseAsked() {
+        asked++;
+    }
+
+    public void decreaseAsked() {
+        asked--;
+    }
+
+    public long getTime() {
+        return time;
     }
 
 

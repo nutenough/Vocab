@@ -49,6 +49,9 @@ public final class ViCabContract {
         public static final String COLUMN_NAME_IMPORTANCE = "importance";
         public static final String COLUMN_NAME_HAS_LIST = "has_list";
         public static final String COLUMN_NAME_HAS_LANGUAGE = "has_language";
+        public static final String COLUMN_NAME_KNOWN = "known";
+        public static final String COLUMN_NAME_ASKED = "asked";
+        public static final String COLUMN_NAME_TIME_STAMP = "time_stamp";
 
         public static final int COLUMN_ID_INDEX = 0;
         public static final int COLUMN_SOURCE_VOCAB_INDEX = 1;
@@ -59,6 +62,9 @@ public final class ViCabContract {
         public static final int COLUMN_IMPORTANCE_INDEX = 6;
         public static final int COLUMN_HAS_LIST_INDEX = 7;
         public static final int COLUMN_HAS_LANGUAGE_INDEX = 8;
+        public static final int COLUMN_NAME_KNOWN_INDEX = 9;
+        public static final int COLUMN_NAME_ASKED_INDEX = 10;
+        public static final int COLUMN_NAME_TIME_STAMP_INDEX = 11;
     }
 }
 
