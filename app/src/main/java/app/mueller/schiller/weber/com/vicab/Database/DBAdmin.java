@@ -58,7 +58,7 @@ public class DBAdmin {
     }
 
 
-    public long addVocab(String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, int importance, String hasList) {
+    public long addVocab(String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, int importance, String hasList, int known, int asked, long time) {
         ContentValues vocItem = new ContentValues();
 
         vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB, sourceVocab);
@@ -69,6 +69,10 @@ public class DBAdmin {
         vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE, importance);
         vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST, hasList);
         vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE, ViCabContract.CHOSEN_LANGUAGE_MIX);
+        vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_KNOWN, known);
+        vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_ASKED, asked);
+        vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_TIME_STAMP, time);
+
 
         return db.insert(ViCabContract.VocabEntry.TABLE_NAME, null, vocItem);
     }
@@ -171,7 +175,9 @@ public class DBAdmin {
                 ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB, ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB,
                 ViCabContract.VocabEntry.COLUMN_NAME_FOTO_LINK, ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK,
                 ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE, ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE,
-                ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST, ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE}, selection, args, null, null, null);
+                ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST, ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE,
+                ViCabContract.VocabEntry.COLUMN_NAME_KNOWN, ViCabContract.VocabEntry.COLUMN_NAME_ASKED,
+                ViCabContract.VocabEntry.COLUMN_NAME_TIME_STAMP }, selection, args, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -183,8 +189,11 @@ public class DBAdmin {
                 int importance= cursor.getInt(ViCabContract.VocabEntry.COLUMN_IMPORTANCE_INDEX);
                 String hasList= cursor.getString(ViCabContract.VocabEntry.COLUMN_HAS_LIST_INDEX);
                 String hasLanguage = cursor.getString(ViCabContract.VocabEntry.COLUMN_HAS_LANGUAGE_INDEX);
+                int known= cursor.getInt(ViCabContract.VocabEntry.COLUMN_NAME_KNOWN_INDEX);
+                int asked= cursor.getInt(ViCabContract.VocabEntry.COLUMN_NAME_ASKED_INDEX);
+                long time = cursor.getLong(ViCabContract.VocabEntry.COLUMN_NAME_TIME_STAMP_INDEX);
 
-                items.add(new VocItem(sourceVocab, targetVocab, foto, sound, wordType, importance, hasList, hasLanguage));
+                items.add(new VocItem(sourceVocab, targetVocab, foto, sound, wordType, importance, hasList, hasLanguage, known, asked, time));
 
             } while (cursor.moveToNext());
         }
@@ -199,7 +208,10 @@ public class DBAdmin {
                 ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB, ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB,
                 ViCabContract.VocabEntry.COLUMN_NAME_FOTO_LINK, ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK,
                 ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE, ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE,
-                ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST, ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE}, selection, args, null, null, null);
+                ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST, ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE,
+                ViCabContract.VocabEntry.COLUMN_NAME_KNOWN, ViCabContract.VocabEntry.COLUMN_NAME_ASKED,
+                ViCabContract.VocabEntry.COLUMN_NAME_TIME_STAMP }, selection, args, null, null, null);
+
 
         if (cursor.moveToFirst()) {
             do {
@@ -211,8 +223,11 @@ public class DBAdmin {
                 int importance= cursor.getInt(ViCabContract.VocabEntry.COLUMN_IMPORTANCE_INDEX);
                 String hasList= cursor.getString(ViCabContract.VocabEntry.COLUMN_HAS_LIST_INDEX);
                 String hasLanguage = cursor.getString(ViCabContract.VocabEntry.COLUMN_HAS_LANGUAGE_INDEX);
+                int known= cursor.getInt(ViCabContract.VocabEntry.COLUMN_NAME_KNOWN_INDEX);
+                int asked= cursor.getInt(ViCabContract.VocabEntry.COLUMN_NAME_ASKED_INDEX);
+                long time = cursor.getLong(ViCabContract.VocabEntry.COLUMN_NAME_TIME_STAMP_INDEX);
 
-                items.add(new VocItem(sourceVocab, targetVocab, foto, sound, wordType, importance, hasList, hasLanguage));
+                items.add(new VocItem(sourceVocab, targetVocab, foto, sound, wordType, importance, hasList, hasLanguage, known, asked, time));
 
             } while (cursor.moveToNext());
         }
@@ -239,6 +254,9 @@ public class DBAdmin {
     }
     */
 
+
+
+    // update List
     public int renameList(ListItem item, String newName) {
 
         String whereClause = ViCabContract.ListEntry.COLUMN_NAME_NAME + " = '" + item.getName() + "'";
@@ -248,6 +266,18 @@ public class DBAdmin {
     }
 
     // Update VocabItem
+
+    public long updateAskedAndKnown(VocItem item){
+        String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB + " = '" + item.getSourceVocab() + "' AND "
+                + ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB + " = '" + item.getTargetVocab()+ "'";
+        ContentValues cv = new ContentValues();
+        cv.put(ViCabContract.VocabEntry.COLUMN_NAME_KNOWN, item.getKnown());
+        cv.put(ViCabContract.VocabEntry.COLUMN_NAME_ASKED, item.getAsked());
+
+        return db.update(ViCabContract.VocabEntry.TABLE_NAME, cv, whereClause, null);
+    }
+
+
     public long updateVocabSource(String vocabItemID, String sourceVoc){
         String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " = '" + vocabItemID + "'";
         ContentValues cv = new ContentValues();
@@ -317,7 +347,8 @@ public class DBAdmin {
                 " text not null , " + ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB + " text not null , " + ViCabContract.VocabEntry.COLUMN_NAME_FOTO_LINK +
                 " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK + " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE +
                 " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE + " integer not null, " + ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST +
-                " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE + " text not null)";
+                " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE + " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_KNOWN +
+                " integer not null, " + ViCabContract.VocabEntry.COLUMN_NAME_ASKED + " integer not null, " + ViCabContract.VocabEntry.COLUMN_NAME_TIME_STAMP + " long)";
 
 
 
