@@ -18,7 +18,7 @@ public class AddVocabFragmentTwo extends Fragment implements AdapterView.OnItemS
     private String ratedValue;
     private TextView rateMessage;
     private Spinner spinner;
-    private String[] wordClassArray = {"Substantiv", "Verb", "Adjektiv", "Sonstiges"};
+    private String[] wordClassArray = {"Wortart auswählen", "Substantiv", "Verb", "Adjektiv", "Sonstiges"};
 
     // The view
     @Nullable
