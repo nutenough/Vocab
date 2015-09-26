@@ -45,9 +45,7 @@ public class VocItem {
         asked++;
     }
 
-    public void decreaseAsked() {
-        asked--;
-    }
+
 
     public long getTime() {
         return time;
