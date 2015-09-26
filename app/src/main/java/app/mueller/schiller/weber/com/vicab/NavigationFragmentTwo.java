@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -153,7 +154,6 @@ public class NavigationFragmentTwo extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view,
                                            int position, long id) {
-
                 showOptionDialog(position);
                 return true;
             }
@@ -164,7 +164,6 @@ public class NavigationFragmentTwo extends Fragment {
 
                 // Liste lernen im Lernmodus mit den darin enthaltenen Vokabeln
 
-
             }
         });
 
@@ -174,7 +173,7 @@ public class NavigationFragmentTwo extends Fragment {
    private void showOptionDialog(final int position) {
 
        AlertDialog.Builder builderSingle = new AlertDialog.Builder(getActivity());
-       builderSingle.setIcon(R.drawable.notification_template_icon_bg);
+       builderSingle.setIcon(R.drawable.ic_action_question);
        builderSingle.setTitle(R.string.option_choose);
 
        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1);
