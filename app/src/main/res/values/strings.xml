@@ -21,7 +21,7 @@
     <string name="lists">Meine Listen</string>
     <string name="learn">Lernen</string>
     <string name="last_entries">Meine letzten Einträge</string>
-    <string name="trophies">Auszeichnungen</string>
+    <string name="trophies">Erfolge</string>
     <string name="statistics">Statistiken</string>
     <string name="about">Über uns</string>
     <string name="language_change">Sprache wechseln</string>
@@ -125,7 +125,7 @@
     <string name="option_choose">Aktion wählen</string>
     <string name="option_edit">Umbenennen</string>
     <string name="option_learnList">Lernen</string>
-    <string name="option_delete">LÖSCHEN</string>
+    <string name="option_delete">Löschen</string>
 
     <string name="tab">\t</string>
 

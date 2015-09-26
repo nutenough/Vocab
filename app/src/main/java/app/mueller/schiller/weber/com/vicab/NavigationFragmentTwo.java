@@ -153,9 +153,7 @@ public class NavigationFragmentTwo extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view,
                                            int position, long id) {
-
                 showOptionDialog(position);
-
                 return true;
             }
         });
@@ -175,7 +173,7 @@ public class NavigationFragmentTwo extends Fragment {
    private void showOptionDialog(final int position) {
 
        AlertDialog.Builder builderSingle = new AlertDialog.Builder(getActivity());
-       builderSingle.setIcon(R.drawable.notification_template_icon_bg);
+       builderSingle.setIcon(R.drawable.ic_action_question);
        builderSingle.setTitle(R.string.option_choose);
 
        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1);
@@ -183,14 +181,13 @@ public class NavigationFragmentTwo extends Fragment {
        arrayAdapter.add(getResources().getString(R.string.option_edit));
        arrayAdapter.add(getResources().getString(R.string.option_delete));
 
-
        builderSingle.setAdapter(
                arrayAdapter,
                new DialogInterface.OnClickListener() {
                    @Override
                    public void onClick(DialogInterface dialog, int which) {
                        if (which == 1) {
-                            showEdit(position);
+                           showEdit(position);
                        }
                        if (which == 2) {
                            removeItem(position);
