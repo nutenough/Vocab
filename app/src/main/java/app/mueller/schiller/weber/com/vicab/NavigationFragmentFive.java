@@ -47,17 +47,17 @@ public class NavigationFragmentFive extends Fragment {
         // Images
         startIV = (ImageView) contentView.findViewById(R.id.startIV);
         directionIV = (ImageView) contentView.findViewById(R.id.directionIV);
-        noteIV = (ImageView) contentView.findViewById(R.id.startIV);
-        serverIV = (ImageView) contentView.findViewById(R.id.directionIV);
-        expressIV = (ImageView) contentView.findViewById(R.id.startIV);
-        ueberfliegerIV = (ImageView) contentView.findViewById(R.id.directionIV);
+        noteIV = (ImageView) contentView.findViewById(R.id.noteIV);
+        serverIV = (ImageView) contentView.findViewById(R.id.serverIV);
+        expressIV = (ImageView) contentView.findViewById(R.id.expressIV);
+        ueberfliegerIV = (ImageView) contentView.findViewById(R.id.ueberfliegerIV);
         // Texts
         startTV = (TextView) contentView.findViewById(R.id.startTV);
         directionTV = (TextView) contentView.findViewById(R.id.directionTV);
-        noteTV = (TextView) contentView.findViewById(R.id.startTV);
-        serverTV = (TextView) contentView.findViewById(R.id.directionTV);
-        expressTV = (TextView) contentView.findViewById(R.id.startTV);
-        ueberfliegerTV = (TextView) contentView.findViewById(R.id.directionTV);
+        noteTV = (TextView) contentView.findViewById(R.id.noteTV);
+        serverTV = (TextView) contentView.findViewById(R.id.serverTV);
+        expressTV = (TextView) contentView.findViewById(R.id.expressTV);
+        ueberfliegerTV = (TextView) contentView.findViewById(R.id.ueberfliegerTV);
     }
 
     private void initDB() {
@@ -80,12 +80,12 @@ public class NavigationFragmentFive extends Fragment {
             directionTV.setText("Richtige Richtung: 25 Vokabeleinträge");
         }
         if (dbAdmin.getAllListsForChosenLanguage().size() >= 1) {
-            startIV.setImageResource(R.drawable.start);
-            startTV.setText("Klemmbrett: Deine erste Liste");
+            noteIV.setImageResource(R.drawable.note);
+            noteTV.setText("Klemmbrett: Deine erste Liste");
         }
-        if (dbAdmin.getAllVocabForLanguage().size() > 5) {
-            directionIV.setImageResource(R.drawable.direction);
-            directionTV.setText("Organizer: 5 Listen");
+        if (dbAdmin.getAllListsForChosenLanguage().size() >= 5) {
+            serverIV.setImageResource(R.drawable.server);
+            serverTV.setText("Organizer: Fünf Listen erstellt");
         }
 
     }

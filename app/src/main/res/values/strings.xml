@@ -94,7 +94,7 @@
     <string name="vocab_counter">0</string>
     <string name="number_of_meanings">*</string>
 
-    <string name="toast_manual">Swipe nach links: Du weißt die Vokabel \n\nTap auf Bildschirm: Du weißt die Vokabel nicht. \n\nAlternativ: Benutze Daumen hoch und runter</string>
+    <string name="toast_manual">Swipe nach links: Du weißt die Vokabel \n\nTap auf Bildschirm: Du weißt die Vokabel nicht \n\nAlternativ: Benutze Daumen hoch und runter</string>
 
     <!-- Result AlertDialog -->
     <string name="result">Ergebnis</string>

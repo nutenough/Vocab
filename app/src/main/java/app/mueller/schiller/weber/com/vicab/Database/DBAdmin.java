@@ -57,7 +57,6 @@ public class DBAdmin {
         return db.insert(ViCabContract.ListEntry.TABLE_NAME, null, listItem);
     }
 
-
     public long addVocab(String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, int importance, String hasList, int known, int asked, long time) {
         ContentValues vocItem = new ContentValues();
 
@@ -72,7 +71,6 @@ public class DBAdmin {
         vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_KNOWN, known);
         vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_ASKED, asked);
         vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_TIME_STAMP, time);
-
 
         return db.insert(ViCabContract.VocabEntry.TABLE_NAME, null, vocItem);
     }
@@ -165,7 +163,6 @@ public class DBAdmin {
         }
         return items;
     }
-
 
     public ArrayList<VocItem> getAllVocabForLanguage() {
         ArrayList<VocItem> items = new ArrayList<>();
