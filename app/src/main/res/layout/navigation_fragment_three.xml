@@ -19,123 +19,208 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/learning_direction"
-            android:paddingLeft="6dp"
+            android:paddingLeft="48dp"
             android:textSize="20sp"
             android:textStyle="bold"
             android:paddingTop="16dp"
             android:layout_alignParentTop="true"
-            android:layout_alignLeft="@+id/linear_layout_checkbox_learning_direction"
-            android:layout_alignStart="@+id/linear_layout_checkbox_learning_direction" />
+/>
+        <!--android:layout_alignLeft="@+id/linear_layout_checkbox_learning_direction"
+        android:layout_alignStart="@+id/linear_layout_checkbox_learning_direction" -->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/learning_direction"
+        android:id="@+id/linear_layout_checkbox_learning_direction"
+        android:paddingTop="16dp"
+        android:paddingLeft="48dp"
+        >
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/learning_1_2"
+            android:textSize="16sp"
+            android:textColor="@color/color_text_primary"
+            android:id="@+id/checkBox_learning_1_2" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/learning_2_1"
+            android:textSize="16sp"
+            android:textColor="@color/color_text_primary"
+            android:id="@+id/checkBox_learning_2_1" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_text_primary"
+            android:textSize="16sp"
+            android:text="@string/learning_mixed"
+            android:id="@+id/checkBox_learning_mixed" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/word_class"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/learning_meta_word_class"
+        android:paddingLeft="48dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingTop="16dp"
+        android:layout_below="@id/linear_layout_checkbox_learning_direction"
+/>
+        <!--android:layout_alignLeft="@+id/linear_layout_checkbox_learning_direction"
+        android:layout_alignStart="@+id/linear_layout_checkbox_learning_direction" -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/word_class"
+        android:id="@+id/linear_layout_checkbox_word_class"
+        android:paddingTop="16dp"
+        android:paddingLeft="48dp"
+        >
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/learning_direction"
-            android:id="@+id/linear_layout_checkbox_learning_direction"
-            android:paddingTop="16dp"
-            >
+            android:id="@+id/relative_layout_word_class_1">
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/word_class_noun"
+                android:textSize="16sp"
+                android:id="@+id/word_class_noun"
+                android:textColor="@color/color_text_primary" />
 
             <CheckBox
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/learning_1_2"
+                android:text="@string/word_class_verb"
                 android:textSize="16sp"
-                android:id="@+id/checkBox_learning_1_2" />
-
-            <CheckBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/learning_2_1"
-                android:textSize="16sp"
-                android:id="@+id/checkBox_learning_2_1" />
-
-            <CheckBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textSize="16sp"
-                android:text="@string/learning_mixed"
-                android:id="@+id/checkBox_learning_mixed" />
-
+                android:textColor="@color/color_text_primary"
+                android:id="@+id/word_class_verb" />
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:layout_toRightOf="@+id/relative_layout_word_class_1"
+
+            >
+
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_text_primary"
+                android:textSize="16sp"
+                android:text="@string/word_class_adjectiv"
+                android:id="@+id/word_class_adjectiv"
+                />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_text_primary"
+                android:textSize="16sp"
+                android:text="@string/word_class_rest"
+                android:id="@+id/word_class_rest" />
+        </LinearLayout>
+
+
+
+
+
     </RelativeLayout>
 
-    <LinearLayout
+
+</RelativeLayout>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_centerHorizontal="true"
+    android:layout_alignParentBottom="true"
+    android:id="@+id/learning_linearLayout_bottom">
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/learning_linearLayout_bottom">
+        android:background="@drawable/border_blue"
+        android:layout_weight="1"
+        android:layout_margin="16dp"
+        android:id="@+id/text_input_mode">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:text="@string/learning_button_learn"
+            android:id="@+id/imageViewInput"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="60dp"
+            android:src="@drawable/ic_text_input" />
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_blue"
-            android:layout_weight="1"
-            android:layout_margin="16dp"
-            android:id="@+id/text_input_mode">
+            android:layout_toRightOf="@+id/imageViewInput"
+            android:text="@string/learning_button_learn"
+            android:textSize="20sp"
+            android:textAllCaps="false"
+            android:textColor="@color/color_text_primary"
+            android:layout_centerVertical="true"
+            android:textStyle="bold"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/border_blue"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:id="@+id/express_mode">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:text="@string/learning_button_learn"
-                android:id="@+id/imageViewInput"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="60dp"
-                android:src="@drawable/ic_text_input" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/imageViewInput"
-                android:text="@string/learning_button_learn"
-                android:textSize="20sp"
-                android:textAllCaps="false"
-                android:textColor="@color/color_text_primary"
-                android:layout_centerVertical="true"
-                android:textStyle="bold"
-                />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:text="@string/learning_button_learn"
+            android:id="@+id/imageViewExpress"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_express"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="60dp"/>
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/border_blue"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            android:id="@+id/express_mode">
+            android:layout_toRightOf="@+id/imageViewExpress"
+            android:text="@string/learning_button_express_modus"
+            android:textSize="20sp"
+            android:textAllCaps="false"
+            android:textColor="@color/color_text_primary"
+            android:layout_centerVertical="true"
+            android:textStyle="bold"
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:text="@string/learning_button_learn"
-                android:id="@+id/imageViewExpress"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_express"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="60dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/imageViewExpress"
-                android:text="@string/learning_button_express_modus"
-                android:textSize="20sp"
-                android:textAllCaps="false"
-                android:textColor="@color/color_text_primary"
-                android:layout_centerVertical="true"
-                android:textStyle="bold"
-
-                />
-        </RelativeLayout>
+            />
+    </RelativeLayout>
 
 
 
-    </LinearLayout>
+</LinearLayout>
 </RelativeLayout>
