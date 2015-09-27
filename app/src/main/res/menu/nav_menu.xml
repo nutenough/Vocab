@@ -24,8 +24,8 @@
             android:title="@string/trophies" />
         <item
             android:id="@+id/navItem6"
-            android:icon="@drawable/ic_statistics"
-            android:title="@string/statistics" />
+            android:icon="@drawable/ic_brain"
+            android:title="@string/brain" />
         <item
             android:id="@+id/navItem7"
             android:icon="@drawable/ic_about"
