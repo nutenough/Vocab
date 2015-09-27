@@ -4,6 +4,7 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -21,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import app.mueller.schiller.weber.com.vicab.Database.DBAdmin;
 import app.mueller.schiller.weber.com.vicab.PersistanceClasses.VocItem;
@@ -49,6 +52,8 @@ public class ExpressLearnActivity extends AppCompatActivity {
     private ImageButton dontKnowIB;
     private double result = 0.0;
 
+
+
     private AlertDialog alertDialog;
 
     private DBAdmin dbAdmin;
@@ -75,7 +80,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
 
         tag.show();
 
-        new CountDownTimer(6000, 1000)
+        new CountDownTimer(4000, 1000)
         {
 
             public void onTick(long millisUntilFinished) {tag.show();}
@@ -133,7 +138,20 @@ public class ExpressLearnActivity extends AppCompatActivity {
         allVocab = new ArrayList<>();
         allVocab.addAll(dbAdmin.getAllVocabForLanguage());
         Log.d("Learn", "allItems: " + allVocab);
+
+        for(int i = 0; i < allVocab.size(); i++){
+            if(allVocab.get(i).getKnown() > 5 ){
+                allVocab.remove(i);
+                i =- 1;
+            }
+
+        }
+
+
         listSize = allVocab.size();
+        Collections.shuffle(allVocab);
+        Collections.sort(allVocab, new CustomComparator());
+
     }
 
     private void initDB() {
@@ -199,8 +217,8 @@ public class ExpressLearnActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!isBackVisible) {
-                    counter_wrong_answer++;
-                    vocab_knowing_language.setClickable(false);
+
+                    wrongResult();
 
                     setRightOut.setTarget(vocab_knowing_language_text_view);
                     setLeftIn.setTarget(vocab_learning_language_text_view);
@@ -240,16 +258,15 @@ public class ExpressLearnActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
+                        correctResult();
+                        Log.d("vier", allVocab.get(counter_vocab - 1).getSourceVocab() + "______GEFRAGT_____" + String.valueOf(allVocab.get(counter_vocab - 1).getAsked()) + "______GEWUSST_____" + String.valueOf(allVocab.get(counter_vocab - 1).getKnown()));
+
                         setRightOut_1.setTarget(vocab_learning_language_text_view);
                         setLeftIn_1.setTarget(vocab_knowing_language_text_view);
                         setRightOut_1.start();
                         setLeftIn_1.start();
                         isBackVisible = false;
 
-                        counter_vocab++;
-                        vocab_counter_button.setTextColor(getResources().getColor(R.color.color_white));
-                        imageButton_exit.setImageResource(R.drawable.arrow_left_white);
-                        knowIB.setImageResource(R.drawable.ic_thumbs_up);
 
                         if (counter_vocab < listSize) {
                             learnDirection();
@@ -257,7 +274,9 @@ public class ExpressLearnActivity extends AppCompatActivity {
                             vocab_learning_language_text_view.setText(backCard);
                             updateNumCounter();
                         } else {
+
                             showAlertDialogFinished();
+
                         }
 
 
@@ -286,8 +305,8 @@ public class ExpressLearnActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!isBackVisible) {
-                    counter_wrong_answer++;
-                    vocab_knowing_language.setClickable(false);
+
+                    wrongResult();
 
                     setRightOut.setTarget(vocab_knowing_language_text_view);
                     setLeftIn.setTarget(vocab_learning_language_text_view);
@@ -318,17 +337,15 @@ public class ExpressLearnActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
+                        correctResult();
+
                         setRightOut_1.setTarget(vocab_learning_language_text_view);
                         setLeftIn_1.setTarget(vocab_knowing_language_text_view);
                         setRightOut_1.start();
                         setLeftIn_1.start();
                         isBackVisible = false;
 
-                        counter_vocab++;
 
-                        vocab_counter_button.setTextColor(getResources().getColor(R.color.color_white));
-                        imageButton_exit.setImageResource(R.drawable.arrow_left_white);
-                        knowIB.setImageResource(R.drawable.ic_thumbs_up);
 
                         if (counter_vocab < listSize) {
                             learnDirection();
@@ -344,6 +361,29 @@ public class ExpressLearnActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    private void correctResult() {
+        allVocab.get(counter_vocab).increaseAsked();
+        if(isBackVisible == false){
+            allVocab.get(counter_vocab).increaseKnown();
+        }
+        dbAdmin.updateAskedAndKnown(allVocab.get(counter_vocab));
+
+        counter_vocab++;
+
+        vocab_counter_button.setTextColor(getResources().getColor(R.color.color_white));
+        imageButton_exit.setImageResource(R.drawable.arrow_left_white);
+        knowIB.setImageResource(R.drawable.ic_thumbs_up);
+    }
+
+    private void wrongResult() {
+        allVocab.get(counter_vocab).resetKnown();
+        dbAdmin.updateAskedAndKnown(allVocab.get(counter_vocab));
+
+        counter_wrong_answer++;
+        vocab_knowing_language.setClickable(false);
 
     }
 
@@ -365,6 +405,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 finish();
+
             }
         });
 
@@ -390,8 +431,12 @@ public class ExpressLearnActivity extends AppCompatActivity {
         }
         else if(result < 0.60 && result >= 0.20){
             smileyIV.setImageResource(R.drawable.smiley_question);
+            sourceString = "Das geht besser!" + "<br>" + "Du hast nur " + "<b>" + (listSize - counter_wrong_answer) +  " / "  + listSize +  "</b> " + " Vokabeln richtig!"+ "</br>";
+        }
+        else if(result < 0.20 && result > 0.00){
+            smileyIV.setImageResource(R.drawable.smiley_sad);
             sourceString = "Schade!" + "<br>" + "Du hast nur " + "<b>" + (listSize - counter_wrong_answer) +  " / "  + listSize +  "</b> " + " Vokabeln richtig!"+ "</br>";
-        }else{
+        }else {
             smileyIV.setImageResource(R.drawable.smiley_sad);
             sourceString = "Schade!" + "<br>" + "Du hast " + "<b>" + "keine einzige" + "</b> " + " Vokabel richtig!"+ "</br>";
         }

@@ -1,11 +1,11 @@
 package app.mueller.schiller.weber.com.vicab;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,10 +30,10 @@ public class NavigationFragmentThree extends Fragment {
     private boolean knowing_to_learning;
     private boolean learning_to_knowing;
     private boolean mixed;
-
-
     private DBAdmin dbAdmin;
     private ArrayList<VocItem> vocItems = new ArrayList<>();
+    private boolean noVocabs = true;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,7 +49,6 @@ public class NavigationFragmentThree extends Fragment {
         initDB();
         setupCheckBoxes();
         setupCheckBoxListener();
-        Log.d("THREE", "ID: " + ((ViewGroup)getView().getParent()).getId());
     }
 
     private void setupCheckBoxListener() {
@@ -93,9 +92,6 @@ public class NavigationFragmentThree extends Fragment {
         checkBox_learning_to_knowing = (CheckBox) getActivity().findViewById(R.id.checkBox_learning_2_1);
         checkBox_mixed = (CheckBox) getActivity().findViewById(R.id.checkBox_learning_mixed);
 
-        vocItems.clear();
-        vocItems.addAll(dbAdmin.getAllVocabForLanguage());
-
         String knowing_to_learning_String = "&#160&#160&#160&#160" + ViCabContract.CHOSEN_LANGUAGE_SOURCE +  "&#160&#160&#160&#160" + "&#10141"  + "&#160&#160&#160&#160" + ViCabContract.CHOSEN_LANGUAGE_TARGET +"&#160&#160&#160&#160";
         String learning_to_knowing_String = "&#160&#160&#160&#160" + ViCabContract.CHOSEN_LANGUAGE_TARGET + "&#160&#160&#160&#160" + "&#10141" + "&#160&#160&#160&#160" + ViCabContract.CHOSEN_LANGUAGE_SOURCE +"&#160&#160&#160&#160";
         String mixed_String = "&#160&#160&#160&#160" + "gemischt" + "&#160&#160&#160&#160";
@@ -123,28 +119,26 @@ public class NavigationFragmentThree extends Fragment {
         express_mode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(vocItems.size() != 0) {
+
+                checkVocabs();
+
+                if (vocItems.size() != 0 && (!noVocabs)) {
                     if (checkBox_mixed.isChecked() || checkBox_learning_to_knowing.isChecked() || checkBox_knowing_to_learning.isChecked()) {
                         Intent intent = new Intent(getActivity(), ExpressLearnActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putBoolean("knowingToLearning", knowing_to_learning);
-                        bundle.putBoolean("learningToKnowing", learning_to_knowing);
-                        bundle.putBoolean("mixed", mixed);
+                        Bundle bundle = setupBundle();
 
-                        //Intent from Navigationfragment 2 zum lernen von Listen
-                        Bundle bundle2 = getActivity().getIntent().getExtras();
-                        if (bundle2 != null) {
-                            String listName = bundle2.getString("listName");
-
-                            bundle.putString("listName", listName);
-                        }
                         intent.putExtras(bundle);
                         startActivity(intent);
                     } else {
                         Toast.makeText(getActivity(), getResources().getString(R.string.toast_choose_learn_direction), Toast.LENGTH_SHORT).show();
                     }
-                }else{
-                    Toast.makeText(getActivity(), getResources().getString(R.string.toast_no_vocabs), Toast.LENGTH_SHORT).show();
+                } else {
+                    if(noVocabs){
+                        Toast.makeText(getActivity(), getResources().getString(R.string.toast_no_vocabs), Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(getActivity(), getResources().getString(R.string.toast_no_unknown_vocabs), Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             }
         });
@@ -152,22 +146,62 @@ public class NavigationFragmentThree extends Fragment {
         text_input_mode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(vocItems.size() != 0) {
-                     if (checkBox_mixed.isChecked() || checkBox_learning_to_knowing.isChecked() || checkBox_knowing_to_learning.isChecked()) {
-                         Intent intent = new Intent(getActivity(), TextInputLearnActivity.class);
-                         Bundle bundle = new Bundle();
-                         bundle.putBoolean("knowingToLearning", knowing_to_learning);
-                         bundle.putBoolean("learningToKnowing", learning_to_knowing);
-                         bundle.putBoolean("mixed", mixed);
-                        intent.putExtras(bundle);
-                        startActivity(intent);
-                    }else{
+                checkVocabs();
+
+                if(vocItems.size() != 0 && (!noVocabs)) {
+                    if (checkBox_mixed.isChecked() || checkBox_learning_to_knowing.isChecked() || checkBox_knowing_to_learning.isChecked()) {
+                        Intent intent = new Intent(getActivity(), TextInputLearnActivity.class);
+                         Bundle bundle = setupBundle();
+                         intent.putExtras(bundle);
+                         startActivity(intent);
+                    } else {
                         Toast.makeText(getActivity(), getResources().getString(R.string.toast_choose_learn_direction), Toast.LENGTH_SHORT).show();
                     }
-                }else{
-                    Toast.makeText(getActivity(), getResources().getString(R.string.toast_no_vocabs), Toast.LENGTH_SHORT).show();
+                }else {
+                    if (noVocabs) {
+                        Toast.makeText(getActivity(), getResources().getString(R.string.toast_no_vocabs), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getActivity(), getResources().getString(R.string.toast_no_unknown_vocabs), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
+
+
     }
+
+    private Bundle setupBundle() {
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("knowingToLearning", knowing_to_learning);
+        bundle.putBoolean("learningToKnowing", learning_to_knowing);
+        bundle.putBoolean("mixed", mixed);
+
+        //Intent from Navigationfragment 2 zum lernen von Listen
+        Bundle bundle2 = getActivity().getIntent().getExtras();
+        if (bundle2 != null) {
+            String listName = bundle2.getString("listName");
+
+            bundle.putString("listName", listName);
+        }
+        
+        return bundle;
+    }
+
+    public void checkVocabs(){
+        vocItems.clear();
+        vocItems.addAll(dbAdmin.getAllVocabForLanguage());
+        if(vocItems.size() > 0){
+            noVocabs = false;
+        }
+
+        for(int i = 0; i < vocItems.size(); i++){
+            if(vocItems.get(i).getKnown() > 5 ){
+                vocItems.remove(i);
+                i =- 1;
+            }
+
+        }
+    }
+
+
 }

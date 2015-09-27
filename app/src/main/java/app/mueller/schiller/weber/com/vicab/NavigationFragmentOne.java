@@ -133,4 +133,11 @@ public class NavigationFragmentOne extends Fragment {
 
     }
 
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        updateList();
+    }
+
 }

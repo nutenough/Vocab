@@ -336,7 +336,7 @@ public class DBAdmin {
 
         private static final String TABLE_LIST_CREATE = "create table " + ViCabContract.ListEntry.TABLE_NAME +
                 "(" + ViCabContract.ListEntry.COLUMN_NAME_ENTRY_ID +  " integer primary key autoincrement , " + ViCabContract.ListEntry.COLUMN_NAME_NAME +
-                " text not null , " + ViCabContract.ListEntry.COLUMN_NAME_HAS_LANGUAGE + " integer not null)";
+                " text not null , " + ViCabContract.ListEntry.COLUMN_NAME_HAS_LANGUAGE + " text not null)";
 
 
         private static final String TABLE_VOCAB_CREATE = "create table " + ViCabContract.VocabEntry.TABLE_NAME + "(" +
@@ -359,6 +359,17 @@ public class DBAdmin {
             db.execSQL(TABLE_LANGUAGE_CREATE);
             db.execSQL(TABLE_LIST_CREATE);
             db.execSQL(TABLE_VOCAB_CREATE);
+            // Insert language couple
+            db.execSQL("INSERT INTO `language`(`couple`,`source_language`,`target_language`) VALUES ('Deutsch - Englisch','Deutsch','Englisch')");
+            // Insert vocabs
+            db.execSQL("INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('lernen','to learn','','','Verb',0,'Schule','Deutsch - Englisch',0,0,NULL)");
+            db.execSQL("INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('Hausaufgabe','homework','','','Substantiv',0,'Schule','Deutsch - Englisch',0,0,NULL)");
+            db.execSQL("INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('blau','blue','','','Adjektiv',0,'Farben','Deutsch - Englisch',0,0,NULL)");
+            db.execSQL("INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('weiß','white','','','Adjektiv',0,'Farben','Deutsch - Englisch',0,0,NULL)");
+            db.execSQL("INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('rot','red','','','Adjektiv',0,'Farben','Deutsch - Englisch',0,0,NULL)");
+            // Insert lists
+            db.execSQL("INSERT INTO `list`(`name`,`has_language`) VALUES ('Farben', 'Deutsch - Englisch')");
+            db.execSQL("INSERT INTO `list`(`name`,`has_language`) VALUES ('Schule', 'Deutsch - Englisch')");
         }
 
         @Override

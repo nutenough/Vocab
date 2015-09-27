@@ -23,6 +23,17 @@
                 android:id="@+id/directionIV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:src="@drawable/lock" />
+
+            <ImageView
+                android:id="@+id/bagIV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
@@ -48,12 +59,27 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Füge 25 Vokabeln hinzu"
                 android:textColor="@color/color_primary" />
+
+            <TextView
+                android:id="@+id/bagTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Füge 100 Vokabeln hinzu"
+                android:textColor="@color/color_primary" />
+
         </TableRow>
 
         <TableRow>
@@ -68,6 +94,17 @@
                 android:src="@drawable/lock" />
 
             <ImageView
+                android:id="@+id/toolboxIV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:src="@drawable/lock" />
+
+            <ImageView
                 android:id="@+id/serverIV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -75,6 +112,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:src="@drawable/lock" />
+
         </TableRow>
 
         <TableRow>
@@ -92,6 +130,20 @@
                 android:textColor="@color/color_primary" />
 
             <TextView
+                android:id="@+id/toolboxTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Füge 5 Listen hinzu"
+                android:textColor="@color/color_primary" />
+
+            <TextView
                 android:id="@+id/serverTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -100,7 +152,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Füge 5 Listen hinzu"
+                android:text="Füge 20 Listen hinzu"
                 android:textColor="@color/color_primary" />
         </TableRow>
 
@@ -117,6 +169,17 @@
 
             <ImageView
                 android:id="@+id/ueberfliegerIV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:src="@drawable/lock" />
+
+            <ImageView
+                android:id="@+id/spracheIV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -136,7 +199,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Absolviere den Express-Modus mit null Fehlern"
+                android:text="Absolviere den Express-Modus fehlerfrei"
                 android:textColor="@color/color_primary" />
 
             <TextView
@@ -148,7 +211,19 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Absolviere den Tipp-Modus mit null Fehlern"
+                android:text="Absolviere den Tipp-Modus fehlerfrei"
+                android:textColor="@color/color_primary" />
+
+            <TextView
+                android:id="@+id/spracheTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Lege drei Sprachen an"
                 android:textColor="@color/color_primary" />
         </TableRow>
 

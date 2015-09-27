@@ -8,8 +8,8 @@
     <string name="sample_string">Beispieltext</string>
 
     <!-- LanguageActivity AlertDialog -->
-    <string name="source_language">Ausgangssprache</string>
-    <string name="target_language">Zielsprache</string>
+    <string name="source_language">Welche Sprache sprichst du?</string>
+    <string name="target_language">Welche Sprache lernst du?</string>
     <string name="language_title">Sprachbeziehung festlegen</string>
     <string name="lang_message">Bitte gib deine gewünschte Ausgangssprache und Zielsprache ein.</string>
     <string name="language_positive_button">Erstellen</string>
@@ -22,8 +22,8 @@
     <string name="learn">Lernen</string>
     <string name="last_entries">Meine letzten Einträge</string>
     <string name="trophies">Erfolge</string>
-    <string name="statistics">Statistiken</string>
-    <string name="about">Über uns</string>
+    <string name="brain">Gedächtnis</string>
+    <string name="about">Über</string>
     <string name="language_change">Sprache wechseln</string>
     <string name="error">Ein unerwarteter Fehler ist aufgetreten</string>
 
@@ -60,7 +60,7 @@
     <string name="list_edit_button">Umbennen</string>
 
     <!-- NavigationFragmentTwo AlertDialog-->
-    <string name="spinner_no_list">In keine Liste speichern</string>
+    <string name="spinner_no_list">Liste auswählen</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -68,6 +68,7 @@
     <!-- LearnVocabFragmentThree -->
     <string name="toast_choose_learn_direction">Wähle zuerst eine Lernrichtung</string>
     <string name="toast_no_vocabs">Du hast noch keine Vokabeln eingetragen</string>
+    <string name="toast_no_unknown_vocabs">Alle deine Vokabeln sind im Langzeitgedächtnis, trage neue ein!</string>
 
     <string name="learning_direction">Lern-Richtung</string>
     <string name="learning_1_2">Deutsch zu Englisch</string>
@@ -98,7 +99,7 @@
     <string name="vocab_counter">0</string>
     <string name="number_of_meanings">*</string>
 
-    <string name="toast_manual">Swipe nach links: Du weißt die Vokabel \n\nTap auf Bildschirm: Du weißt die Vokabel nicht \n\nAlternativ: Benutze Daumen hoch und runter</string>
+    <string name="toast_manual">Swipe nach links: Du weißt die Vokabel. \n\nTap auf Bildschirm: Du weißt die Vokabel nicht.</string>
 
     <!-- Result AlertDialog -->
     <string name="result">Ergebnis</string>

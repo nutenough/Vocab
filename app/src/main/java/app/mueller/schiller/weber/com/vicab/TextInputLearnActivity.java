@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import app.mueller.schiller.weber.com.vicab.Database.DBAdmin;
 import app.mueller.schiller.weber.com.vicab.PersistanceClasses.VocItem;
@@ -108,14 +109,21 @@ public class TextInputLearnActivity extends AppCompatActivity {
         String currentSolution = backCard;
         textInput.trim();
         currentSolution.trim();
+        allVocab.get(counter_vocab).increaseAsked();
 
-        if(currentSolution.trim().equalsIgnoreCase(textInput.trim())){
+        if(currentSolution.trim().equalsIgnoreCase(textInput.trim())) {
             imageView.setImageResource(R.drawable.smiley_happy);
             imageView.setVisibility(View.VISIBLE);
+
+            allVocab.get(counter_vocab).increaseKnown();
+            dbAdmin.updateAskedAndKnown(allVocab.get(counter_vocab));
             counter_correct_answer++;
-        }else{
+        } else {
             imageView.setImageResource(R.drawable.smiley_question);
             imageView.setVisibility(View.VISIBLE);
+
+            allVocab.get(counter_vocab).resetKnown();
+            dbAdmin.updateAskedAndKnown(allVocab.get(counter_vocab));
         }
     }
 
@@ -128,7 +136,18 @@ public class TextInputLearnActivity extends AppCompatActivity {
         allVocab = new ArrayList<>();
         allVocab.addAll(dbAdmin.getAllVocabForLanguage());
         Log.d("Learn", "allItems: " + allVocab);
+
+        for(int i = 0; i < allVocab.size(); i++){
+            if(allVocab.get(i).getKnown() > 5 ){
+                allVocab.remove(i);
+                i =- 1;
+            }
+
+        }
+
         listSize = allVocab.size();
+        Collections.shuffle(allVocab);
+        Collections.sort(allVocab, new CustomComparator());
     }
 
     private void initDB(){
@@ -289,8 +308,12 @@ public class TextInputLearnActivity extends AppCompatActivity {
         }
         else if(result < 0.60 && result >= 0.20){
             smileyIV.setImageResource(R.drawable.smiley_question);
+            sourceString = "Das geht besser!" + "<br>" + "Du hast nur " + "<b>" + counter_correct_answer +  " / "  + listSize +  "</b> " + " Vokabeln richtig!"+ "</br>";
+        }
+        else if(result < 0.20 && result > 0.00){
+            smileyIV.setImageResource(R.drawable.smiley_sad);
             sourceString = "Schade!" + "<br>" + "Du hast nur " + "<b>" + counter_correct_answer +  " / "  + listSize +  "</b> " + " Vokabeln richtig!"+ "</br>";
-        }else{
+        }else {
             smileyIV.setImageResource(R.drawable.smiley_sad);
             sourceString = "Schade!" + "<br>" + "Du hast " + "<b>" + "keine einzige" + "</b> " + " Vokabel richtig!"+ "</br>";
         }
