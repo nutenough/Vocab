@@ -29,7 +29,13 @@ public class NavigationFragmentSixAdapter extends ArrayAdapter<VocItem> {
         // Populate the data into the template view using the data object
         title.setText(dataItem.getSourceVocab() + " - " + dataItem.getTargetVocab());
         // Return the completed view to render on screen
+
+
+
         return convertView;
+
     }
+
+
 }
 

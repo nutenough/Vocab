@@ -130,4 +130,8 @@
 
     <string name="tab">\t</string>
 
+    <!-- NavigationFragmenSix  -->
+    <string name="menu_search">Suchen</string>
+
+
 </resources>

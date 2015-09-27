@@ -16,6 +16,7 @@
         </activity>
         <activity
             android:name=".NavigationActivity"
+            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".LanguageActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

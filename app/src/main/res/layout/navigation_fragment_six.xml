@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Du hast schon 8 von 100 Vokabeln im Langzeitgedächtnis!"
-android:background="@drawable/border_blue"
+        android:background="@drawable/border_blue"
         android:textSize="16sp"
         android:textColor="@color/color_primary"
 
