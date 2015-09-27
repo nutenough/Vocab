@@ -15,10 +15,12 @@ import android.widget.TextView;
 public class AddVocabFragmentTwo extends Fragment implements AdapterView.OnItemSelectedListener {
     View contentView;
     private RatingBar ratingBar;
-    private String ratedValue;
     private TextView rateMessage;
     private Spinner spinner;
     private String[] wordClassArray = {"Wortart auswählen", "Substantiv", "Verb", "Adjektiv", "Sonstiges"};
+
+    public static String RATING = "";
+    public static String WORD_TYPE = "";
 
     // The view
     @Nullable
@@ -47,7 +49,7 @@ public class AddVocabFragmentTwo extends Fragment implements AdapterView.OnItemS
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                ratedValue = String.valueOf(ratingBar.getRating());
+                RATING = String.valueOf(ratingBar.getRating());
                // rateMessage.setText("Rating : " + ratedValue + "/3");
             }
         });
@@ -68,8 +70,7 @@ public class AddVocabFragmentTwo extends Fragment implements AdapterView.OnItemS
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item do stuff
-
+        WORD_TYPE = spinner.getSelectedItem().toString();
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -153,7 +154,8 @@ public class AddVocabFragmentOne extends Fragment implements
         vocabCouple = sourceVocab + " - " + targetVocab;
         // addVocab method wants this: String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, String importance, String hasList
         // TIMESTAMP noch implementieren
-        dbAdmin.addVocab(sourceVocab, targetVocab, "", "", "", 0, spinner.getSelectedItem().toString(), 0, 0, 0);
+        Log.d("ADDVOC", "WORDT: " + AddVocabFragmentTwo.WORD_TYPE + " RATING: " + AddVocabFragmentTwo.RATING);
+        dbAdmin.addVocab(sourceVocab, targetVocab, "", AddVocabFragmentTwo.WORD_TYPE, AddVocabFragmentTwo.RATING, 0, spinner.getSelectedItem().toString(), 0, 0, 0);
     }
 
 }
