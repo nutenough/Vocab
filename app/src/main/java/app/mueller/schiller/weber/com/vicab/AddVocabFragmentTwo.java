@@ -19,8 +19,8 @@ public class AddVocabFragmentTwo extends Fragment implements AdapterView.OnItemS
     private Spinner spinner;
     private String[] wordClassArray = {"Wortart auswählen", "Substantiv", "Verb", "Adjektiv", "Sonstiges"};
 
-    public static String RATING = "";
-    public static String WORD_TYPE = "";
+    private static String RATING = "";
+    private static String WORD_TYPE = "";
 
     // The view
     @Nullable
@@ -31,6 +31,8 @@ public class AddVocabFragmentTwo extends Fragment implements AdapterView.OnItemS
         fillSpinner();
         return contentView;
     }
+
+
 
     private void setupUIComponents() {
         ratingBar = (RatingBar) contentView.findViewById(R.id.ratingBar);
@@ -77,4 +79,13 @@ public class AddVocabFragmentTwo extends Fragment implements AdapterView.OnItemS
     public void onNothingSelected(AdapterView<?> arg0) {
 
     }
+
+    public static String getRating() {
+        return RATING;
+    }
+
+    public static String getWordType() {
+        return WORD_TYPE;
+    }
+
 }
