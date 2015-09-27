@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -42,6 +43,7 @@ public class NavigationFragmentSix extends Fragment {
     private int counterAll = 0;
     private int counterKnown = 0 ;
     private TextView textView;
+    AlertDialog alertDialog;
 
 
     private DBAdmin dbAdmin;
@@ -122,7 +124,7 @@ public class NavigationFragmentSix extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view,
                                            int position, long id) {
-                knownVLItems.get(position).resetKnown();
+                showAlertDialogReset(position);
                 return true;
             }
         });
@@ -174,7 +176,46 @@ public class NavigationFragmentSix extends Fragment {
     }
 
 
+    private void showAlertDialogReset(final int position) {
+        // Setup View for AlertDialog
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
 
+        // Dialog cancelable with back key
+        alertDialogBuilder.setCancelable(true);
+
+        // Setup title and message of alertDialog
+        alertDialogBuilder.setIcon(R.drawable.ic_brain);
+        alertDialogBuilder.setTitle(R.string.reset_title);
+        alertDialogBuilder.setMessage(R.string.reset_message);
+
+        // Setup Buttons for dialog
+        alertDialogBuilder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                knownVLItems.get(position).resetKnown();
+                dbAdmin.updateAskedAndKnown(knownVLItems.get(position));
+                updateList();
+            }
+        });
+
+        alertDialogBuilder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+
+        // Edit Design alertDialog
+        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        positiveButton.setTextColor(getResources().getColor(R.color.color_primary));
+
+        Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        negativeButton.setTextColor(getResources().getColor(R.color.color_primary));
+    }
 
 
 }

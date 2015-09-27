@@ -51,6 +51,10 @@ public class ExpressLearnActivity extends AppCompatActivity {
     private ImageButton knowIB;
     private ImageButton dontKnowIB;
     private double result = 0.0;
+    private boolean noun;
+    private boolean verb;
+    private boolean adjective;
+    private boolean rest;
 
 
 
@@ -95,6 +99,10 @@ public class ExpressLearnActivity extends AppCompatActivity {
         boolean knowing_to_learning = bundle.getBoolean("knowingToLearning");
         boolean learning_to_knowing = bundle.getBoolean("learningToKnowing");
         boolean mixed = bundle.getBoolean("mixed");
+        noun = bundle.getBoolean("noun");
+        verb = bundle.getBoolean("verb");
+        adjective = bundle.getBoolean("adjective");
+        rest = bundle.getBoolean("rest");
 
         String listName = bundle.getString("listName");
 

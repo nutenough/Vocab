@@ -128,7 +128,7 @@
                 android:textColor="@color/color_text_primary"
                 android:textSize="16sp"
                 android:text="@string/word_class_adjectiv"
-                android:id="@+id/word_class_adjectiv"
+                android:id="@+id/word_class_adjective"
                 />
 
             <CheckBox

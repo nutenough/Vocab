@@ -155,6 +155,11 @@
 
     <!-- NavigationFragmenSix  -->
     <string name="menu_search">Suchen</string>
+    <string name="reset_title">Vergessen?</string>
+    <string name="reset_message">Willst du diese Vokabel wieder Lernen?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+
 
 
 </resources>

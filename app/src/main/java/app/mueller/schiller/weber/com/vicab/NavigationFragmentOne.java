@@ -1,14 +1,19 @@
 package app.mueller.schiller.weber.com.vicab;
 
 import android.app.AlertDialog;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -25,6 +30,7 @@ public class NavigationFragmentOne extends Fragment {
     private FloatingActionButton fab;
     private ListView vocabsLV;
     private ArrayList<VocItem> listItems = new ArrayList<>();
+    private ArrayList<VocItem> currentSearchList = new ArrayList<>();
     private NavigationFragmentOneAdapter adapter;
 
     private DBAdmin dbAdmin;
@@ -32,8 +38,63 @@ public class NavigationFragmentOne extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.navigation_fragment_one, container, false);
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.navigation_six_search_menu, menu);
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+
+        if (null != searchView) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+            searchView.setIconifiedByDefault(true);
+        }
+
+        SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
+            public boolean onQueryTextChange(String newText) {
+                // this is your adapter that will be filtered
+
+                if(newText.equals("")){
+                    updateList();
+                }
+
+                return false;
+            }
+
+            public boolean onQueryTextSubmit(String query) {
+                //Here u can get the value "query" which is entered in the search box.
+                currentSearchList = listItems;
+
+                String s = query.toLowerCase().trim();
+
+
+                for(int i = 0; i < listItems.size(); i++){
+                    String source = listItems.get(i).getSourceVocab().toLowerCase().trim();
+                    String target = listItems.get(i).getTargetVocab().toLowerCase().trim();
+
+                    if(source.contains(s)){
+
+                    }else if(target.contains(s)){
+
+                    }else{
+                        listItems.remove(i);
+                        i=-1;
+                    }
+                }
+                adapter.notifyDataSetChanged();
+
+                return false;
+            }
+        };
+
+        searchView.setOnQueryTextListener(queryTextListener);
+
+
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
