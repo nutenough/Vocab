@@ -161,9 +161,7 @@ public class NavigationFragmentTwo extends Fragment {
 
         listsLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, final int position, long id) {
-
-                // Liste lernen im Lernmodus mit den darin enthaltenen Vokabeln
-
+                goToLearnActivity(position);
             }
         });
 
@@ -189,23 +187,13 @@ public class NavigationFragmentTwo extends Fragment {
                    @Override
                    public void onClick(DialogInterface dialog, int which) {
                        if (which == 0) {
-                           Intent intent = new Intent(getActivity(), NavigationActivity.class);
-                           Bundle bundle = new Bundle();
-                           bundle.putString("listName", listItems.get(position).getName());
-
-                           intent.putExtras(bundle);
-                           startActivity(intent);
+                           goToLearnActivity(position);
                        }
                        if (which == 1) {
-                           Intent intent = new Intent(getActivity(), ListVocabActivity.class);
-                           Bundle bundle = new Bundle();
-                           bundle.putString("listName", listItems.get(position).getName());
-
-                           intent.putExtras(bundle);
-                           startActivity(intent);
+                           lookAllVocabInList(position);
                        }
                        if (which == 2) {
-                            showEdit(position);
+                           showEdit(position);
                        }
                        if (which == 3) {
                            removeItem(position);
@@ -214,6 +202,24 @@ public class NavigationFragmentTwo extends Fragment {
                });
        builderSingle.show();
    }
+
+    private void goToLearnActivity(int position){
+        Intent intent = new Intent(getActivity(), NavigationActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("listName", listItems.get(position).getName());
+
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    private void lookAllVocabInList(int position){
+        Intent intent = new Intent(getActivity(), ListVocabActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("listName", listItems.get(position).getName());
+
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 
     private void showEdit(final int position) {
         // Setup View for AlertDialog

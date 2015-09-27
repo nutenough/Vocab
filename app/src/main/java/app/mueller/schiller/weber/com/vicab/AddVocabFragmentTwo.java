@@ -33,6 +33,7 @@ public class AddVocabFragmentTwo extends Fragment implements AdapterView.OnItemS
     private void setupUIComponents() {
         ratingBar = (RatingBar) contentView.findViewById(R.id.ratingBar);
         spinner = (Spinner) contentView.findViewById(R.id.wordClassSpinner);
+       // rateMessage = (TextView) contentView.findViewById(R.id.);
     }
 
     // Page content ("findViewById" has to be "view.findViewById"; "getApplicationContext" has to be "getActivity()")
@@ -47,7 +48,7 @@ public class AddVocabFragmentTwo extends Fragment implements AdapterView.OnItemS
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 ratedValue = String.valueOf(ratingBar.getRating());
-                rateMessage.setText("Rating : " + ratedValue + "/3");
+               // rateMessage.setText("Rating : " + ratedValue + "/3");
             }
         });
         // Spinner click listener
