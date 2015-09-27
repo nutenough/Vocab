@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Vocab</string>
-    <string name="title_activity_navigation_drawer">NavigationActivity</string>
+    <string name="title_activity_navigation_drawer">Navigation</string>
     <string name="title_activity_add_vocab">Neue Vokabel anlegen</string>
     <string name="title_activity_express_learn">Express-Modus</string>
+    <string name="title_activity_input_learn">Tipp-Modus</string>
+    <string name="title_activity_list_vocab"></string>
 
     <!-- Sample String -->
     <string name="sample_string">Beispieltext</string>
@@ -34,7 +36,7 @@
     <!-- AddVocabFragmentOne -->
     <string name="vocab_hint">Vokabel eingeben</string>
     <string name="translate">Übersetzen</string>
-    <string name="select_list">Zu Liste hinzufügen</string>
+    <string name="select_list">Zu Liste hinzufügen (optional)</string>
     <string name="list_prompt">Liste auswählen</string>
     <string name="part_of_speech">Wortart</string>
     <string name="part_of_speech_hint">Wortart eingeben</string>
@@ -129,6 +131,27 @@
     <string name="option_delete">Löschen</string>
 
     <string name="tab">\t</string>
+
+    <!-- NavigationFragmentFive -->
+    <string name="lock_start_success">Füge eine Vokabel hinzu</string>
+    <string name="lock_direction_success">Füge 25 Vokabeln hinzu</string>
+    <string name="lock_bag_success">Füge 100 Vokabeln hinzu</string>
+    <string name="lock_note_success">Füge eine Liste hinzu</string>
+    <string name="lock_toolbox_success">Füge 5 Listen hinzu</string>
+    <string name="lock_server_success">Füge 20 Listen hinzu</string>
+    <string name="lock_express_success">Absolviere den Express-Modus fehlerfrei</string>
+    <string name="lock_ueberflieger_success">Absolviere den Tipp-Modus fehlerfrei</string>
+    <string name="lock_sprache_success">Lege drei Sprachen an</string>
+
+    <string name="start_success">Klappe auf: Erster Vokabeleintrag</string>
+    <string name="direction_success">Richtige Richtung: 25 Vokabeleinträge</string>
+    <string name="bag_success">Vollbepackt: 100 Vokabeleinträge</string>
+    <string name="note_success">Klemmbrett: Erste Liste</string>
+    <string name="toolbox_success">Handwerkszeug: Fünf Listen</string>
+    <string name="server_success">Organizer: 20 Listen</string>
+    <string name="express_success">Speedy: Alles richtig</string>
+    <string name="ueberflieger_success">Überflieger: Alles richtig</string>
+    <string name="sprache_success">Sprachakrobat: Drei Sprachen</string>
 
     <!-- NavigationFragmenSix  -->
     <string name="menu_search">Suchen</string>

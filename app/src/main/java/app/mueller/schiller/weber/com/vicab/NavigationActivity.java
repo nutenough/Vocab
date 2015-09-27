@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -30,7 +31,6 @@ public class NavigationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
         setupUIComponents();
-
         checkForIntents();
     }
 
@@ -121,6 +121,7 @@ public class NavigationActivity extends AppCompatActivity {
                 break;
             default:
                 Toast.makeText(getApplicationContext(), R.string.error, Toast.LENGTH_LONG).show();
+                break;
         }
 
         try {
