@@ -67,8 +67,7 @@ public class AddVocabFragmentOne extends Fragment implements
                     Toast.makeText(getActivity(), R.string.no_vocab_input, Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(getActivity(), vocabCouple + " wurde hinzugefügt", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getActivity(), NavigationActivity.class);
-                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });
@@ -76,8 +75,8 @@ public class AddVocabFragmentOne extends Fragment implements
         vocabCancelBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), NavigationActivity.class);
-                startActivity(intent);
+
+                getActivity().finish();
             }
         });
 

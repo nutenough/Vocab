@@ -4,6 +4,7 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -138,6 +139,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
 
 
         listSize = allVocab.size();
+        Collections.shuffle(allVocab);
         Collections.sort(allVocab, new CustomComparator());
 
     }
@@ -247,7 +249,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
                     public void run() {
 
                         correctResult();
-
+                        Log.d("vier", allVocab.get(counter_vocab - 1).getSourceVocab() + "______GEFRAGT_____" + String.valueOf(allVocab.get(counter_vocab - 1).getAsked()) + "______GEWUSST_____" + String.valueOf(allVocab.get(counter_vocab - 1).getKnown()));
 
                         setRightOut_1.setTarget(vocab_learning_language_text_view);
                         setLeftIn_1.setTarget(vocab_knowing_language_text_view);
@@ -257,13 +259,12 @@ public class ExpressLearnActivity extends AppCompatActivity {
 
 
                         if (counter_vocab < listSize) {
-                            Log.d("vier", allVocab.get(counter_vocab).getSourceVocab() + "______GEFRAGT_____" + String.valueOf(allVocab.get(counter_vocab).getAsked()) + "______GEWUSST_____" + String.valueOf(allVocab.get(counter_vocab).getKnown()));
-
                             learnDirection();
                             vocab_knowing_language_text_view.setText(frontCard);
                             vocab_learning_language_text_view.setText(backCard);
                             updateNumCounter();
                         } else {
+
                             showAlertDialogFinished();
 
                         }
@@ -394,6 +395,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 finish();
+
             }
         });
 

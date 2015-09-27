@@ -146,6 +146,7 @@ public class TextInputLearnActivity extends AppCompatActivity {
         }
 
         listSize = allVocab.size();
+        Collections.shuffle(allVocab);
         Collections.sort(allVocab, new CustomComparator());
     }
 
