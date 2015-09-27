@@ -189,7 +189,12 @@ public class NavigationFragmentTwo extends Fragment {
                    @Override
                    public void onClick(DialogInterface dialog, int which) {
                        if (which == 0) {
-                           // Lernen. genau so wie normaler klick
+                           Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                           Bundle bundle = new Bundle();
+                           bundle.putString("listName", listItems.get(position).getName());
+
+                           intent.putExtras(bundle);
+                           startActivity(intent);
                        }
                        if (which == 1) {
                            Intent intent = new Intent(getActivity(), ListVocabActivity.class);

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,7 @@ public class NavigationFragmentThree extends Fragment {
         initDB();
         setupCheckBoxes();
         setupCheckBoxListener();
+        Log.d("THREE", "ID: " + ((ViewGroup)getView().getParent()).getId());
     }
 
     private void setupCheckBoxListener() {
@@ -128,6 +130,14 @@ public class NavigationFragmentThree extends Fragment {
                         bundle.putBoolean("knowingToLearning", knowing_to_learning);
                         bundle.putBoolean("learningToKnowing", learning_to_knowing);
                         bundle.putBoolean("mixed", mixed);
+
+                        //Intent from Navigationfragment 2 zum lernen von Listen
+                        Bundle bundle2 = getActivity().getIntent().getExtras();
+                        if (bundle2 != null) {
+                            String listName = bundle2.getString("listName");
+
+                            bundle.putString("listName", listName);
+                        }
                         intent.putExtras(bundle);
                         startActivity(intent);
                     } else {

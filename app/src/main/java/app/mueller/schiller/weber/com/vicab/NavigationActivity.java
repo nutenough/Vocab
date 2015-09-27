@@ -6,6 +6,7 @@ import android.os.Build;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -29,6 +30,22 @@ public class NavigationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
         setupUIComponents();
+
+        checkForIntents();
+    }
+
+    private void checkForIntents() {
+        if (getIntent() != null) {
+            Bundle bundle = this.getIntent().getExtras();
+            if (bundle != null) {
+
+                FragmentManager fragmentManager =  getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                NavigationFragmentThree fragment = new NavigationFragmentThree();
+                fragmentTransaction.replace(R.id.flContent, fragment);
+                fragmentTransaction.commit();
+            }
+        }
     }
 
     private void setupUIComponents() {

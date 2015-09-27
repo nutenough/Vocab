@@ -53,6 +53,8 @@ public class ExpressLearnActivity extends AppCompatActivity {
 
     private DBAdmin dbAdmin;
 
+    private boolean learnList = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +90,14 @@ public class ExpressLearnActivity extends AppCompatActivity {
         boolean knowing_to_learning = bundle.getBoolean("knowingToLearning");
         boolean learning_to_knowing = bundle.getBoolean("learningToKnowing");
         boolean mixed = bundle.getBoolean("mixed");
+
+        String listName = bundle.getString("listName");
+
+
+        if (listName != null){
+            learnList = true;
+            repopulateVocabArrayWithList(listName);
+        }
 
         if (knowing_to_learning) {
             frontCard = allVocab.get(counter_vocab).getSourceVocab();
@@ -443,6 +453,11 @@ public class ExpressLearnActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+    }
+
+    private void repopulateVocabArrayWithList(String listName) {
+        allVocab = dbAdmin.getAllVocabForList(listName);
+        listSize = allVocab.size();
     }
 
 }

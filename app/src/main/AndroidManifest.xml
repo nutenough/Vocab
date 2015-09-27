@@ -40,8 +40,8 @@
             android:label="@string/title_activity_express_learn">
         </activity>
         <activity
-        android:name=".ListVocabActivity"
-        android:label="@string/title_activity_express_learn">
+            android:name=".ListVocabActivity"
+            android:label="@string/title_activity_express_learn">
     </activity>
     </application>
 
