@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+
 import app.mueller.schiller.weber.com.vicab.PersistanceClasses.LanguageItem;
 import app.mueller.schiller.weber.com.vicab.PersistanceClasses.ListItem;
 import app.mueller.schiller.weber.com.vicab.PersistanceClasses.VocItem;
@@ -126,14 +127,14 @@ public class DBAdmin {
 
     public ArrayList<LanguageItem> getAllLanguages() {
         ArrayList<LanguageItem> items = new ArrayList<>();
-        Cursor cursor = db.query(ViCabContract.LanguageEntry.TABLE_NAME, new String[] { ViCabContract.LanguageEntry.COLUMN_NAME_ENTRY_ID, ViCabContract.LanguageEntry.COLUMN_NAME_COUPLE,
-                ViCabContract.LanguageEntry.COLUMN_NAME_SOURCE_LANGUAGE, ViCabContract.LanguageEntry.COLUMN_NAME_TARGET_LANGUAGE }, null, null, null, null, null);
+        Cursor cursor = db.query(ViCabContract.LanguageEntry.TABLE_NAME, new String[]{ViCabContract.LanguageEntry.COLUMN_NAME_ENTRY_ID, ViCabContract.LanguageEntry.COLUMN_NAME_COUPLE,
+                ViCabContract.LanguageEntry.COLUMN_NAME_SOURCE_LANGUAGE, ViCabContract.LanguageEntry.COLUMN_NAME_TARGET_LANGUAGE}, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
                 String dbID = cursor.getString(ViCabContract.LanguageEntry.COLUMN_COUPLE_INDEX);
                 String sourceLanguage = cursor.getString(ViCabContract.LanguageEntry.COLUMN_SOURCE_LANGUAGE_INDEX);
-                String targetLanguage= cursor.getString(ViCabContract.LanguageEntry.COLUMN_TARGET_LANGUAGE_INDEX);
+                String targetLanguage = cursor.getString(ViCabContract.LanguageEntry.COLUMN_TARGET_LANGUAGE_INDEX);
 
                 items.add(new LanguageItem(dbID, sourceLanguage, targetLanguage));
 
@@ -143,18 +144,17 @@ public class DBAdmin {
     }
 
 
-
     public ArrayList<ListItem> getAllListsForChosenLanguage() {
         ArrayList<ListItem> items = new ArrayList<>();
         String selection = ViCabContract.ListEntry.COLUMN_NAME_HAS_LANGUAGE + " = ?";
         String[] args = {ViCabContract.CHOSEN_LANGUAGE_MIX};
-        Cursor cursor = db.query(ViCabContract.ListEntry.TABLE_NAME, new String[] { ViCabContract.ListEntry.COLUMN_NAME_ENTRY_ID,
-                ViCabContract.ListEntry.COLUMN_NAME_NAME, ViCabContract.ListEntry.COLUMN_NAME_HAS_LANGUAGE }, selection, args, null, null, null);
+        Cursor cursor = db.query(ViCabContract.ListEntry.TABLE_NAME, new String[]{ViCabContract.ListEntry.COLUMN_NAME_ENTRY_ID,
+                ViCabContract.ListEntry.COLUMN_NAME_NAME, ViCabContract.ListEntry.COLUMN_NAME_HAS_LANGUAGE}, selection, args, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
                 String name = cursor.getString(ViCabContract.ListEntry.COLUMN_NAME_INDEX);
-                String hasLanguage= cursor.getString(ViCabContract.ListEntry.COLUMN_HAS_LANGUAGE_INDEX);
+                String hasLanguage = cursor.getString(ViCabContract.ListEntry.COLUMN_HAS_LANGUAGE_INDEX);
 
                 items.add(new ListItem(name, hasLanguage));
 
@@ -212,27 +212,27 @@ public class DBAdmin {
         return items;
     }
 
-    private String[] getProjection () {
-        return new String[] { ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID,
+    private String[] getProjection() {
+        return new String[]{ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID,
                 ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB, ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB,
                 ViCabContract.VocabEntry.COLUMN_NAME_FOTO_LINK, ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK,
                 ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE, ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE,
                 ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST, ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE,
                 ViCabContract.VocabEntry.COLUMN_NAME_KNOWN, ViCabContract.VocabEntry.COLUMN_NAME_ASKED,
-                ViCabContract.VocabEntry.COLUMN_NAME_TIME_STAMP };
+                ViCabContract.VocabEntry.COLUMN_NAME_TIME_STAMP};
     }
 
-    private VocItem getItem (Cursor cursor) {
+    private VocItem getItem(Cursor cursor) {
         String sourceVocab = cursor.getString(ViCabContract.VocabEntry.COLUMN_SOURCE_VOCAB_INDEX);
-        String targetVocab= cursor.getString(ViCabContract.VocabEntry.COLUMN_TARGET_VOCAB_INDEX);
-        String foto= cursor.getString(ViCabContract.VocabEntry.COLUMN_FOTO_LINK_INDEX);
-        String sound= cursor.getString(ViCabContract.VocabEntry.COLUMN_SOUND_LINK_INDEX);
-        String wordType= cursor.getString(ViCabContract.VocabEntry.COLUMN_WORD_TYPE_INDEX);
-        int importance= cursor.getInt(ViCabContract.VocabEntry.COLUMN_IMPORTANCE_INDEX);
-        String hasList= cursor.getString(ViCabContract.VocabEntry.COLUMN_HAS_LIST_INDEX);
+        String targetVocab = cursor.getString(ViCabContract.VocabEntry.COLUMN_TARGET_VOCAB_INDEX);
+        String foto = cursor.getString(ViCabContract.VocabEntry.COLUMN_FOTO_LINK_INDEX);
+        String sound = cursor.getString(ViCabContract.VocabEntry.COLUMN_SOUND_LINK_INDEX);
+        String wordType = cursor.getString(ViCabContract.VocabEntry.COLUMN_WORD_TYPE_INDEX);
+        int importance = cursor.getInt(ViCabContract.VocabEntry.COLUMN_IMPORTANCE_INDEX);
+        String hasList = cursor.getString(ViCabContract.VocabEntry.COLUMN_HAS_LIST_INDEX);
         String hasLanguage = cursor.getString(ViCabContract.VocabEntry.COLUMN_HAS_LANGUAGE_INDEX);
-        int known= cursor.getInt(ViCabContract.VocabEntry.COLUMN_NAME_KNOWN_INDEX);
-        int asked= cursor.getInt(ViCabContract.VocabEntry.COLUMN_NAME_ASKED_INDEX);
+        int known = cursor.getInt(ViCabContract.VocabEntry.COLUMN_NAME_KNOWN_INDEX);
+        int asked = cursor.getInt(ViCabContract.VocabEntry.COLUMN_NAME_ASKED_INDEX);
         int time = cursor.getInt(ViCabContract.VocabEntry.COLUMN_NAME_TIME_STAMP_INDEX);
 
         return new VocItem(sourceVocab, targetVocab, foto, sound, wordType, importance, hasList, hasLanguage, known, asked, time);
@@ -259,21 +259,20 @@ public class DBAdmin {
     */
 
 
-
     // update List
     public int renameList(ListItem item, String newName) {
 
         String whereClause = ViCabContract.ListEntry.COLUMN_NAME_NAME + " = '" + item.getName() + "'";
         ContentValues cv = new ContentValues();
         cv.put(ViCabContract.ListEntry.COLUMN_NAME_NAME, newName);
-        return db.update(ViCabContract.ListEntry.TABLE_NAME,cv, whereClause, null);
+        return db.update(ViCabContract.ListEntry.TABLE_NAME, cv, whereClause, null);
     }
 
     // Update VocabItem
 
-    public long updateAskedAndKnown(VocItem item){
+    public long updateAskedAndKnown(VocItem item) {
         String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB + " = '" + item.getSourceVocab() + "' AND "
-                + ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB + " = '" + item.getTargetVocab()+ "'";
+                + ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB + " = '" + item.getTargetVocab() + "'";
         ContentValues cv = new ContentValues();
         cv.put(ViCabContract.VocabEntry.COLUMN_NAME_KNOWN, item.getKnown());
         cv.put(ViCabContract.VocabEntry.COLUMN_NAME_ASKED, item.getAsked());
@@ -282,42 +281,42 @@ public class DBAdmin {
     }
 
 
-    public long updateVocabSource(String vocabItemID, String sourceVoc){
+    public long updateVocabSource(String vocabItemID, String sourceVoc) {
         String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " = '" + vocabItemID + "'";
         ContentValues cv = new ContentValues();
         cv.put(ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB, sourceVoc);
         return db.update(ViCabContract.VocabEntry.TABLE_NAME, cv, whereClause, null);
     }
 
-    public long updateVocabTarget(String vocabItemID, String targetVoc){
+    public long updateVocabTarget(String vocabItemID, String targetVoc) {
         String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " = '" + vocabItemID + "'";
         ContentValues cv = new ContentValues();
         cv.put(ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB, targetVoc);
         return db.update(ViCabContract.VocabEntry.TABLE_NAME, cv, whereClause, null);
     }
 
-    public long updateVocabFoto(String vocabItemID, String fotoLink){
+    public long updateVocabFoto(String vocabItemID, String fotoLink) {
         String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " = '" + vocabItemID + "'";
         ContentValues cv = new ContentValues();
         cv.put(ViCabContract.VocabEntry.COLUMN_NAME_FOTO_LINK, fotoLink);
         return db.update(ViCabContract.VocabEntry.TABLE_NAME, cv, whereClause, null);
     }
 
-    public long updateVocabSound(String vocabItemID, String soundLink){
+    public long updateVocabSound(String vocabItemID, String soundLink) {
         String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " = '" + vocabItemID + "'";
         ContentValues cv = new ContentValues();
         cv.put(ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK, soundLink);
         return db.update(ViCabContract.VocabEntry.TABLE_NAME, cv, whereClause, null);
     }
 
-    public long updateVocabWordType(String vocabItemID, String wordType){
+    public long updateVocabWordType(String vocabItemID, String wordType) {
         String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " = '" + vocabItemID + "'";
         ContentValues cv = new ContentValues();
         cv.put(ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE, wordType);
         return db.update(ViCabContract.VocabEntry.TABLE_NAME, cv, whereClause, null);
     }
 
-    public long updateVocabImportance(String vocabItemID, String importance){
+    public long updateVocabImportance(String vocabItemID, String importance) {
         String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " = '" + vocabItemID + "'";
         ContentValues cv = new ContentValues();
         cv.put(ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE, importance);
@@ -325,7 +324,7 @@ public class DBAdmin {
     }
 
     // Update Name
-    public long updateListName(String listItemID,String name){
+    public long updateListName(String listItemID, String name) {
         String whereClause = ViCabContract.ListEntry.COLUMN_NAME_ENTRY_ID + " = '" + listItemID + "'";
         ContentValues cv = new ContentValues();
         cv.put(ViCabContract.ListEntry.COLUMN_NAME_NAME, name);
@@ -337,12 +336,12 @@ public class DBAdmin {
         private static final String TABLE_LANGUAGE_CREATE = "create table "
                 + ViCabContract.LanguageEntry.TABLE_NAME + "(" + ViCabContract.LanguageEntry.COLUMN_NAME_ENTRY_ID +
                 " integer primary key autoincrement , " + ViCabContract.LanguageEntry.COLUMN_NAME_COUPLE +
-                " text not null, "+ ViCabContract.LanguageEntry.COLUMN_NAME_SOURCE_LANGUAGE +
+                " text not null, " + ViCabContract.LanguageEntry.COLUMN_NAME_SOURCE_LANGUAGE +
                 " text not null, " + ViCabContract.LanguageEntry.COLUMN_NAME_TARGET_LANGUAGE +
                 " text not null)";
 
         private static final String TABLE_LIST_CREATE = "create table " + ViCabContract.ListEntry.TABLE_NAME +
-                "(" + ViCabContract.ListEntry.COLUMN_NAME_ENTRY_ID +  " integer primary key autoincrement , " + ViCabContract.ListEntry.COLUMN_NAME_NAME +
+                "(" + ViCabContract.ListEntry.COLUMN_NAME_ENTRY_ID + " integer primary key autoincrement , " + ViCabContract.ListEntry.COLUMN_NAME_NAME +
                 " text not null , " + ViCabContract.ListEntry.COLUMN_NAME_HAS_LANGUAGE + " text not null)";
 
 
@@ -354,7 +353,43 @@ public class DBAdmin {
                 " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE + " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_KNOWN +
                 " integer not null, " + ViCabContract.VocabEntry.COLUMN_NAME_ASKED + " integer not null, " + ViCabContract.VocabEntry.COLUMN_NAME_TIME_STAMP + " integer not null);";
 
+        private static final String INSERT_TEST_LANGUAGE = "INSERT INTO `language`(`couple`,`source_language`,`target_language`) VALUES ('Deutsch - Englisch','Deutsch','Englisch')";
 
+        private static final String INSERT_TEST_VOCAB_1 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('blau','blue','','','Adjektiv',0,'Farben','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_2 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('rot','red','','','Adjektiv',0,'Farben','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_3 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('weiß','white','','','Adjektiv',0,'Farben','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_4 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('grün','green','','','Adjektiv',0,'Farben','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_5 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('gelb','yellow','','','Adjektiv',0,'Farben','Deutsch - Englisch',0,0,10)";
+
+        private static final String INSERT_TEST_VOCAB_6 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('null','zero','','','Sonstiges',0,'Zahlen','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_7 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('eins','one','','','Sonstiges',0,'Zahlen','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_8 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('zwei','two','','','Sonstiges',0,'Zahlen','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_9 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('drei','three','','','Sonstiges',0,'Zahlen','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_10 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('vier','four','','','Sonstiges',0,'Zahlen','Deutsch - Englisch',0,0,10)";
+
+        private static final String INSERT_TEST_VOCAB_11 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('Schule','school','','','Substantiv',0,'Schule','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_12 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('Hausaufgabe','homework','','','Substantiv',0,'Schule','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_13 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('lernen','to learn','','','Verb',0,'Schule','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_14 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('Prüfung','exam','','','Substantiv',0,'Schule','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_15 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('Lehrer','teacher','','','Substantiv',0,'Schule','Deutsch - Englisch',0,0,10)";
+
+        private static final String INSERT_TEST_VOCAB_16 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('groß','tall','','','Adjektiv',0,'Person','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_17 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('klein','small','','','Adjektiv',0,'Person','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_18 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('grüßen','to greet','','','Verb',0,'Person','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_19 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('Sommersprossen','freckles','','','Substantiv',0,'Person','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_20 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('sprechen','to speak','','','Verb',0,'Person','Deutsch - Englisch',0,0,10)";
+
+        private static final String INSERT_TEST_VOCAB_21 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('essen','to eat','','','Verb',0,'Essen','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_22 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('Essen','meal','','','Substantiv',0,'Essen','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_23 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('kochen','to cook','','','Verb',0,'Essen','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_24 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('Kaffee','coffee','','','Substantiv',0,'Essen','Deutsch - Englisch',0,0,10)";
+        private static final String INSERT_TEST_VOCAB_25 = "INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('Brötchen','bun','','','Substantiv',0,'Essen','Deutsch - Englisch',0,0,10)";
+
+        private static final String INSERT_TEST_LIST_1 = "INSERT INTO `list`(`name`,`has_language`) VALUES ('Farben', 'Deutsch - Englisch')";
+        private static final String INSERT_TEST_LIST_2 = "INSERT INTO `list`(`name`,`has_language`) VALUES ('Zahlen', 'Deutsch - Englisch')";
+        private static final String INSERT_TEST_LIST_3 = "INSERT INTO `list`(`name`,`has_language`) VALUES ('Schule', 'Deutsch - Englisch')";
+        private static final String INSERT_TEST_LIST_4 = "INSERT INTO `list`(`name`,`has_language`) VALUES ('Person', 'Deutsch - Englisch')";
+        private static final String INSERT_TEST_LIST_5 = "INSERT INTO `list`(`name`,`has_language`) VALUES ('Essen', 'Deutsch - Englisch')";
 
         public ToDoDBOpenHelper(Context c, String dbname,
                                 SQLiteDatabase.CursorFactory factory, int version) {
@@ -363,20 +398,44 @@ public class DBAdmin {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
+            // Create tables for language couple, vocabs and lists
             db.execSQL(TABLE_LANGUAGE_CREATE);
             db.execSQL(TABLE_LIST_CREATE);
             db.execSQL(TABLE_VOCAB_CREATE);
             // Insert language couple
-            db.execSQL("INSERT INTO `language`(`couple`,`source_language`,`target_language`) VALUES ('Deutsch - Englisch','Deutsch','Englisch')");
+            db.execSQL(INSERT_TEST_LANGUAGE);
             // Insert vocabs
-            db.execSQL("INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('lernen','to learn','','','Verb',0,'Schule','Deutsch - Englisch',0,0,1)");
-            db.execSQL("INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('Hausaufgabe','homework','','','Substantiv',0,'Schule','Deutsch - Englisch',0,0,3)");
-            db.execSQL("INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('blau','blue','','','Adjektiv',0,'Farben','Deutsch - Englisch',0,0,10)");
-            db.execSQL("INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('weiß','white','','','Adjektiv',0,'Farben','Deutsch - Englisch',0,0,45)");
-            db.execSQL("INSERT INTO `vocab`(`source_vocab`,`target_vocab`,`foto_link`,`sound_link`,`word_type`,`importance`,`has_list`,`has_language`,`known`,`asked`,`time_stamp`) VALUES ('rot','red','','','Adjektiv',0,'Farben','Deutsch - Englisch',0,0,2)");
+            db.execSQL(INSERT_TEST_VOCAB_1);
+            db.execSQL(INSERT_TEST_VOCAB_2);
+            db.execSQL(INSERT_TEST_VOCAB_3);
+            db.execSQL(INSERT_TEST_VOCAB_4);
+            db.execSQL(INSERT_TEST_VOCAB_5);
+            db.execSQL(INSERT_TEST_VOCAB_6);
+            db.execSQL(INSERT_TEST_VOCAB_7);
+            db.execSQL(INSERT_TEST_VOCAB_8);
+            db.execSQL(INSERT_TEST_VOCAB_9);
+            db.execSQL(INSERT_TEST_VOCAB_10);
+            db.execSQL(INSERT_TEST_VOCAB_11);
+            db.execSQL(INSERT_TEST_VOCAB_12);
+            db.execSQL(INSERT_TEST_VOCAB_13);
+            db.execSQL(INSERT_TEST_VOCAB_14);
+            db.execSQL(INSERT_TEST_VOCAB_15);
+            db.execSQL(INSERT_TEST_VOCAB_16);
+            db.execSQL(INSERT_TEST_VOCAB_17);
+            db.execSQL(INSERT_TEST_VOCAB_18);
+            db.execSQL(INSERT_TEST_VOCAB_19);
+            db.execSQL(INSERT_TEST_VOCAB_20);
+            db.execSQL(INSERT_TEST_VOCAB_21);
+            db.execSQL(INSERT_TEST_VOCAB_22);
+            db.execSQL(INSERT_TEST_VOCAB_23);
+            db.execSQL(INSERT_TEST_VOCAB_24);
+            db.execSQL(INSERT_TEST_VOCAB_25);
             // Insert lists
-            db.execSQL("INSERT INTO `list`(`name`,`has_language`) VALUES ('Farben', 'Deutsch - Englisch')");
-            db.execSQL("INSERT INTO `list`(`name`,`has_language`) VALUES ('Schule', 'Deutsch - Englisch')");
+            db.execSQL(INSERT_TEST_LIST_1);
+            db.execSQL(INSERT_TEST_LIST_2);
+            db.execSQL(INSERT_TEST_LIST_3);
+            db.execSQL(INSERT_TEST_LIST_4);
+            db.execSQL(INSERT_TEST_LIST_5);
         }
 
         @Override

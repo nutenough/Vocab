@@ -4,6 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/vocabHintTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:textColor="@color/color_accent"
+        android:text="@string/vocab_add_hint"
+        android:textSize="18sp"/>
+
     <ListView
         android:id="@+id/vocabsLV"
         android:layout_width="match_parent"

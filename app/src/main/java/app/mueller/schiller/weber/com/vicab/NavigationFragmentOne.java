@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,7 @@ public class NavigationFragmentOne extends Fragment {
     private ArrayList<VocItem> listItems = new ArrayList<>();
     private ArrayList<VocItem> currentSearchList = new ArrayList<>();
     private NavigationFragmentOneAdapter adapter;
+    private TextView vocabHintTV;
 
     private DBAdmin dbAdmin;
 
@@ -93,7 +95,6 @@ public class NavigationFragmentOne extends Fragment {
 
         searchView.setOnQueryTextListener(queryTextListener);
 
-
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -106,6 +107,15 @@ public class NavigationFragmentOne extends Fragment {
         attachAdapter();
         updateList();
         setOnClickListener();
+        checkHint();
+    }
+
+
+
+    private void checkHint() {
+        if (listItems.size() > 0) {
+            vocabHintTV.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void initDB() {
@@ -121,6 +131,7 @@ public class NavigationFragmentOne extends Fragment {
     private void setupUIComponents() {
         fab = (FloatingActionButton) getActivity().findViewById(R.id.fabVocab);
         vocabsLV = (ListView) getActivity().findViewById(R.id.vocabsLV);
+        vocabHintTV = (TextView) getActivity().findViewById(R.id.vocabHintTV);
     }
 
     private void handleEvents() {

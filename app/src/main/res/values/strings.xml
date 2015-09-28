@@ -35,6 +35,9 @@
     <string name="drawer_open">Öffne NavigationDrawer</string>
     <string name="drawer_close">Schließe NavigationDrawer</string>
 
+    <!-- NavigationFragmentOne-->
+    <string name="vocab_add_hint">Klicke auf den Button, um Vokabeln hinzuzufügen.</string>
+
     <!-- AddVocabFragmentOne -->
     <string name="vocab_hint">Vokabel eingeben</string>
     <string name="translate">Übersetzen</string>
@@ -55,11 +58,9 @@
     <string name="list_negative_button">Abbrechen</string>
     <string name="no_list_input">Bitte Name der Liste eingeben</string>
 
-    <!-- NavigationFragmentTwo AlertDialog-->
     <string name="list_edit_title">Bitte neuen Namen eingeben</string>
     <string name="list_edit_button">Umbennen</string>
 
-    <!-- NavigationFragmentTwo AlertDialog-->
     <string name="spinner_no_list">Liste auswählen</string>
 
     <!-- LearnVocabFragmentThree -->

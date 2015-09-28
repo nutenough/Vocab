@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +36,7 @@ public class AddVocabFragmentOne extends Fragment implements
     private String targetVocab;
     private String vocabCouple;
     private Spinner spinner;
+    private TextView vocabHintTV;
 
     private DBAdmin dbAdmin;
 
@@ -55,8 +55,8 @@ public class AddVocabFragmentOne extends Fragment implements
         super.onViewCreated(view, savedInstanceState);
         setupUIComponents();
         initDB();
-        setOnClickListeners();
         fillSpinnerFromDB();
+        setOnClickListeners();
     }
 
 
@@ -64,12 +64,14 @@ public class AddVocabFragmentOne extends Fragment implements
         vocabAddBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getInput();
                 if (sourceVocab.isEmpty() || targetVocab.isEmpty()) {
                     Toast.makeText(getActivity(), R.string.no_vocab_input, Toast.LENGTH_LONG).show();
                 } else {
                     saveInput();
                     Toast.makeText(getActivity(), vocabCouple + " wurde hinzugefügt", Toast.LENGTH_LONG).show();
-                    getActivity().finish();
+                    Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -85,6 +87,12 @@ public class AddVocabFragmentOne extends Fragment implements
         // Spinner click listener
         spinner.setOnItemSelectedListener(this);
 
+    }
+
+    private void getInput() {
+        sourceVocab = sourceVocabET.getText().toString().trim();
+        targetVocab = targetVocabET.getText().toString().trim();
+        vocabCouple = sourceVocab + " - " + targetVocab;
     }
 
     private void fillSpinnerFromDB() {
@@ -150,9 +158,6 @@ public class AddVocabFragmentOne extends Fragment implements
     }
 
     private void saveInput() {
-        sourceVocab = sourceVocabET.getText().toString().trim();
-        targetVocab = targetVocabET.getText().toString().trim();
-        vocabCouple = sourceVocab + " - " + targetVocab;
         // addVocab method wants this: String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, String importance, String hasList, int known, int asked, int timestamp
         dbAdmin.addVocab(sourceVocab, targetVocab, "", AddVocabFragmentTwo.getWordType(), AddVocabFragmentTwo.getRating(), 0, spinner.getSelectedItem().toString(), 0, 0, getTimeStamp());
     }
