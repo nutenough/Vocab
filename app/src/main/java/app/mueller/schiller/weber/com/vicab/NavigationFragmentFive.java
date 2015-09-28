@@ -86,31 +86,32 @@ public class NavigationFragmentFive extends Fragment {
     private void updateSuccess() {
         if (dbAdmin.getAllVocabForLanguage().size() >= 1) {
             startIV.setImageResource(R.drawable.start);
-            startTV.setText("Klappe auf: Erster Vokabeleintrag");
+            startTV.setText(R.string.start_success);
         }
         if (dbAdmin.getAllVocabForLanguage().size() >= 25) {
             directionIV.setImageResource(R.drawable.direction);
-            directionTV.setText("Richtige Richtung: 25 Vokabeleinträge");
+            directionTV.setText(R.string.direction_success);
         }
         if (dbAdmin.getAllVocabForLanguage().size() >= 100) {
             bagIV.setImageResource(R.drawable.bag);
-            bagTV.setText("Vollbepackt: 100 Vokabeleinträge");
+            bagTV.setText(R.string.bag_success);
         }
         if (dbAdmin.getAllListsForChosenLanguage().size() >= 1) {
             noteIV.setImageResource(R.drawable.note);
-            noteTV.setText("Klemmbrett: Erste Liste");
+            noteTV.setText(R.string.note_success);
         }
         if (dbAdmin.getAllListsForChosenLanguage().size() >= 5) {
             toolboxIV.setImageResource(R.drawable.toolbox);
-            toolboxTV.setText("Handwerkszeug: Fünf Listen");
+            toolboxTV.setText(R.string.toolbox_success);
         }
         if (dbAdmin.getAllListsForChosenLanguage().size() >= 20) {
             serverIV.setImageResource(R.drawable.server);
-            serverTV.setText("Organizer: 20 Listen");
+            serverTV.setText(R.string.server_success);
         }
         if (dbAdmin.getAllLanguages().size() >= 3) {
             spracheIV.setImageResource(R.drawable.sprache);
-            spracheTV.setText("Sprachkünstler: Drei Sprachen");
+            spracheTV.setText(R.string.server_success);
         }
+        // Erfolge für Tipp-Modus und Express-Modus fehlerfrei noch zu implementieren
     }
 }

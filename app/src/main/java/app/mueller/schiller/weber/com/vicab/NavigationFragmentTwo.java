@@ -292,7 +292,6 @@ public class NavigationFragmentTwo extends Fragment {
         alert.setNegativeButton(R.string.delete_negative_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO Auto-generated method stub
                 dialog.dismiss();
             }
         });

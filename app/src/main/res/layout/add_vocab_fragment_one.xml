@@ -25,19 +25,6 @@
         android:inputType="text"
         android:singleLine="true" />
 
-    <!-- <Button
-        android:id="@+id/translateBTN"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/sourceVocabET"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@color/color_primary"
-        android:padding="16dp"
-        android:text="@string/translate"
-        android:textColor="@color/color_white" /> -->
-
     <TextView
         android:id="@+id/targetVocabTV"
         android:layout_width="match_parent"

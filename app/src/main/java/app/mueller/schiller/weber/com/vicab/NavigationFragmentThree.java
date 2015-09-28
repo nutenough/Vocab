@@ -27,12 +27,22 @@ public class NavigationFragmentThree extends Fragment {
     private CheckBox checkBox_knowing_to_learning;
     private CheckBox checkBox_learning_to_knowing;
     private CheckBox checkBox_mixed;
+    private CheckBox checkBox_noun;
+    private CheckBox checkBox_verb;
+    private CheckBox checkBox_adjective;
+    private CheckBox checkBox_rest;
     private boolean knowing_to_learning;
     private boolean learning_to_knowing;
     private boolean mixed;
+    private boolean noun;
+    private boolean verb;
+    private boolean adjective;
+    private boolean rest;
+
     private DBAdmin dbAdmin;
     private ArrayList<VocItem> vocItems = new ArrayList<>();
     private boolean noVocabs = true;
+
 
     @Nullable
     @Override
@@ -85,12 +95,42 @@ public class NavigationFragmentThree extends Fragment {
             }
         });
 
+
+        if(checkBox_noun.isChecked()){
+            noun = true;
+        }else{
+            noun = false;
+        }
+
+        if(checkBox_verb.isChecked()){
+            verb = true;
+        }else{
+            verb = false;
+        }
+
+        if(checkBox_adjective.isChecked()){
+            adjective = true;
+        }else{
+            adjective = false;
+        }
+
+        if(checkBox_rest.isChecked()){
+            rest = true;
+        }else{
+            rest = false;
+        }
+
+
     }
 
     private void setupCheckBoxes() {
         checkBox_knowing_to_learning = (CheckBox) getActivity().findViewById(R.id.checkBox_learning_1_2);
         checkBox_learning_to_knowing = (CheckBox) getActivity().findViewById(R.id.checkBox_learning_2_1);
         checkBox_mixed = (CheckBox) getActivity().findViewById(R.id.checkBox_learning_mixed);
+        checkBox_noun = (CheckBox) getActivity().findViewById(R.id.word_class_noun);
+        checkBox_verb = (CheckBox) getActivity().findViewById(R.id.word_class_verb);
+        checkBox_adjective = (CheckBox) getActivity().findViewById(R.id.word_class_adjective);
+        checkBox_rest = (CheckBox) getActivity().findViewById(R.id.word_class_rest);
 
         String knowing_to_learning_String = "&#160&#160&#160&#160" + ViCabContract.CHOSEN_LANGUAGE_SOURCE +  "&#160&#160&#160&#160" + "&#10141"  + "&#160&#160&#160&#160" + ViCabContract.CHOSEN_LANGUAGE_TARGET +"&#160&#160&#160&#160";
         String learning_to_knowing_String = "&#160&#160&#160&#160" + ViCabContract.CHOSEN_LANGUAGE_TARGET + "&#160&#160&#160&#160" + "&#10141" + "&#160&#160&#160&#160" + ViCabContract.CHOSEN_LANGUAGE_SOURCE +"&#160&#160&#160&#160";
@@ -175,6 +215,10 @@ public class NavigationFragmentThree extends Fragment {
         bundle.putBoolean("knowingToLearning", knowing_to_learning);
         bundle.putBoolean("learningToKnowing", learning_to_knowing);
         bundle.putBoolean("mixed", mixed);
+        bundle.putBoolean("noun", noun);
+        bundle.putBoolean("verb", verb);
+        bundle.putBoolean("adjective", adjective);
+        bundle.putBoolean("rest", rest);
 
         //Intent from Navigationfragment 2 zum lernen von Listen
         Bundle bundle2 = getActivity().getIntent().getExtras();

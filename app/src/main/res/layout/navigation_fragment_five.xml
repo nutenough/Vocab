@@ -1,11 +1,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="16dp">
+    android:layout_height="match_parent">
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:orientation="vertical">
 
         <TableRow>
@@ -51,7 +51,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Füge eine Vokabel hinzu"
+                android:text="@string/lock_start_success"
                 android:textColor="@color/color_primary" />
 
             <TextView
@@ -65,7 +65,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Füge 25 Vokabeln hinzu"
+                android:text="@string/lock_direction_success"
                 android:textColor="@color/color_primary" />
 
             <TextView
@@ -77,7 +77,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Füge 100 Vokabeln hinzu"
+                android:text="@string/lock_bag_success"
                 android:textColor="@color/color_primary" />
 
         </TableRow>
@@ -126,7 +126,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Füge eine Liste hinzu"
+                android:text="@string/lock_note_success"
                 android:textColor="@color/color_primary" />
 
             <TextView
@@ -140,7 +140,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Füge 5 Listen hinzu"
+                android:text="@string/lock_toolbox_success"
                 android:textColor="@color/color_primary" />
 
             <TextView
@@ -152,7 +152,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Füge 20 Listen hinzu"
+                android:text="@string/lock_server_success"
                 android:textColor="@color/color_primary" />
         </TableRow>
 
@@ -199,7 +199,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Absolviere den Express-Modus fehlerfrei"
+                android:text="@string/lock_express_success"
                 android:textColor="@color/color_primary" />
 
             <TextView
@@ -211,7 +211,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Absolviere den Tipp-Modus fehlerfrei"
+                android:text="@string/lock_ueberflieger_success"
                 android:textColor="@color/color_primary" />
 
             <TextView
@@ -223,7 +223,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Lege drei Sprachen an"
+                android:text="@string/lock_sprache_success"
                 android:textColor="@color/color_primary" />
         </TableRow>
 

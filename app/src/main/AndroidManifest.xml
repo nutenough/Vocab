@@ -16,6 +16,7 @@
         </activity>
         <activity
             android:name=".NavigationActivity"
+            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".LanguageActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -35,11 +36,11 @@
         </activity>
         <activity
             android:name=".TextInputLearnActivity"
-            android:label="@string/title_activity_express_learn">
+            android:label="@string/title_activity_input_learn">
         </activity>
         <activity
             android:name=".ListVocabActivity"
-            android:label="@string/title_activity_express_learn">
+            android:label="@string/title_activity_list_vocab">
     </activity>
     </application>
 

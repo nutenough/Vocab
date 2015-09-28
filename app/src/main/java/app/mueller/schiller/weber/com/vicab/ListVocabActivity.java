@@ -1,18 +1,16 @@
 package app.mueller.schiller.weber.com.vicab;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -27,7 +25,7 @@ public class ListVocabActivity extends AppCompatActivity {
     private ArrayList<VocItem> listItems = new ArrayList<>();
     private NavigationFragmentOneAdapter adapter;
     private String listName = "";
-
+    private Toolbar toolbar;
     private DBAdmin dbAdmin;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +39,9 @@ public class ListVocabActivity extends AppCompatActivity {
         setOnClickListener();
     }
 
-    private void setActivityTitle () {
-           // Titel in die Bar oben einfügen mit dem getActivity().setTitle(listName)
+
+    private void setActivityTitle() {
+        getSupportActionBar().setTitle(listName);
     }
 
     private void getListInfo() {
@@ -67,19 +66,23 @@ public class ListVocabActivity extends AppCompatActivity {
     }
 
     private void setupUIComponents() {
-        vocabsLV = (ListView)findViewById(R.id.vocabsListLV);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(listName);
+
+        vocabsLV = (ListView) findViewById(R.id.vocabsListLV);
     }
 
 
-    private void updateList(){
+    private void updateList() {
         listItems.clear();
         listItems.addAll(dbAdmin.getAllVocabForList(listName));
         adapter.notifyDataSetChanged();
     }
 
     private void attachAdapter() {
-        Log.d("ListVoc" , "adapter: " + adapter);
-        Log.d("ListVoc" , "listView: " + vocabsLV);
+        Log.d("ListVoc", "adapter: " + adapter);
+        Log.d("ListVoc", "listView: " + vocabsLV);
 
         adapter = new NavigationFragmentOneAdapter(this, listItems);
         vocabsLV.setAdapter(adapter);
