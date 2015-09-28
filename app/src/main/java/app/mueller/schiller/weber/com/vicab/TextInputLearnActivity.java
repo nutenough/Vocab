@@ -53,6 +53,7 @@ public class TextInputLearnActivity extends AppCompatActivity {
     private double randomNum;
     private double result = 0.0;
 
+    private boolean learnList = false;
 
     private AlertDialog alertDialog;
 
@@ -78,6 +79,14 @@ public class TextInputLearnActivity extends AppCompatActivity {
         boolean knowing_to_learning = bundle.getBoolean("knowingToLearning");
         boolean learning_to_knowing = bundle.getBoolean("learningToKnowing");
         boolean mixed = bundle.getBoolean("mixed");
+
+        String listName = bundle.getString("listName");
+
+
+        if (listName != null){
+            learnList = true;
+            repopulateVocabArrayWithList(listName);
+        }
 
         if (knowing_to_learning){
             frontCard = allVocab.get(counter_vocab).getSourceVocab();
@@ -408,4 +417,10 @@ public class TextInputLearnActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
     }
+
+    private void repopulateVocabArrayWithList(String listName) {
+        allVocab = dbAdmin.getAllVocabForList(listName);
+        listSize = allVocab.size();
+    }
+
 }
