@@ -231,7 +231,7 @@ public class NavigationFragmentThree extends Fragment {
         return bundle;
     }
 
-    public void checkVocabs(){
+    private void checkVocabs(){
         vocItems.clear();
         vocItems.addAll(dbAdmin.getAllVocabForLanguage());
         if(vocItems.size() > 0){
@@ -245,6 +245,10 @@ public class NavigationFragmentThree extends Fragment {
             }
 
         }
+    }
+
+    public ArrayList<VocItem> getVocItems(){
+        return vocItems;
     }
 
 
