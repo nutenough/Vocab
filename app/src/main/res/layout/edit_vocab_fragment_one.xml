@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/sourceVocabTV"
+        android:id="@+id/editVocabSourceVocabTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_primary"
@@ -16,20 +16,20 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/sourceVocabET"
+        android:id="@+id/editVocabSourceVocabET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/sourceVocabTV"
+        android:layout_below="@id/editVocabSourceVocabTV"
         android:layout_margin="16dp"
         android:hint="@string/vocab_hint"
         android:inputType="text"
         android:singleLine="true" />
 
     <TextView
-        android:id="@+id/targetVocabTV"
+        android:id="@+id/editVocabTargetVocabTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/sourceVocabET"
+        android:layout_below="@id/editVocabSourceVocabET"
         android:layout_centerHorizontal="true"
         android:background="@color/color_primary"
         android:padding="16dp"
@@ -39,10 +39,10 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/targetVocabET"
+        android:id="@+id/editVocabTargetVocabET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/targetVocabTV"
+        android:layout_below="@id/editVocabTargetVocabTV"
         android:layout_margin="16dp"
         android:layout_marginBottom="16dp"
         android:hint="@string/vocab_hint"
@@ -50,10 +50,10 @@
         android:singleLine="true" />
 
     <TextView
-        android:id="@+id/selectListTV"
+        android:id="@+id/editVocabSelectListTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/targetVocabET"
+        android:layout_below="@id/editVocabTargetVocabET"
         android:background="@color/color_primary"
         android:padding="16dp"
         android:text="@string/select_list"
@@ -62,11 +62,12 @@
         android:textStyle="bold" />
 
     <Spinner
-        android:id="@+id/addListSpinner"
+        android:id="@+id/editVocabAddListSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/selectListTV"
+        android:layout_below="@id/editVocabSelectListTV"
         android:layout_margin="16dp" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,28 +75,47 @@
         android:gravity="bottom">
 
         <Button
-            android:id="@+id/vocabCancelBTN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:background="@color/color_primary"
-            android:padding="30dp"
-            android:text="@string/vocab_negative_button"
-            android:textColor="@color/color_white" />
-
-
-
-        <Button
-            android:id="@+id/vocabAddBTN"
+            android:id="@+id/editVocabButtonLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/color_accent"
+            android:background="@color/color_primary"
             android:padding="30dp"
-            android:text="@string/vocab_positive_button"
+            android:text="@string/edit_vocab_button_left"
+            android:textColor="@color/color_white"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:id="@+id/editVocabButtonfinished"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="@color/color_accent"
+            android:paddingTop="30dp"
+            android:paddingLeft="60dp"
+            android:paddingRight="60dp"
+            android:paddingBottom="30dp"
+            android:text="@string/edit_vocab_finished"
             android:textColor="@color/color_white" />
 
+
+        <Button
+            android:id="@+id/editVocabButtonRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/color_primary"
+            android:padding="30dp"
+            android:text="@string/edit_vocab_button_right"
+            android:textColor="@color/color_white"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
     </LinearLayout>
+
 
 
 </RelativeLayout>

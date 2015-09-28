@@ -18,7 +18,7 @@ public class EditVocabActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_vocab);
+        setContentView(R.layout.activity_edit_vocab);
         setupUIComponents();
         handleTabEvent();
     }
@@ -38,7 +38,7 @@ public class EditVocabActivity extends AppCompatActivity {
     }
 
     private void handleTabEvent() {
-        AddVocabAdapter viewPageAdapter = new AddVocabAdapter(getSupportFragmentManager());
+        EditVocabAdapter viewPageAdapter = new EditVocabAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPageAdapter);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

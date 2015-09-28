@@ -169,8 +169,14 @@ public class NavigationFragmentOne extends Fragment {
         vocabsLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
-                // Vokabel bearbeiten
-
+                // Gehe zu bearbeiten
+                Intent intent = new Intent(getActivity(), EditVocabActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("listName", "");
+                Log.d("position", "pos: " + position);
+                bundle.putInt("position", position);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
 

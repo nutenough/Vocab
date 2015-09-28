@@ -16,8 +16,8 @@ public class EditVocabAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-            case 0: return new AddVocabFragmentOne();
-            case 1: return new AddVocabFragmentTwo();
+            case 0: return new EditVocabFragmentOne();
+            case 1: return new EditVocabFragmentTwo();
         }
         return null;
     }

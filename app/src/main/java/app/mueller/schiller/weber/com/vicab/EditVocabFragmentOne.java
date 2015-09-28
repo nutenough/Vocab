@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,28 +16,28 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import app.mueller.schiller.weber.com.vicab.Database.DBAdmin;
 import app.mueller.schiller.weber.com.vicab.Database.ViCabContract;
 import app.mueller.schiller.weber.com.vicab.PersistanceClasses.ListItem;
+import app.mueller.schiller.weber.com.vicab.PersistanceClasses.VocItem;
 
-public class AddVocabFragmentOne extends Fragment implements
+public class EditVocabFragmentOne extends Fragment implements
         AdapterView.OnItemSelectedListener {
     View contentView;
-    private Button vocabAddBTN;
-    private Button vocabCancelBTN;
+    private Button buttonLeft, buttonRight, buttonFinish;
     private TextView sourceVocabTV;
     private TextView targetVocabTV;
     private EditText sourceVocabET;
     private EditText targetVocabET;
     private String sourceVocab;
     private String targetVocab;
-    private String vocabCouple;
     private Spinner spinner;
-    private TextView vocabHintTV;
+    private int changedVocab = 0;
+    private ArrayList<VocItem> listItems = new ArrayList<>();
 
     private DBAdmin dbAdmin;
 
@@ -45,7 +46,7 @@ public class AddVocabFragmentOne extends Fragment implements
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        contentView = inflater.inflate(R.layout.add_vocab_fragment_one, null);
+        contentView = inflater.inflate(R.layout.edit_vocab_fragment_one, null);
         return contentView;
     }
 
@@ -57,11 +58,37 @@ public class AddVocabFragmentOne extends Fragment implements
         initDB();
         fillSpinnerFromDB();
         setOnClickListeners();
+        getInfosFromIntent();
     }
 
 
+    private void getInfosFromIntent(){
+            Bundle bundle = getActivity().getIntent().getExtras();
+            String listName = bundle.getString("listName");
+            int position = bundle.getInt("position");
+
+            if (listName.equals("")) {
+                listItems.addAll(dbAdmin.getAllVocabForLanguage());
+            }
+            if (listName.equals("letzte")) {
+                listItems.addAll(dbAdmin.getRecentVocab());
+            }
+            else {
+                listItems.addAll(dbAdmin.getAllVocabForList(listName));
+            }
+
+            fillViewsWithObjectInfo(position);
+    }
+
+    private void fillViewsWithObjectInfo(int position){
+        Log.d("fill", "fill" + position);
+        sourceVocabET.setText(listItems.get(position).getSourceVocab());
+        targetVocabET.setText(listItems.get(position).getTargetVocab());
+        // Spinner
+    }
+
     private void setOnClickListeners(){
-        vocabAddBTN.setOnClickListener(new View.OnClickListener() {
+        buttonFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getInput();
@@ -69,18 +96,23 @@ public class AddVocabFragmentOne extends Fragment implements
                     Toast.makeText(getActivity(), R.string.no_vocab_input, Toast.LENGTH_LONG).show();
                 } else {
                     saveInput();
-                    Toast.makeText(getActivity(), vocabCouple + " wurde hinzugefügt", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getActivity(), NavigationActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(getActivity(), changedVocab + "Vokabeln wurde(n) bearbeitet", Toast.LENGTH_LONG).show();
+                    getActivity().finish();
                 }
             }
         });
 
-        vocabCancelBTN.setOnClickListener(new View.OnClickListener() {
+        buttonRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                getActivity().finish();
+            }
+        });
+
+        buttonLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
@@ -92,7 +124,6 @@ public class AddVocabFragmentOne extends Fragment implements
     private void getInput() {
         sourceVocab = sourceVocabET.getText().toString().trim();
         targetVocab = targetVocabET.getText().toString().trim();
-        vocabCouple = sourceVocab + " - " + targetVocab;
     }
 
     private void fillSpinnerFromDB() {
@@ -139,34 +170,29 @@ public class AddVocabFragmentOne extends Fragment implements
     }
 
     private void setupUIComponents() {
-        sourceVocabET = (EditText) getActivity().findViewById(R.id.sourceVocabET);
-        targetVocabET = (EditText) getActivity().findViewById(R.id.targetVocabET);
-        spinner = (Spinner) getActivity().findViewById(R.id.addListSpinner);
+        sourceVocabET = (EditText) getActivity().findViewById(R.id.editVocabSourceVocabET);
+        targetVocabET = (EditText) getActivity().findViewById(R.id.editVocabTargetVocabET);
+        spinner = (Spinner) getActivity().findViewById(R.id.editVocabAddListSpinner);
 
         // Gets the source- and target-language
-        sourceVocabTV = (TextView) getActivity().findViewById(R.id.sourceVocabTV);
-        targetVocabTV = (TextView) getActivity().findViewById(R.id.targetVocabTV);
+        sourceVocabTV = (TextView) getActivity().findViewById(R.id.editVocabSourceVocabTV);
+        targetVocabTV = (TextView) getActivity().findViewById(R.id.editVocabTargetVocabTV);
         sourceVocabTV.setText(ViCabContract.CHOSEN_LANGUAGE_SOURCE);
         targetVocabTV.setText(ViCabContract.CHOSEN_LANGUAGE_TARGET);
 
-        // Adds Vocab to Meine Vokabeln
-        vocabAddBTN = (Button) getActivity().findViewById(R.id.vocabAddBTN);
+        // go forth and back in the vocab list
+        buttonRight = (Button) getActivity().findViewById(R.id.editVocabButtonRight);
+        buttonLeft = (Button) getActivity().findViewById(R.id.editVocabButtonLeft);
 
-        // Cancel button
-        vocabCancelBTN = (Button) getActivity().findViewById(R.id.vocabCancelBTN);
+        // finish button
+        buttonFinish = (Button) getActivity().findViewById(R.id.editVocabButtonfinished);
 
     }
 
     private void saveInput() {
-        // addVocab method wants this: String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, String importance, String hasList, int known, int asked, int timestamp
-        dbAdmin.addVocab(sourceVocab, targetVocab, "", AddVocabFragmentTwo.getWordType(), AddVocabFragmentTwo.getRating(), 0, spinner.getSelectedItem().toString(), 0, 0, getTimeStamp());
-    }
+        //SAVE
+        Log.d("safe", "Hier");
 
-    private int getTimeStamp() {
-        // Das Zeitformat ohne Millisekunden wird Unix Time genannt
-        // int time = (int) (new Date().getTime()/1000);
-        // Umwandlung zurück zum Datum:  new Date(((long)i)*1000L);
-        return (int) (new Date().getTime()/1000);
     }
 
 }

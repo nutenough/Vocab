@@ -31,6 +31,14 @@
                 android:value=".NavigationActivity" />
         </activity>
         <activity
+            android:name=".EditVocabActivity"
+            android:label="@string/title_activity_edit_vocab">
+            <!-- Important for going back to the parent activity -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".NavigationActivity" />
+        </activity>
+        <activity
             android:name=".ExpressLearnActivity"
             android:label="@string/title_activity_express_learn">
         </activity>

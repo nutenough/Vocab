@@ -2,6 +2,7 @@
     <string name="app_name">Vocab</string>
     <string name="title_activity_navigation_drawer">Navigation</string>
     <string name="title_activity_add_vocab">Neue Vokabel anlegen</string>
+    <string name="title_activity_edit_vocab">Vokabeln bearbeiten</string>
     <string name="title_activity_express_learn">Express-Modus</string>
     <string name="title_activity_input_learn">Tipp-Modus</string>
     <string name="title_activity_list_vocab">Vokabelliste</string>
@@ -49,6 +50,10 @@
     <string name="vocab_negative_button">Abbrechen</string>
     <string name="vocab_positive_button">Hinzufügen</string>
     <string name="no_vocab_input">Bitte Vokabel eingeben</string>
+
+    <string name="edit_vocab_finished"> Fertig </string>
+    <string name="edit_vocab_button_right">-)</string>
+    <string name="edit_vocab_button_left">(-</string>
 
     <!-- NavigationFragmentTwo AlertDialog-->
     <string name="list_name">Name der Liste</string>
