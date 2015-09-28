@@ -152,7 +152,7 @@ public class EditFragmentOne extends Fragment implements
         vocabCouple = sourceVocab + " - " + targetVocab;
         // addVocab method wants this: String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, String importance, String hasList
         // TIMESTAMP noch implementieren
-        dbAdmin.addVocab(sourceVocab, targetVocab, "", AddVocabFragmentTwo.getWordType(), AddVocabFragmentTwo.getRating(), 0, spinner.getSelectedItem().toString(), 0, 0, 0);
+        dbAdmin.addVocab(sourceVocab, targetVocab, "", "", AddVocabFragmentTwo.getWordType(), AddVocabFragmentTwo.getRating(), spinner.getSelectedItem().toString(), 0, 0, 0);
     }
 
 }

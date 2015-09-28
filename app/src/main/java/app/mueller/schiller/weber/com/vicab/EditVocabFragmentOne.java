@@ -37,6 +37,7 @@ public class EditVocabFragmentOne extends Fragment implements
     private String targetVocab;
     private Spinner spinner;
     private int changedVocab = 0;
+    private int positionInList = 0;
     private ArrayList<VocItem> listItems = new ArrayList<>();
 
     private DBAdmin dbAdmin;
@@ -65,7 +66,7 @@ public class EditVocabFragmentOne extends Fragment implements
     private void getInfosFromIntent(){
             Bundle bundle = getActivity().getIntent().getExtras();
             String listName = bundle.getString("listName");
-            int position = bundle.getInt("position");
+            positionInList = bundle.getInt("position");
 
             if (listName.equals("")) {
                 listItems.addAll(dbAdmin.getAllVocabForLanguage());
@@ -77,14 +78,13 @@ public class EditVocabFragmentOne extends Fragment implements
                 listItems.addAll(dbAdmin.getAllVocabForList(listName));
             }
 
-            fillViewsWithObjectInfo(position);
+            fillViewsWithObjectInfo();
     }
 
-    private void fillViewsWithObjectInfo(int position){
-        Log.d("fill", "fill" + position);
-        sourceVocabET.setText(listItems.get(position).getSourceVocab());
-        targetVocabET.setText(listItems.get(position).getTargetVocab());
-        // Spinner
+    private void fillViewsWithObjectInfo(){
+        sourceVocabET.setText(listItems.get(positionInList).getSourceVocab());
+        targetVocabET.setText(listItems.get(positionInList).getTargetVocab());
+       // spinner.set
     }
 
     private void setOnClickListeners(){

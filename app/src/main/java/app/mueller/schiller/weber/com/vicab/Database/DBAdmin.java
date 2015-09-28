@@ -58,7 +58,7 @@ public class DBAdmin {
         return db.insert(ViCabContract.ListEntry.TABLE_NAME, null, listItem);
     }
 
-    public long addVocab(String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, int importance, String hasList, int known, int asked, int time) {
+    public long addVocab(String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, String importance, String hasList, int known, int asked, int time) {
         ContentValues vocItem = new ContentValues();
 
         vocItem.put(ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB, sourceVocab);
@@ -228,7 +228,7 @@ public class DBAdmin {
         String foto = cursor.getString(ViCabContract.VocabEntry.COLUMN_FOTO_LINK_INDEX);
         String sound = cursor.getString(ViCabContract.VocabEntry.COLUMN_SOUND_LINK_INDEX);
         String wordType = cursor.getString(ViCabContract.VocabEntry.COLUMN_WORD_TYPE_INDEX);
-        int importance = cursor.getInt(ViCabContract.VocabEntry.COLUMN_IMPORTANCE_INDEX);
+        String importance = cursor.getString(ViCabContract.VocabEntry.COLUMN_IMPORTANCE_INDEX);
         String hasList = cursor.getString(ViCabContract.VocabEntry.COLUMN_HAS_LIST_INDEX);
         String hasLanguage = cursor.getString(ViCabContract.VocabEntry.COLUMN_HAS_LANGUAGE_INDEX);
         int known = cursor.getInt(ViCabContract.VocabEntry.COLUMN_NAME_KNOWN_INDEX);
@@ -349,7 +349,7 @@ public class DBAdmin {
                 ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " integer primary key autoincrement , " + ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB +
                 " text not null , " + ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB + " text not null , " + ViCabContract.VocabEntry.COLUMN_NAME_FOTO_LINK +
                 " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK + " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE +
-                " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE + " integer not null, " + ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST +
+                " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE + " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST +
                 " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE + " text not null, " + ViCabContract.VocabEntry.COLUMN_NAME_KNOWN +
                 " integer not null, " + ViCabContract.VocabEntry.COLUMN_NAME_ASKED + " integer not null, " + ViCabContract.VocabEntry.COLUMN_NAME_TIME_STAMP + " integer not null);";
 

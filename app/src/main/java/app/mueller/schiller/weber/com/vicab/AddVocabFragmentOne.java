@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -159,7 +160,8 @@ public class AddVocabFragmentOne extends Fragment implements
 
     private void saveInput() {
         // addVocab method wants this: String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, String importance, String hasList, int known, int asked, int timestamp
-        dbAdmin.addVocab(sourceVocab, targetVocab, "", AddVocabFragmentTwo.getWordType(), AddVocabFragmentTwo.getRating(), 0, spinner.getSelectedItem().toString(), 0, 0, getTimeStamp());
+        Log.d("Safe", "importance: " + AddVocabFragmentTwo.getRating());
+        dbAdmin.addVocab(sourceVocab, targetVocab, "", "", AddVocabFragmentTwo.getWordType(), AddVocabFragmentTwo.getRating(), spinner.getSelectedItem().toString(), 0, 0, getTimeStamp());
     }
 
     private int getTimeStamp() {
