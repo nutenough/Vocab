@@ -241,8 +241,8 @@ public class ExpressLearnActivity extends AppCompatActivity {
                             vocab_knowing_language.setClickable(true);
                             vocab_counter_button.setTextColor(getResources().getColor(R.color.color_primary));
                             imageButton_exit.setImageResource(R.drawable.arrow_left_blue);
-                            knowIB.setImageResource(R.drawable.arrow_right_blue);
-
+                            knowIB.setImageResource(R.drawable.advance);
+                            knowIB.setScaleType(ImageView.ScaleType.FIT_END);
                         }
                     }, 500);
 
@@ -329,7 +329,8 @@ public class ExpressLearnActivity extends AppCompatActivity {
                             vocab_knowing_language.setClickable(true);
                             vocab_counter_button.setTextColor(getResources().getColor(R.color.color_primary));
                             imageButton_exit.setImageResource(R.drawable.arrow_left_blue);
-                            knowIB.setImageResource(R.drawable.arrow_right_blue);
+                            knowIB.setImageResource(R.drawable.advance);
+                            knowIB.setScaleType(ImageView.ScaleType.FIT_END);
                         }
                     }, 500);
 
@@ -384,6 +385,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
         vocab_counter_button.setTextColor(getResources().getColor(R.color.color_white));
         imageButton_exit.setImageResource(R.drawable.arrow_left_white);
         knowIB.setImageResource(R.drawable.ic_thumbs_up);
+        knowIB.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
     }
 
     private void wrongResult() {
@@ -392,7 +394,6 @@ public class ExpressLearnActivity extends AppCompatActivity {
 
         counter_wrong_answer++;
         vocab_knowing_language.setClickable(false);
-
     }
 
     private void showAlertDialogFinished() {
@@ -432,18 +433,18 @@ public class ExpressLearnActivity extends AppCompatActivity {
 
         if(result >= 0.90){
             smileyIV.setImageResource(R.drawable.smiley_cool);
-            sourceString = "Super!" + "<br>" + "Du hast " + "<b>" + (listSize - counter_wrong_answer)+  " / "  + listSize +  "</b> " + " Vokabeln richtig!"+ "</br>";
+            sourceString = "Super!" + "<br>" + "Du hast " + "<b>" + (listSize - counter_wrong_answer)+  "/"  + listSize +  "</b> " + " Vokabeln richtig!"+ "</br>";
         }else if(result < 0.90 && result >= 0.60){
             smileyIV.setImageResource(R.drawable.smiley_happy);
-            sourceString = "Glückwunsch!" + "<br>" + "Du hast " + "<b>" + (listSize - counter_wrong_answer) + " / " + listSize + "</b> " + " Vokabeln richtig!" + "</br>";
+            sourceString = "Glückwunsch!" + "<br>" + "Du hast " + "<b>" + (listSize - counter_wrong_answer) + "/" + listSize + "</b> " + " Vokabeln richtig!" + "</br>";
         }
         else if(result < 0.60 && result >= 0.20){
             smileyIV.setImageResource(R.drawable.smiley_question);
-            sourceString = "Das geht besser!" + "<br>" + "Du hast nur " + "<b>" + (listSize - counter_wrong_answer) +  " / "  + listSize +  "</b> " + " Vokabeln richtig!"+ "</br>";
+            sourceString = "Das geht besser!" + "<br>" + "Du hast nur " + "<b>" + (listSize - counter_wrong_answer) +  "/"  + listSize +  "</b> " + " Vokabeln richtig!"+ "</br>";
         }
         else if(result < 0.20 && result > 0.00){
             smileyIV.setImageResource(R.drawable.smiley_sad);
-            sourceString = "Schade!" + "<br>" + "Du hast nur " + "<b>" + (listSize - counter_wrong_answer) +  " / "  + listSize +  "</b> " + " Vokabeln richtig!"+ "</br>";
+            sourceString = "Schade!" + "<br>" + "Du hast nur " + "<b>" + (listSize - counter_wrong_answer) +  "/"  + listSize +  "</b> " + " Vokabeln richtig!"+ "</br>";
         }else {
             smileyIV.setImageResource(R.drawable.smiley_sad);
             sourceString = "Schade!" + "<br>" + "Du hast " + "<b>" + "keine einzige" + "</b> " + " Vokabel richtig!"+ "</br>";

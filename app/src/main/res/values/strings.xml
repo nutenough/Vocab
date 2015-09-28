@@ -71,7 +71,7 @@
     <!-- LearnVocabFragmentThree -->
     <string name="toast_choose_learn_direction">Wähle zuerst eine Lernrichtung</string>
     <string name="toast_no_vocabs">Du hast noch keine Vokabeln eingetragen</string>
-    <string name="toast_no_unknown_vocabs">Alle deine Vokabeln sind im Langzeitgedächtnis, trage neue ein!</string>
+    <string name="toast_no_unknown_vocabs">All deine Vokabeln sind im Langzeitgedächtnis, trage neue Vokabeln ein oder entferne diese aus dem "Gedächtnis"!</string>
 
     <string name="learning_direction">Lern-Richtung</string>
     <string name="learning_1_2">Deutsch zu Englisch</string>
@@ -105,17 +105,17 @@
 
     <!-- Exit AlertDialog -->
     <string name="exit_title">Verlassen</string>
-    <string name="exit_message">Wollen Sie die Abfrage wirklich verlassen?</string>
+    <string name="exit_message">Willst du die Abfrage wirklich verlassen?</string>
     <string name="exit_positive_button">Verlassen</string>
     <string name="exit_negative_button">Abbrechen</string>
 
     <!-- Delete AlertDialogs -->
     <string name="language_delete_title">Sprachbeziehung löschen</string>
-    <string name="language_delete_message">Möchten Sie die Sprachbeziehung und darin enthaltene Vokabeln und Listen wirklich löschen?</string>
+    <string name="language_delete_message">Möchtest du die Sprachbeziehung und darin enthaltene Vokabeln und Listen wirklich löschen?</string>
     <string name="vocab_delete_title">Vokabel löschen</string>
-    <string name="vocab_delete_message">Möchten Sie diese Vokabel wirklich löschen?</string>
+    <string name="vocab_delete_message">Möchtest du diese Vokabel wirklich löschen?</string>
     <string name="list_delete_title">Liste löschen</string>
-    <string name="list_delete_message">Möchten Sie diese Liste wirklich löschen?</string>
+    <string name="list_delete_message">Möchtest du diese Liste wirklich löschen?</string>
     <string name="delete_positive_button">Löschen</string>
     <string name="delete_negative_button">Abbrechen</string>
 
@@ -127,6 +127,9 @@
     <string name="option_delete">Löschen</string>
 
     <string name="tab">\t</string>
+
+    <!-- NavigationFragmentFour -->
+    <string name="last_20_entries">Deine 20 letzten Einträge</string>
 
     <!-- NavigationFragmentFive -->
     <string name="vocab_success">Vokabelerfolg</string>
@@ -157,11 +160,15 @@
     <string name="menu_search">Suchen</string>
     <string name="reset_title">Vergessen?</string>
     <string name="reset_message">Willst du diese Vokabel wieder lernen?</string>
+    <string name="reset_all_vocab">Amnesie</string>
+    <string name="reset_all_title">Amnesie</string>
+    <string name="reset_all_message">Willst du wirklich alle Vokabeln wieder lernen?</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
 
     <!-- NavigationFragmenSeven  -->
     <string name="ueber_sub_title">Lernen - leicht gemacht</string>
     <string name="ueber_text">Die Idee zu Vocab entstand im Rahmen des Kurses \"Entwicklung einer Applikation mit dem Android-Framework\" unter Leitung von Dr. Markus Heckner an der Universität Regensburg. \nVocab soll es dem User ermöglichen, Vokabeln in jeglicher Sprachbeziehung zu speichern, diese in Listen einzuordnen und mit Metadaten zu versehen. Mittels der beiden Lern-Modi \"Tipp-Modus\" und \"Express-Modus\" können diese - nach Auswahl der Lernrichtung und optionaler Auswahl der Wortart oder Liste - abgefragt werden, wodurch gelernte Vokabeln im \"Gedächtnis\" abgelegt werden. \nZudem werden im Laufe des Vokabellernens als weiterer Ansporn \"Erfolge\" freigeschalten.</string>
+
 
 </resources>
