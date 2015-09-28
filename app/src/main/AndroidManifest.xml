@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LanguageActivity">
+            android:name=".LanguageActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -16,15 +17,17 @@
         </activity>
         <activity
             android:name=".NavigationActivity"
+            android:parentActivityName=".LanguageActivity"
             android:windowSoftInputMode="adjustPan"
-            android:parentActivityName=".LanguageActivity">
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="app.mueller.schiller.weber.com.vicab.LanguageActivity" />
         </activity>
         <activity
             android:name=".AddVocabActivity"
-            android:label="@string/title_activity_add_vocab">
+            android:label="@string/title_activity_add_vocab"
+            android:screenOrientation="portrait">
             <!-- Important for going back to the parent activity -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -32,16 +35,19 @@
         </activity>
         <activity
             android:name=".ExpressLearnActivity"
-            android:label="@string/title_activity_express_learn">
+            android:label="@string/title_activity_express_learn"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".TextInputLearnActivity"
-            android:label="@string/title_activity_input_learn">
+            android:label="@string/title_activity_input_learn"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ListVocabActivity"
-            android:label="@string/title_activity_list_vocab">
-    </activity>
+            android:label="@string/title_activity_list_vocab"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>
