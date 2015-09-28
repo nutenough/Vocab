@@ -71,8 +71,7 @@ public class AddVocabFragmentOne extends Fragment implements
                 } else {
                     saveInput();
                     Toast.makeText(getActivity(), vocabCouple + " wurde hinzugefügt", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getActivity(), NavigationActivity.class);
-                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });

@@ -215,6 +215,7 @@ public class NavigationFragmentOne extends Fragment {
     {
         super.onResume();
         updateList();
+        checkHint();
     }
 
 }

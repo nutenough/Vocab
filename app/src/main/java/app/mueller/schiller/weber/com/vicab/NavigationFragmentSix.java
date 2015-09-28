@@ -166,11 +166,28 @@ public class NavigationFragmentSix extends Fragment {
         listItems.addAll(dbAdmin.getAllVocabForLanguage());
         for(int i = 0; i < listItems.size(); i++){
             counterAll++;
-            if(listItems.get(i).getKnown() > 5 ){
-                knownVLItems.add(listItems.get(i));
-                counterKnown++;
+            Log.d("4321", listItems.get(i).getSourceVocab() + "     "+ String.valueOf(listItems.get(i).getImportance() +"       " + listItems.get(i).getKnown()));
+            if(listItems.get(i).getImportance().equals("1.0")){
+                if(listItems.get(i).getKnown() > 4 ){
+                    knownVLItems.add(listItems.get(i));
+                    counterKnown++;
+                }
+            }else if(listItems.get(i).getImportance().equals("2.0")){
+                if(listItems.get(i).getKnown() > 6 ){
+                    knownVLItems.add(listItems.get(i));
+                    counterKnown++;
+                }
+            }else if(listItems.get(i).getImportance().equals("3.0")){
+                if(listItems.get(i).getKnown() > 7 ){
+                    knownVLItems.add(listItems.get(i));
+                    counterKnown++;
+                }
+            }else {
+                if(listItems.get(i).getKnown() > 5 ){
+                    knownVLItems.add(listItems.get(i));
+                    counterKnown++;
+                }
             }
-
         }
         Log.d("MyDebug", "items: " + dbAdmin.getAllVocabForLanguage());
         adapter.notifyDataSetChanged();

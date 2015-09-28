@@ -137,12 +137,29 @@ public class TextInputLearnActivity extends AppCompatActivity {
         allVocab.addAll(dbAdmin.getAllVocabForLanguage());
         Log.d("Learn", "allItems: " + allVocab);
 
-        for(int i = 0; i < allVocab.size(); i++){
-            if(allVocab.get(i).getKnown() > 5 ){
-                allVocab.remove(i);
-                i =- 1;
-            }
+        for(int i = 0; i < allVocab.size(); i++) {
 
+            if (allVocab.get(i).getImportance().equals("1.0")) {
+                if (allVocab.get(i).getKnown() > 4) {
+                    allVocab.remove(i);
+                    i = -1;
+                }
+            } else if (allVocab.get(i).getImportance().equals("2.0")) {
+                if (allVocab.get(i).getKnown() > 6) {
+                    allVocab.remove(i);
+                    i = -1;
+                }
+            } else if (allVocab.get(i).getImportance().equals("3.0")) {
+                if (allVocab.get(i).getKnown() > 7) {
+                    allVocab.remove(i);
+                    i = -1;
+                }
+            } else {
+                if (allVocab.get(i).getKnown() > 5) {
+                    allVocab.remove(i);
+                    i = -1;
+                }
+            }
         }
 
         listSize = allVocab.size();
