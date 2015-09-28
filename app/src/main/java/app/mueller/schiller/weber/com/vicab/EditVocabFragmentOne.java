@@ -1,5 +1,6 @@
 package app.mueller.schiller.weber.com.vicab;
 
+import android.app.LauncherActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -40,6 +41,10 @@ public class EditVocabFragmentOne extends Fragment implements
     private int positionInList = 0;
     private ArrayList<VocItem> listItems = new ArrayList<>();
 
+    private String oldSourceVocab = "";
+    private String oldTargetVocab = "";
+    private String currentListName = "";
+
     private DBAdmin dbAdmin;
 
 
@@ -65,26 +70,50 @@ public class EditVocabFragmentOne extends Fragment implements
 
     private void getInfosFromIntent(){
             Bundle bundle = getActivity().getIntent().getExtras();
-            String listName = bundle.getString("listName");
+            currentListName = bundle.getString("listName");
             positionInList = bundle.getInt("position");
 
-            if (listName.equals("")) {
-                listItems.addAll(dbAdmin.getAllVocabForLanguage());
-            }
-            if (listName.equals("letzte")) {
-                listItems.addAll(dbAdmin.getRecentVocab());
-            }
-            else {
-                listItems.addAll(dbAdmin.getAllVocabForList(listName));
-            }
+            updateListItems();
 
-            fillViewsWithObjectInfo();
+            updateViews();
+    }
+
+    private void updateViews() {
+        safeOldValues();
+        fillViewsWithObjectInfo();
+        updateFragmentTwo();
+    }
+
+    private void safeOldValues() {
+        oldSourceVocab = listItems.get(positionInList).getSourceVocab();
+        oldTargetVocab = listItems.get(positionInList).getTargetVocab();
+    }
+
+    private void updateFragmentTwo(){
+        EditVocabFragmentTwo.setSpinnerValue(listItems.get(positionInList).getWordType());
+        EditVocabFragmentTwo.setRating(listItems.get(positionInList).getImportance());
     }
 
     private void fillViewsWithObjectInfo(){
         sourceVocabET.setText(listItems.get(positionInList).getSourceVocab());
         targetVocabET.setText(listItems.get(positionInList).getTargetVocab());
-       // spinner.set
+
+        spinner.setSelection(getIndex(spinner, listItems.get(positionInList).getHasList()));
+
+    }
+
+    // Methode direkt übernommen von: http://stackoverflow.com/questions/2390102/how-to-set-selected-item-of-spinner-by-value-not-by-position
+    private int getIndex(Spinner spinner, String myString) {
+
+        int index = 0;
+
+        for (int i=0;i<spinner.getCount();i++){
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(myString)){
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 
     private void setOnClickListeners(){
@@ -96,7 +125,8 @@ public class EditVocabFragmentOne extends Fragment implements
                     Toast.makeText(getActivity(), R.string.no_vocab_input, Toast.LENGTH_LONG).show();
                 } else {
                     saveInput();
-                    Toast.makeText(getActivity(), changedVocab + "Vokabeln wurde(n) bearbeitet", Toast.LENGTH_LONG).show();
+                    changedVocab++;
+                    Toast.makeText(getActivity(), changedVocab + " Vokabel wurde(n) bearbeitet", Toast.LENGTH_LONG).show();
                     getActivity().finish();
                 }
             }
@@ -105,14 +135,34 @@ public class EditVocabFragmentOne extends Fragment implements
         buttonRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (positionInList < listItems.size()-1) {
+                    positionInList++;
+                    buttonLeft.setEnabled(true);
+                }
+                if (positionInList == listItems.size()-1) {
+                    buttonRight.setEnabled(false);
+                    //buttonLeft.setEnabled(true);
+                }
 
+                saveInput();
+                updateViews();
             }
         });
 
         buttonLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (positionInList > 0) {
+                    positionInList--;
+                    buttonRight.setEnabled(true);
+                }
+                if (positionInList == 0) {
+                    buttonLeft.setEnabled(false);
+                    //buttonRight.setEnabled(true);
+                }
 
+                saveInput();
+                updateViews();
             }
         });
 
@@ -191,8 +241,28 @@ public class EditVocabFragmentOne extends Fragment implements
 
     private void saveInput() {
         //SAVE
-        Log.d("safe", "Hier");
+        changedVocab++;
+        sourceVocab = sourceVocabET.getText().toString().trim();
+        targetVocab = targetVocabET.getText().toString().trim();
+        dbAdmin.updateVocabItem(oldSourceVocab, oldTargetVocab, sourceVocab, targetVocab, spinner.getSelectedItem().toString(), EditVocabFragmentTwo.getWordType(), EditVocabFragmentTwo.getRating());
+        updateListItems();
+    }
 
+    private void updateListItems() {
+        listItems.clear();
+        listItems.addAll(getUpdatedListFromDB());
+    }
+
+    private ArrayList<VocItem> getUpdatedListFromDB(){
+        if (currentListName.equals("")) {
+            return dbAdmin.getAllVocabForLanguage();
+        }
+        if (currentListName.equals("letzte")) {
+            return dbAdmin.getRecentVocab();
+        }
+        else {
+            return dbAdmin.getAllVocabForList(currentListName);
+        }
     }
 
 }

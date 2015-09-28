@@ -17,6 +17,8 @@ public class EditVocabFragmentTwo extends Fragment implements AdapterView.OnItem
     private RatingBar ratingBar;
     private TextView rateMessage;
     private Spinner spinner;
+    private static String spinnerValue = "";
+    private static String updatedRating= "";
     private String[] wordClassArray = {"Wortart auswählen", "Substantiv", "Verb", "Adjektiv", "Sonstiges"};
 
     private static String RATING = "";
@@ -26,13 +28,46 @@ public class EditVocabFragmentTwo extends Fragment implements AdapterView.OnItem
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        contentView = inflater.inflate(R.layout.add_vocab_fragment_two, null);
+        contentView = inflater.inflate(R.layout.edit_vocab_fragment_two, null);
         setupUIComponents();
         fillSpinner();
+        updateSpinner();
+        updateRating();
         return contentView;
     }
 
+    private void updateSpinner() {
+        if (!spinnerValue.equals("")) {
+            spinner.setSelection(getIndex(spinner, spinnerValue));
+        }
+    }
 
+    private void updateRating() {
+        if (!updatedRating.equals("")) {
+            ratingBar.setRating(Float.parseFloat(updatedRating));
+        }
+    }
+
+    public static void setSpinnerValue(String value){
+        spinnerValue = value;
+    }
+
+    public static void setRating(String rating){
+        updatedRating = rating;
+    }
+
+    private int getIndex(Spinner spinner, String myString) {
+
+        int index = 0;
+
+        for (int i=0;i<spinner.getCount();i++){
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(myString)){
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
 
     private void setupUIComponents() {
         ratingBar = (RatingBar) contentView.findViewById(R.id.ratingBar);

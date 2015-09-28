@@ -108,22 +108,6 @@ public class DBAdmin {
         return db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
     }
 
-    /*
-
-    public LanguageItem getOneLanguageItem (String id) {
-        String whereClause = ViCabContract.LanguageEntry.COLUMN_NAME_ENTRY_ID + " = '" + id + "'";
-
-        Cursor cursor = db.query(ViCabContract.LanguageEntry.TABLE_NAME, new String[]{
-        ViCabContract.LanguageEntry.COLUMN_NAME_COUPLE, ViCabContract.LanguageEntry.COLUMN_NAME_SOURCE_LANGUAGE, ViCabContract.LanguageEntry.COLUMN_NAME_TARGET_LANGUAGE},
-                whereClause, null, null, null, null);
-        String couple = cursor.getString(ViCabContract.LanguageEntry.COLUMN_COUPLE_INDEX);
-        String sourceLanguage = cursor.getString(ViCabContract.LanguageEntry.COLUMN_SOURCE_LANGUAGE_INDEX);
-        String targetLanguage = cursor.getString(ViCabContract.LanguageEntry.COLUMN_TARGET_LANGUAGE_INDEX);
-        LanguageItem langItem = new LanguageItem(couple, sourceLanguage, targetLanguage);
-        return langItem;
-    }
-
-    */
 
     public ArrayList<LanguageItem> getAllLanguages() {
         ArrayList<LanguageItem> items = new ArrayList<>();
@@ -238,26 +222,6 @@ public class DBAdmin {
         return new VocItem(sourceVocab, targetVocab, foto, sound, wordType, importance, hasList, hasLanguage, known, asked, time);
     }
 
-    /*
-    public ArrayList<LanguageItem> getVocabItem() {
-        ArrayList<LanguageItem> items = new ArrayList<LanguageItem>();
-        Cursor cursor = db.query(ViCabContract.LanguageEntry.TABLE_NAME, new String[] { ViCabContract.LanguageEntry.COLUMN_NAME_ENTRY_ID,
-                ViCabContract.LanguageEntry.COLUMN_NAME_SOURCE_LANGUAGE, ViCabContract.LanguageEntry.COLUMN_NAME_TARGET_LANGUAGE }, null, null, null, null, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                String sourceLanguage = cursor.getString(ViCabContract.LanguageEntry.COLUMN_SOURCE_LANGUAGE_INDEX);
-                String targetLanguage= cursor.getString(ViCabContract.LanguageEntry.COLUMN_TARGET_LANGUAGE_INDEX);
-                Log.d("String: uri " + sourceLanguage,", title: " + targetLanguage);
-
-                items.add(new LanguageItem(sourceLanguage, targetLanguage));
-
-            } while (cursor.moveToNext());
-        }
-        return items;
-    }
-    */
-
 
     // update List
     public int renameList(ListItem item, String newName) {
@@ -280,56 +244,19 @@ public class DBAdmin {
         return db.update(ViCabContract.VocabEntry.TABLE_NAME, cv, whereClause, null);
     }
 
+    public long updateVocabItem(String oldSourceVoc, String oldTargetVoc, String sourceVoc, String targetVoc, String hasList, String wordType, String importance) {
 
-    public long updateVocabSource(String vocabItemID, String sourceVoc) {
-        String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " = '" + vocabItemID + "'";
+        String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB + " = '" + oldSourceVoc + "' AND "+ ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB + " = '" + oldTargetVoc+"'";
         ContentValues cv = new ContentValues();
         cv.put(ViCabContract.VocabEntry.COLUMN_NAME_SOURCE_VOCAB, sourceVoc);
-        return db.update(ViCabContract.VocabEntry.TABLE_NAME, cv, whereClause, null);
-    }
-
-    public long updateVocabTarget(String vocabItemID, String targetVoc) {
-        String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " = '" + vocabItemID + "'";
-        ContentValues cv = new ContentValues();
         cv.put(ViCabContract.VocabEntry.COLUMN_NAME_TARGET_VOCAB, targetVoc);
-        return db.update(ViCabContract.VocabEntry.TABLE_NAME, cv, whereClause, null);
-    }
-
-    public long updateVocabFoto(String vocabItemID, String fotoLink) {
-        String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " = '" + vocabItemID + "'";
-        ContentValues cv = new ContentValues();
-        cv.put(ViCabContract.VocabEntry.COLUMN_NAME_FOTO_LINK, fotoLink);
-        return db.update(ViCabContract.VocabEntry.TABLE_NAME, cv, whereClause, null);
-    }
-
-    public long updateVocabSound(String vocabItemID, String soundLink) {
-        String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " = '" + vocabItemID + "'";
-        ContentValues cv = new ContentValues();
-        cv.put(ViCabContract.VocabEntry.COLUMN_NAME_SOUND_LINK, soundLink);
-        return db.update(ViCabContract.VocabEntry.TABLE_NAME, cv, whereClause, null);
-    }
-
-    public long updateVocabWordType(String vocabItemID, String wordType) {
-        String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " = '" + vocabItemID + "'";
-        ContentValues cv = new ContentValues();
+        cv.put(ViCabContract.VocabEntry.COLUMN_NAME_HAS_LIST, hasList);
         cv.put(ViCabContract.VocabEntry.COLUMN_NAME_WORD_TYPE, wordType);
-        return db.update(ViCabContract.VocabEntry.TABLE_NAME, cv, whereClause, null);
-    }
-
-    public long updateVocabImportance(String vocabItemID, String importance) {
-        String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_ENTRY_ID + " = '" + vocabItemID + "'";
-        ContentValues cv = new ContentValues();
         cv.put(ViCabContract.VocabEntry.COLUMN_NAME_IMPORTANCE, importance);
+
         return db.update(ViCabContract.VocabEntry.TABLE_NAME, cv, whereClause, null);
     }
 
-    // Update Name
-    public long updateListName(String listItemID, String name) {
-        String whereClause = ViCabContract.ListEntry.COLUMN_NAME_ENTRY_ID + " = '" + listItemID + "'";
-        ContentValues cv = new ContentValues();
-        cv.put(ViCabContract.ListEntry.COLUMN_NAME_NAME, name);
-        return db.update(ViCabContract.ListEntry.TABLE_NAME, cv, whereClause, null);
-    }
 
 
     private class ToDoDBOpenHelper extends SQLiteOpenHelper {
