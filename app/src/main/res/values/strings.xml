@@ -52,8 +52,8 @@
     <string name="no_vocab_input">Bitte Vokabel eingeben</string>
 
     <string name="edit_vocab_finished"> Fertig </string>
-    <string name="edit_vocab_button_right">-)</string>
-    <string name="edit_vocab_button_left">(-</string>
+    <string name="edit_vocab_button_right">-&gt;</string>
+    <string name="edit_vocab_button_left">&lt;-</string>
 
     <!-- NavigationFragmentTwo AlertDialog-->
     <string name="list_name">Name der Liste</string>
