@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -43,6 +44,7 @@ public class NavigationFragmentSix extends Fragment {
     private int counterAll = 0;
     private int counterKnown = 0 ;
     private TextView textView;
+    private ImageButton resetIB;
     AlertDialog alertDialog;
 
 
@@ -128,6 +130,13 @@ public class NavigationFragmentSix extends Fragment {
                 return true;
             }
         });
+
+        resetIB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAlertDialogResetAll();
+            }
+        });
     }
 
     private void initDB() {
@@ -143,9 +152,7 @@ public class NavigationFragmentSix extends Fragment {
     private void setupUIComponents() {
         vocabsLV = (ListView) getActivity().findViewById(R.id.knownVocabsLV);
         textView = (TextView) getActivity().findViewById(R.id.textView);
-
-
-
+        resetIB = (ImageButton) getActivity().findViewById(R.id.imageButton_reset);
 
     }
 
@@ -194,6 +201,49 @@ public class NavigationFragmentSix extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 knownVLItems.get(position).resetKnown();
                 dbAdmin.updateAskedAndKnown(knownVLItems.get(position));
+                updateList();
+            }
+        });
+
+        alertDialogBuilder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+
+        // Edit Design alertDialog
+        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        positiveButton.setTextColor(getResources().getColor(R.color.color_primary));
+
+        Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        negativeButton.setTextColor(getResources().getColor(R.color.color_primary));
+    }
+
+    private void showAlertDialogResetAll() {
+        // Setup View for AlertDialog
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+
+        // Dialog cancelable with back key
+        alertDialogBuilder.setCancelable(true);
+
+        // Setup title and message of alertDialog
+        alertDialogBuilder.setIcon(R.drawable.ic_brain);
+        alertDialogBuilder.setTitle(R.string.reset_all_title);
+        alertDialogBuilder.setMessage(R.string.reset_all_message);
+
+        // Setup Buttons for dialog
+        alertDialogBuilder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                for(int i = 0; i < knownVLItems.size(); i++){
+                    knownVLItems.get(i).resetKnown();
+                    dbAdmin.updateAskedAndKnown(knownVLItems.get(i));
+                }
                 updateList();
             }
         });

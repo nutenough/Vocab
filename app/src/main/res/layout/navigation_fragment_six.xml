@@ -11,23 +11,49 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:dividerHeight="0dp"
-        android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linear_layout_frag_six"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Du hast schon 8 von 100 Vokabeln im Langzeitgedächtnis!"
+        android:orientation="horizontal"
         android:background="@drawable/border_blue"
-        android:textSize="16sp"
-        android:textColor="@color/color_primary"
+        android:id="@+id/linear_layout_frag_six"
+        android:weightSum="1">
+        <ImageButton
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:scaleType="centerInside"
+            android:padding="22dp"
+            android:background="@android:color/transparent"
+            android:id="@+id/imageButton_reset"
+            android:src="@drawable/reset_blue" />
 
-        android:padding="16dp"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:gravity="center"
+            android:text="Du hast schon 8 von 100 Vokabeln im Langzeitgedächtnis!"
+
+            android:textSize="16sp"
+            android:textColor="@color/color_primary"
+            android:id="@+id/textView"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:scaleType="centerInside"
+            android:padding="22dp" />
+
+    </LinearLayout>
+
+
 
 
 </RelativeLayout>
