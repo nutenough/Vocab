@@ -105,6 +105,7 @@ public class NavigationActivity extends AppCompatActivity {
                 break;
             case R.id.navItem4:
                 fragmentClass = NavigationFragmentFour.class;
+                Toast.makeText(getApplicationContext(), R.string.last_20_entries, Toast.LENGTH_LONG).show();
                 break;
             case R.id.navItem5:
                 fragmentClass = NavigationFragmentFive.class;

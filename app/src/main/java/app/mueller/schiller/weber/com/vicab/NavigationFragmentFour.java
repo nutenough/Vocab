@@ -1,22 +1,20 @@
 package app.mueller.schiller.weber.com.vicab;
-        import android.app.AlertDialog;
-        import android.content.DialogInterface;
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.support.annotation.Nullable;
-        import android.support.design.widget.FloatingActionButton;
-        import android.support.v4.app.Fragment;
-        import android.util.Log;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.AdapterView;
-        import android.widget.ListView;
 
-        import java.util.ArrayList;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
-        import app.mueller.schiller.weber.com.vicab.Database.DBAdmin;
-        import app.mueller.schiller.weber.com.vicab.PersistanceClasses.VocItem;
+import java.util.ArrayList;
+
+import app.mueller.schiller.weber.com.vicab.Database.DBAdmin;
+import app.mueller.schiller.weber.com.vicab.PersistanceClasses.VocItem;
 
 public class NavigationFragmentFour extends Fragment {
 
@@ -40,8 +38,6 @@ public class NavigationFragmentFour extends Fragment {
         attachAdapter();
         updateList();
         setOnClickListener();
-
-
     }
 
     private void initDB() {
@@ -58,9 +54,7 @@ public class NavigationFragmentFour extends Fragment {
         vocabsLV = (ListView) getActivity().findViewById(R.id.fragment_four_vocabsLV);
     }
 
-
-
-    private void updateList(){
+    private void updateList() {
         listItems.clear();
         listItems.addAll(dbAdmin.getRecentVocab());
         adapter.notifyDataSetChanged();
@@ -120,8 +114,7 @@ public class NavigationFragmentFour extends Fragment {
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         updateList();
     }

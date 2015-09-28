@@ -66,7 +66,7 @@
     <!-- LearnVocabFragmentThree -->
     <string name="toast_choose_learn_direction">Wähle zuerst eine Lernrichtung</string>
     <string name="toast_no_vocabs">Du hast noch keine Vokabeln eingetragen</string>
-    <string name="toast_no_unknown_vocabs">Alle deine Vokabeln sind im Langzeitgedächtnis, trage neue ein!</string>
+    <string name="toast_no_unknown_vocabs">All deine Vokabeln sind im Langzeitgedächtnis, trage neue Vokabeln ein oder entferne sie aus dem "Gedächtnis"!</string>
 
     <string name="learning_direction">Lern-Richtung</string>
     <string name="learning_1_2">Deutsch zu Englisch</string>
@@ -122,6 +122,9 @@
     <string name="option_delete">Löschen</string>
 
     <string name="tab">\t</string>
+
+    <!-- NavigationFragmentFour -->
+    <string name="last_20_entries">Deine 20 letzten Einträge</string>
 
     <!-- NavigationFragmentFive -->
     <string name="vocab_success">Vokabelerfolg</string>
