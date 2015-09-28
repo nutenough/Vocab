@@ -208,6 +208,8 @@ public class LanguageActivity extends AppCompatActivity {
 
                 // main code on after clicking yes
                 dbAdmin.removeLanguage(listItems.get(deletePosition));
+                Log.d("delete", "delete: " + dbAdmin.removeAllVocabWithSameAsDeletedLanguage(listItems.get(deletePosition)));
+                dbAdmin.removeAllVocabWithSameAsDeletedLanguage(listItems.get(deletePosition));
                 listItems.remove(deletePosition);
                 updateList();
 

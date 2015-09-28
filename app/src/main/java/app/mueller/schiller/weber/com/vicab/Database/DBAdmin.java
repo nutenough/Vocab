@@ -105,7 +105,7 @@ public class DBAdmin {
         String language = item.getCouple();
         String whereClause = ViCabContract.VocabEntry.COLUMN_NAME_HAS_LANGUAGE + " = '" + language + "'";
 
-        return db.delete(ViCabContract.LanguageEntry.TABLE_NAME, whereClause, null);
+        return db.delete(ViCabContract.VocabEntry.TABLE_NAME, whereClause, null);
     }
 
 
