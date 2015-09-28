@@ -64,10 +64,10 @@ public class AddVocabFragmentOne extends Fragment implements
         vocabAddBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveInput();
                 if (sourceVocab.isEmpty() || targetVocab.isEmpty()) {
                     Toast.makeText(getActivity(), R.string.no_vocab_input, Toast.LENGTH_LONG).show();
                 } else {
+                    saveInput();
                     Toast.makeText(getActivity(), vocabCouple + " wurde hinzugefügt", Toast.LENGTH_LONG).show();
                     getActivity().finish();
                 }

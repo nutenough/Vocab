@@ -4,7 +4,7 @@
     <string name="title_activity_add_vocab">Neue Vokabel anlegen</string>
     <string name="title_activity_express_learn">Express-Modus</string>
     <string name="title_activity_input_learn">Tipp-Modus</string>
-    <string name="title_activity_list_vocab"></string>
+    <string name="title_activity_list_vocab">Vokabelliste</string>
 
     <!-- Sample String -->
     <string name="sample_string">Beispieltext</string>
@@ -45,10 +45,6 @@
     <string name="vocab_positive_button">Hinzufügen</string>
     <string name="no_vocab_input">Bitte Vokabel eingeben</string>
 
-    <!-- AddVocabFragmentTwo -->
-    <string name="add_foto">Foto einbinden</string>
-    <string name="add_sound">Sprachaufnahme</string>
-
     <!-- NavigationFragmentTwo AlertDialog-->
     <string name="list_name">Name der Liste</string>
     <string name="list_title">Liste erstellen</string>
@@ -64,9 +60,6 @@
     <!-- NavigationFragmentTwo AlertDialog-->
     <string name="spinner_no_list">Liste auswählen</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-
     <!-- LearnVocabFragmentThree -->
     <string name="toast_choose_learn_direction">Wähle zuerst eine Lernrichtung</string>
     <string name="toast_no_vocabs">Du hast noch keine Vokabeln eingetragen</string>
@@ -75,12 +68,7 @@
     <string name="learning_direction">Lern-Richtung</string>
     <string name="learning_1_2">Deutsch zu Englisch</string>
     <string name="learning_2_1">Englisch zu Deutsch</string>
-    <string name="learning_mixed">gemischt</string>
-
-    <string name="learning_media">Medien</string>
-    <string name="learning_media_audio_response">Sprachausgabe</string>
-    <string name="learning_media_text_input">Texteingabe</string>
-    <string name="learning_media_picture">Bilder</string>
+    <string name="learning_mixed">Gemischt</string>
 
     <string name="learning_meta">Metadaten</string>
     <string name="learning_meta_word_class">Wortart</string>
@@ -156,10 +144,8 @@
     <!-- NavigationFragmenSix  -->
     <string name="menu_search">Suchen</string>
     <string name="reset_title">Vergessen?</string>
-    <string name="reset_message">Willst du diese Vokabel wieder Lernen?</string>
+    <string name="reset_message">Willst du diese Vokabel wieder lernen?</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
-
-
 
 </resources>
