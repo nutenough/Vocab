@@ -1,10 +1,8 @@
 package app.mueller.schiller.weber.com.vicab;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +14,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +21,7 @@ import app.mueller.schiller.weber.com.vicab.Database.DBAdmin;
 import app.mueller.schiller.weber.com.vicab.Database.ViCabContract;
 import app.mueller.schiller.weber.com.vicab.PersistanceClasses.ListItem;
 
-public class AddVocabFragmentOne extends Fragment implements
+public class EditFragmentOne extends Fragment implements
         AdapterView.OnItemSelectedListener {
     View contentView;
     private Button vocabAddBTN;
@@ -153,14 +150,9 @@ public class AddVocabFragmentOne extends Fragment implements
         sourceVocab = sourceVocabET.getText().toString().trim();
         targetVocab = targetVocabET.getText().toString().trim();
         vocabCouple = sourceVocab + " - " + targetVocab;
-        // addVocab method wants this: String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, String importance, String hasList, int known, int asked, int timestamp
-        dbAdmin.addVocab(sourceVocab, targetVocab, "", AddVocabFragmentTwo.getWordType(), AddVocabFragmentTwo.getRating(), 0, spinner.getSelectedItem().toString(), 0, 0, getTimeStamp());
-    }
-
-    private int getTimeStamp() {
-        // int time = (int) (new Date().getTime()/1000);
-        // Umwandlung zurück zum Datum:  new Date(((long)i)*1000L);
-        return (int) (new Date().getTime()/1000);
+        // addVocab method wants this: String sourceVocab, String targetVocab, String fotoLink, String soundLink, String wordType, String importance, String hasList
+        // TIMESTAMP noch implementieren
+        dbAdmin.addVocab(sourceVocab, targetVocab, "", AddVocabFragmentTwo.getWordType(), AddVocabFragmentTwo.getRating(), 0, spinner.getSelectedItem().toString(), 0, 0, 0);
     }
 
 }

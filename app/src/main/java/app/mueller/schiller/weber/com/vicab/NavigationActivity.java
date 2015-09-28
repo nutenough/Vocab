@@ -32,6 +32,8 @@ public class NavigationActivity extends AppCompatActivity {
         setupUIComponents();
 
         checkForIntents();
+
+
     }
 
     private void checkForIntents() {

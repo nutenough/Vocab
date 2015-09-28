@@ -75,7 +75,6 @@ public class NavigationFragmentOne extends Fragment {
     private void updateList(){
         listItems.clear();
         listItems.addAll(dbAdmin.getAllVocabForLanguage());
-        Log.d("MyDebug", "items: " + dbAdmin.getAllVocabForLanguage());
         adapter.notifyDataSetChanged();
     }
 
