@@ -39,6 +39,11 @@ public class ListVocabActivity extends AppCompatActivity {
         setOnClickListener();
     }
 
+    public void onResume() {
+        updateList();
+        super.onResume();
+    }
+
 
     private void setActivityTitle() {
         getSupportActionBar().setTitle(listName);
@@ -102,7 +107,13 @@ public class ListVocabActivity extends AppCompatActivity {
         vocabsLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
-                // Vokabel bearbeiten
+                // zu bearbeiten
+                Intent intent = new Intent(ListVocabActivity.this, EditVocabActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("listName", listName);
+                bundle.putInt("position", position);
+                intent.putExtras(bundle);
+                startActivity(intent);
 
             }
         });
