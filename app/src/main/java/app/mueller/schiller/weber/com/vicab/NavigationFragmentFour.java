@@ -2,6 +2,7 @@ package app.mueller.schiller.weber.com.vicab;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -80,6 +81,12 @@ public class NavigationFragmentFour extends Fragment {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
                 // Vokabel bearbeiten
+                Intent intent = new Intent(getActivity(), EditVocabActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("listName", "letzte");
+                bundle.putInt("position", position);
+                intent.putExtras(bundle);
+                startActivity(intent);
 
             }
         });
