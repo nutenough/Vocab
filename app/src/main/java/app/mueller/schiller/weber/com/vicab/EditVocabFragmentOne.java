@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +30,8 @@ import app.mueller.schiller.weber.com.vicab.PersistanceClasses.VocItem;
 public class EditVocabFragmentOne extends Fragment implements
         AdapterView.OnItemSelectedListener {
     View contentView;
-    private Button buttonLeft, buttonRight, buttonFinish;
+    private ImageButton buttonLeft, buttonRight;
+    private Button buttonFinish;
     private TextView sourceVocabTV;
     private TextView targetVocabTV;
     private EditText sourceVocabET;
@@ -231,8 +233,8 @@ public class EditVocabFragmentOne extends Fragment implements
         targetVocabTV.setText(ViCabContract.CHOSEN_LANGUAGE_TARGET);
 
         // go forth and back in the vocab list
-        buttonRight = (Button) getActivity().findViewById(R.id.editVocabButtonRight);
-        buttonLeft = (Button) getActivity().findViewById(R.id.editVocabButtonLeft);
+        buttonRight = (ImageButton) getActivity().findViewById(R.id.editVocabButtonRight);
+        buttonLeft = (ImageButton) getActivity().findViewById(R.id.editVocabButtonLeft);
 
         // finish button
         buttonFinish = (Button) getActivity().findViewById(R.id.editVocabButtonfinished);
