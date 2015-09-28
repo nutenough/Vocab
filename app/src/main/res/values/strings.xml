@@ -155,11 +155,15 @@
     <string name="menu_search">Suchen</string>
     <string name="reset_title">Vergessen?</string>
     <string name="reset_message">Willst du diese Vokabel wieder lernen?</string>
+    <string name="reset_all_vocab">Amnesie</string>
+    <string name="reset_all_title">Amnesie</string>
+    <string name="reset_all_message">Willst du wirklich alle Vokabeln wieder lernen?</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
 
     <!-- NavigationFragmenSeven  -->
     <string name="ueber_sub_title">Lernen - leicht gemacht</string>
     <string name="ueber_text">Die Idee zu Vocab entstand im Rahmen des Kurses \"Entwicklung einer Applikation mit dem Android-Framework\" unter Leitung von Dr. Markus Heckner an der Universität Regensburg. \nVocab soll es dem User ermöglichen, Vokabeln in jeglicher Sprachbeziehung zu speichern, diese in Listen einzuordnen und mit Metadaten zu versehen. Mittels der beiden Lern-Modi \"Tipp-Modus\" und \"Express-Modus\" können diese - nach Auswahl der Lernrichtung und optionaler Auswahl der Wortart oder Liste - abgefragt werden, wodurch gelernte Vokabeln im \"Gedächtnis\" abgelegt werden. \nZudem werden im Laufe des Vokabellernens als weiterer Ansporn \"Erfolge\" freigeschalten.</string>
+
 
 </resources>
