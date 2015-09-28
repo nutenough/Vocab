@@ -10,8 +10,10 @@
     <string name="sample_string">Beispieltext</string>
 
     <!-- LanguageActivity AlertDialog -->
-    <string name="source_language">Welche Sprache sprichst du?</string>
-    <string name="target_language">Welche Sprache lernst du?</string>
+    <string name="source_language">Ausgangssprache</string>
+    <string name="target_language">Zielsprache</string>
+    <string name="source_language_question">Welche Sprache sprichst du?</string>
+    <string name="target_language_question">Welche Sprache lernst du?</string>
     <string name="language_title">Sprachbeziehung festlegen</string>
     <string name="lang_message">Bitte gib deine gewünschte Ausgangssprache und Zielsprache ein.</string>
     <string name="language_positive_button">Erstellen</string>
@@ -121,6 +123,10 @@
     <string name="tab">\t</string>
 
     <!-- NavigationFragmentFive -->
+    <string name="vocab_success">Vokabelerfolg</string>
+    <string name="list_success">Listenerfolg</string>
+    <string name="learn_success">Lernerfolg</string>
+
     <string name="lock_start_success">Füge eine Vokabel hinzu</string>
     <string name="lock_direction_success">Füge 25 Vokabeln hinzu</string>
     <string name="lock_bag_success">Füge 100 Vokabeln hinzu</string>
@@ -147,5 +153,9 @@
     <string name="reset_message">Willst du diese Vokabel wieder lernen?</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
+
+    <!-- NavigationFragmenSeven  -->
+    <string name="ueber_sub_title">Lernen - leicht gemacht</string>
+    <string name="ueber_text">Die Idee zu Vocab entstand im Rahmen des Kurses \"Entwicklung einer Applikation mit dem Android-Framework\" unter Leitung von Dr. Markus Heckner an der Universität Regensburg. \nVocab soll es dem User ermöglichen, Vokabeln in jeglicher Sprachbeziehung zu speichern, diese in Listen einzuordnen und mit Metadaten zu versehen. Mittels der beiden Lern-Modi \"Tipp-Modus\" und \"Express-Modus\" können diese - nach Auswahl der Lernrichtung und optionaler Auswahl der Wortart oder Liste - abgefragt werden, wodurch gelernte Vokabeln im \"Gedächtnis\" abgelegt werden. \nZudem werden im Laufe des Vokabellernens als weiterer Ansporn \"Erfolge\" freigeschalten.</string>
 
 </resources>

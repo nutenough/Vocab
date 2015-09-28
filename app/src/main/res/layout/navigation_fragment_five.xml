@@ -5,10 +5,23 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         android:orientation="vertical">
 
         <TableRow>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/color_primary"
+                android:padding="16dp"
+                android:text="@string/vocab_success"
+                android:textAllCaps="true"
+                android:textColor="@color/color_white"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow android:layout_margin="16dp">
 
             <ImageView
                 android:id="@+id/startIV"
@@ -40,7 +53,11 @@
                 android:src="@drawable/lock" />
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp">
 
             <TextView
                 android:id="@+id/startTV"
@@ -84,6 +101,20 @@
 
         <TableRow>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/color_primary"
+                android:padding="16dp"
+                android:text="@string/list_success"
+                android:textAllCaps="true"
+                android:textColor="@color/color_white"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow android:layout_margin="16dp">
+
             <ImageView
                 android:id="@+id/noteIV"
                 android:layout_width="0dp"
@@ -115,7 +146,11 @@
 
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp">
 
             <TextView
                 android:id="@+id/noteTV"
@@ -158,6 +193,20 @@
 
         <TableRow>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/color_primary"
+                android:padding="16dp"
+                android:text="@string/learn_success"
+                android:textAllCaps="true"
+                android:textColor="@color/color_white"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow android:layout_margin="16dp">
+
             <ImageView
                 android:id="@+id/expressIV"
                 android:layout_width="0dp"
@@ -188,7 +237,11 @@
                 android:src="@drawable/lock" />
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp">
 
             <TextView
                 android:id="@+id/expressTV"

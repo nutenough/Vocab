@@ -1,44 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="16dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/ueberTitleTV"
-        android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:gravity="top"
-        android:textStyle="bold"
-        android:text="Vocab"
-        android:textColor="@color/color_primary"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/ueberSubTitleTV"
-        android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:gravity="bottom"
-        android:textStyle="italic"
-        android:text="Lernen - leicht gemacht"
-        android:textColor="@color/color_primary"
-        android:textSize="20sp" />
-
-    <ImageView
-        android:id="@+id/urLogoIV"
-        android:layout_width="100dp"
-        android:layout_height="72dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:background="@color/color_primary"
-        android:src="@drawable/logo_ur" />
-
-    <TextView
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="16dp"
-        android:textSize="18sp"
-        android:layout_below="@id/ueberTitleTV"
-        android:text="Die Idee zu Vocab entstand im Rahmen des Kurses 'Entwicklung einer Applikation mit dem Android-Framework' unter Leitung von Dr. Markus Heckner an der Universität Regensburg. \nVocab soll es dem User ermöglichen, Vokabeln in jeglicher Sprachbeziehung zu speichern, diese in Listen einzuordnen und mit Metadaten zu versehen. Mittels der beiden Lern-Modi 'Tipp-Modus' und 'Express-Modus' können diese - nach Auswahl der Lernrichtung und optionaler Auswahl der Wortart oder Liste - abgefragt werden, wodurch gelernte Vokabeln im 'Gedächtnis' abgelegt werden. \nZudem werden im Laufe des Vokabellernens als weiterer Ansporn 'Erfolge' freigeschalten."/>
+        android:layout_margin="16dp">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/ueberTitleTV"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:gravity="top"
+            android:text="@string/app_name"
+            android:textColor="@color/color_primary"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ueberSubTitleTV"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:gravity="bottom"
+            android:text="@string/ueber_sub_title"
+            android:textColor="@color/color_primary"
+            android:textSize="20sp"
+            android:textStyle="italic" />
+
+        <ImageView
+            android:id="@+id/urLogoIV"
+            android:layout_width="100dp"
+            android:layout_height="72dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/logo_ur" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/ueberTitleTV"
+            android:layout_marginTop="16dp"
+            android:text="@string/ueber_text"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+</ScrollView>
