@@ -43,8 +43,8 @@ public class NavigationFragmentThree extends Fragment {
 
 
     private DBAdmin dbAdmin;
-    private ArrayList<VocItem> vocItems = new ArrayList<>();
-    private ArrayList<VocItem> finalVocItems = new ArrayList<>();
+    private  ArrayList<VocItem> vocItems = new ArrayList<>();
+    private static ArrayList<VocItem> finalVocItems = new ArrayList<>();
     private boolean noVocabs = true;
 
 
@@ -64,7 +64,10 @@ public class NavigationFragmentThree extends Fragment {
         initDB();
         setupCheckBoxes();
         setupCheckBoxListener();
+    }
 
+    public static ArrayList<VocItem> getVocItems(){
+        return finalVocItems;
     }
 
 
@@ -297,7 +300,7 @@ checkBox_adjective.setOnClickListener(new View.OnClickListener() {
 
         if(!noun&& !verb && !adjective && !rest){
             Log.d("9876", "TEST");
-            finalVocItems = vocItems;
+            finalVocItems.addAll(vocItems);
         }else {
 
             if (noun) {
@@ -333,6 +336,8 @@ checkBox_adjective.setOnClickListener(new View.OnClickListener() {
 
                 }
             }
+
+            Log.d("TEST2", "wordType" + finalVocItems.get(0).getWordType()+ " alle boolean" + noun + verb+adjective+rest);
         }
 
 

@@ -147,6 +147,12 @@ public class ExpressLearnActivity extends AppCompatActivity{
     private void fillListFromDB() {
         finalVocItems.clear();
         allVocab = new ArrayList<>();
+
+        if(!noun&& !verb && !adjective && !rest){
+            finalVocItems.addAll(NavigationFragmentThree.getVocItems());
+            Log.d("9876", "TEST2ALL:" + finalVocItems.get(0).getWordType());
+        }
+        /*
         allVocab.addAll(dbAdmin.getAllVocabForLanguage());
         Log.d("Learn", "allItems: " + allVocab);
 
@@ -217,6 +223,7 @@ public class ExpressLearnActivity extends AppCompatActivity{
                 }
             }
         }
+        */
 
         for(int i = 0; i < finalVocItems.size(); i++) {
             Log.d("HILFE", finalVocItems.get(i).getSourceVocab());
