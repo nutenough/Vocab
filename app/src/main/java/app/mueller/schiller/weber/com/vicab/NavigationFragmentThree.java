@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,9 +40,13 @@ public class NavigationFragmentThree extends Fragment {
     private boolean adjective;
     private boolean rest;
 
+
+
     private DBAdmin dbAdmin;
     private ArrayList<VocItem> vocItems = new ArrayList<>();
+    private ArrayList<VocItem> finalVocItems = new ArrayList<>();
     private boolean noVocabs = true;
+
 
 
     @Nullable
@@ -59,7 +64,9 @@ public class NavigationFragmentThree extends Fragment {
         initDB();
         setupCheckBoxes();
         setupCheckBoxListener();
+
     }
+
 
     private void setupCheckBoxListener() {
         checkBox_knowing_to_learning.setOnClickListener(new View.OnClickListener() {
@@ -95,30 +102,51 @@ public class NavigationFragmentThree extends Fragment {
             }
         });
 
+        checkBox_noun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(checkBox_noun.isChecked()){
+                    noun = true;
+                }else{
+                    noun = false;
+                }
+            }
+        });
 
-        if(checkBox_noun.isChecked()){
-            noun = true;
-        }else{
-            noun = false;
-        }
-
+checkBox_verb.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
         if(checkBox_verb.isChecked()){
             verb = true;
         }else{
             verb = false;
         }
+    }
+});
+
+checkBox_adjective.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
 
         if(checkBox_adjective.isChecked()){
             adjective = true;
         }else{
             adjective = false;
         }
+    }
+});
 
-        if(checkBox_rest.isChecked()){
-            rest = true;
-        }else{
-            rest = false;
-        }
+        checkBox_rest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(checkBox_rest.isChecked()){
+                    rest = true;
+                }else{
+                    rest = false;
+                }
+            }
+        });
+
 
 
     }
@@ -162,8 +190,11 @@ public class NavigationFragmentThree extends Fragment {
 
                 checkVocabs();
 
-                if (vocItems.size() != 0 && (!noVocabs)) {
+                if (finalVocItems.size() != 0 && (!noVocabs)) {
                     if (checkBox_mixed.isChecked() || checkBox_learning_to_knowing.isChecked() || checkBox_knowing_to_learning.isChecked()) {
+
+
+
                         Intent intent = new Intent(getActivity(), ExpressLearnActivity.class);
                         Bundle bundle = setupBundle();
 
@@ -188,7 +219,7 @@ public class NavigationFragmentThree extends Fragment {
             public void onClick(View v) {
                 checkVocabs();
 
-                if(vocItems.size() != 0 && (!noVocabs)) {
+                if(finalVocItems.size() != 0 && (!noVocabs)) {
                     if (checkBox_mixed.isChecked() || checkBox_learning_to_knowing.isChecked() || checkBox_knowing_to_learning.isChecked()) {
                         Intent intent = new Intent(getActivity(), TextInputLearnActivity.class);
                          Bundle bundle = setupBundle();
@@ -232,20 +263,90 @@ public class NavigationFragmentThree extends Fragment {
     }
 
     private void checkVocabs(){
+        finalVocItems.clear();
         vocItems.clear();
         vocItems.addAll(dbAdmin.getAllVocabForLanguage());
         if(vocItems.size() > 0){
             noVocabs = false;
         }
 
-        for(int i = 0; i < vocItems.size(); i++){
-            if(vocItems.get(i).getKnown() > 5 ){
-                vocItems.remove(i);
-                i =- 1;
-            }
+        for(int i = 0; i < vocItems.size(); i++) {
 
+            if (vocItems.get(i).getImportance().equals("1.0")) {
+                if (vocItems.get(i).getKnown() > 4) {
+                    vocItems.remove(i);
+                    i = -1;
+                }
+            } else if (vocItems.get(i).getImportance().equals("2.0")) {
+                if (vocItems.get(i).getKnown() > 6) {
+                    vocItems.remove(i);
+                    i = -1;
+                }
+            } else if (vocItems.get(i).getImportance().equals("3.0")) {
+                if (vocItems.get(i).getKnown() > 7) {
+                    vocItems.remove(i);
+                    i = -1;
+                }
+            } else {
+                if (vocItems.get(i).getKnown() > 5) {
+                    vocItems.remove(i);
+                    i = -1;
+                }
+            }
         }
+
+        if(!noun&& !verb && !adjective && !rest){
+            Log.d("9876", "TEST");
+            finalVocItems = vocItems;
+        }else {
+
+            if (noun) {
+                for (int i = 0; i < vocItems.size(); i++) {
+                    if (vocItems.get(i).getWordType().equals("Substantiv")) {
+                        finalVocItems.add(vocItems.get(i));
+                        Log.d("9876", vocItems.get(i).getWordType());
+                    }
+
+                }
+            }
+            if (verb) {
+                for (int i = 0; i < vocItems.size(); i++) {
+                    if (vocItems.get(i).getWordType().equals("Verb")) {
+                        finalVocItems.add(vocItems.get(i));
+                    }
+
+                }
+            }
+            if (adjective) {
+                for (int i = 0; i < vocItems.size(); i++) {
+                    if (vocItems.get(i).getWordType().equals("Adjektiv")) {
+                        finalVocItems.add(vocItems.get(i));
+                    }
+
+                }
+            }
+            if (rest) {
+                for (int i = 0; i < vocItems.size(); i++) {
+                    if (vocItems.get(i).getWordType().equals("Sonstige")) {
+                        finalVocItems.add(vocItems.get(i));
+                    }
+
+                }
+            }
+        }
+
+
+
+
+
+
     }
 
 
-}
+
+
+    }
+
+
+
+

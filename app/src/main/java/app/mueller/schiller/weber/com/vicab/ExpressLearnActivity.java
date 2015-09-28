@@ -2,6 +2,7 @@ package app.mueller.schiller.weber.com.vicab;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,7 +32,8 @@ import app.mueller.schiller.weber.com.vicab.PersistanceClasses.VocItem;
 import static android.app.PendingIntent.getActivity;
 
 
-public class ExpressLearnActivity extends AppCompatActivity {
+public class ExpressLearnActivity extends AppCompatActivity{
+
 
     private RelativeLayout vocab_knowing_language;
     private TextView vocab_learning_language_text_view;
@@ -40,7 +42,6 @@ public class ExpressLearnActivity extends AppCompatActivity {
     private Button vocab_counter_button;
     private boolean isBackVisible = false;
     private Handler handler;
-    private ArrayList<VocItem> allVocab;
     private int counter_vocab = 0;
     private int counter_vocab_num = 1;
     private int listSize;
@@ -56,7 +57,8 @@ public class ExpressLearnActivity extends AppCompatActivity {
     private boolean adjective;
     private boolean rest;
 
-
+    private ArrayList<VocItem> allVocab;
+    private ArrayList<VocItem> finalVocItems = new ArrayList<VocItem>();
 
     private AlertDialog alertDialog;
 
@@ -143,38 +145,85 @@ public class ExpressLearnActivity extends AppCompatActivity {
     }
 
     private void fillListFromDB() {
+        finalVocItems.clear();
         allVocab = new ArrayList<>();
         allVocab.addAll(dbAdmin.getAllVocabForLanguage());
         Log.d("Learn", "allItems: " + allVocab);
 
-        for(int i = 0; i < allVocab.size(); i++){
+        for(int i = 0; i < allVocab.size(); i++) {
 
-            if(allVocab.get(i).getImportance().equals("1.0")){
-                if(allVocab.get(i).getKnown() > 4 ){
+            if (allVocab.get(i).getImportance().equals("1.0")) {
+                if (allVocab.get(i).getKnown() > 4) {
                     allVocab.remove(i);
-                    i =- 1;
+                    i = -1;
                 }
-            }else if(allVocab.get(i).getImportance().equals("2.0")){
-                if(allVocab.get(i).getKnown() > 6 ){
+            } else if (allVocab.get(i).getImportance().equals("2.0")) {
+                if (allVocab.get(i).getKnown() > 6) {
                     allVocab.remove(i);
-                    i =- 1;
+                    i = -1;
                 }
-            }else if(allVocab.get(i).getImportance().equals("3.0")){
-                if(allVocab.get(i).getKnown() > 7 ){
+            } else if (allVocab.get(i).getImportance().equals("3.0")) {
+                if (allVocab.get(i).getKnown() > 7) {
                     allVocab.remove(i);
-                    i =- 1;
+                    i = -1;
                 }
-            }else{
-                if(allVocab.get(i).getKnown() > 5 ){
+            } else {
+                if (allVocab.get(i).getKnown() > 5) {
                     allVocab.remove(i);
-                    i =- 1;
+                    i = -1;
                 }
             }
-
-
-
         }
 
+        if(!noun&& !verb && !adjective && !rest){
+            finalVocItems = allVocab;
+            Log.d("9876", "TEST2ALL");
+        }else {
+
+            if (noun) {
+                for (int i = 0; i < allVocab.size(); i++) {
+                    if (allVocab.get(i).getWordType().equals("Substantiv")) {
+                        finalVocItems.add(allVocab.get(i));
+                        Log.d("9876", "TESTSUBSTANGTIV");
+                    }
+
+                }
+            }
+            if (verb) {
+                for (int i = 0; i < allVocab.size(); i++) {
+                    if (allVocab.get(i).getWordType().equals("Verb")) {
+                        finalVocItems.add(allVocab.get(i));
+                        Log.d("9876", "VERB");
+                    }
+
+                }
+            }
+            if (adjective) {
+                for (int i = 0; i < allVocab.size(); i++) {
+                    if (allVocab.get(i).getWordType().equals("Adjektiv")) {
+                        finalVocItems.add(allVocab.get(i));
+                        Log.d("9876", "Adjektiv");
+                    }
+
+                }
+            }
+            if (rest) {
+                for (int i = 0; i < allVocab.size(); i++) {
+                    if (allVocab.get(i).getWordType().equals("Sonstige")) {
+                        finalVocItems.add(allVocab.get(i));
+                        Log.d("9876", "Sonstige");
+                    }
+
+                }
+            }
+        }
+
+        for(int i = 0; i < finalVocItems.size(); i++) {
+            Log.d("HILFE", finalVocItems.get(i).getSourceVocab());
+        }
+
+        allVocab.clear();
+        allVocab.addAll(finalVocItems);
         listSize = allVocab.size();
         Collections.shuffle(allVocab);
         Collections.sort(allVocab, new CustomComparator());
@@ -282,7 +331,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
 
             public boolean onSwipeLeft() {
                 allVocab.get(counter_vocab).increaseAsked();
-                if(isBackVisible == false){
+                if (isBackVisible == false) {
                     allVocab.get(counter_vocab).increaseKnown();
                 }
                 dbAdmin.updateAskedAndKnown(allVocab.get(counter_vocab));
@@ -369,7 +418,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 allVocab.get(counter_vocab).increaseAsked();
-                if(isBackVisible == false){
+                if (isBackVisible == false) {
                     allVocab.get(counter_vocab).increaseKnown();
                 }
                 dbAdmin.updateAskedAndKnown(allVocab.get(counter_vocab));
@@ -385,7 +434,6 @@ public class ExpressLearnActivity extends AppCompatActivity {
                         setRightOut_1.start();
                         setLeftIn_1.start();
                         isBackVisible = false;
-
 
 
                         if (counter_vocab < listSize) {
@@ -540,5 +588,6 @@ public class ExpressLearnActivity extends AppCompatActivity {
         allVocab = dbAdmin.getAllVocabForList(listName);
         listSize = allVocab.size();
     }
+
 
 }
