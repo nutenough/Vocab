@@ -32,9 +32,9 @@
             android:id="@+id/urLogoIV"
             android:layout_width="100dp"
             android:layout_height="72dp"
-            android:layout_alignParentEnd="true"
+            android:layout_alignParentEnd="false"
             android:layout_alignParentRight="true"
-            android:src="@drawable/logo_ur" />
+            android:src="@drawable/ur_logo" />
 
         <TextView
             android:layout_width="match_parent"
