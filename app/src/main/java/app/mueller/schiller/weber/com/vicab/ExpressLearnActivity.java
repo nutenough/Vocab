@@ -148,13 +148,32 @@ public class ExpressLearnActivity extends AppCompatActivity {
         Log.d("Learn", "allItems: " + allVocab);
 
         for(int i = 0; i < allVocab.size(); i++){
-            if(allVocab.get(i).getKnown() > 5 ){
-                allVocab.remove(i);
-                i =- 1;
+
+            if(allVocab.get(i).getImportance().equals("1.0")){
+                if(allVocab.get(i).getKnown() > 4 ){
+                    allVocab.remove(i);
+                    i =- 1;
+                }
+            }else if(allVocab.get(i).getImportance().equals("2.0")){
+                if(allVocab.get(i).getKnown() > 6 ){
+                    allVocab.remove(i);
+                    i =- 1;
+                }
+            }else if(allVocab.get(i).getImportance().equals("3.0")){
+                if(allVocab.get(i).getKnown() > 7 ){
+                    allVocab.remove(i);
+                    i =- 1;
+                }
+            }else{
+                if(allVocab.get(i).getKnown() > 5 ){
+                    allVocab.remove(i);
+                    i =- 1;
+                }
             }
 
-        }
 
+
+        }
 
         listSize = allVocab.size();
         Collections.shuffle(allVocab);
@@ -225,7 +244,8 @@ public class ExpressLearnActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!isBackVisible) {
-
+                    allVocab.get(counter_vocab).resetKnown();
+                    dbAdmin.updateAskedAndKnown(allVocab.get(counter_vocab));
                     wrongResult();
 
                     setRightOut.setTarget(vocab_knowing_language_text_view);
@@ -261,6 +281,11 @@ public class ExpressLearnActivity extends AppCompatActivity {
         vocab_knowing_language.setOnTouchListener(new OnSwipeTouchListener() {
 
             public boolean onSwipeLeft() {
+                allVocab.get(counter_vocab).increaseAsked();
+                if(isBackVisible == false){
+                    allVocab.get(counter_vocab).increaseKnown();
+                }
+                dbAdmin.updateAskedAndKnown(allVocab.get(counter_vocab));
                 handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -312,6 +337,8 @@ public class ExpressLearnActivity extends AppCompatActivity {
         dontKnowIB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                allVocab.get(counter_vocab).resetKnown();
+                dbAdmin.updateAskedAndKnown(allVocab.get(counter_vocab));
                 if (!isBackVisible) {
 
                     wrongResult();
@@ -341,6 +368,11 @@ public class ExpressLearnActivity extends AppCompatActivity {
         knowIB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                allVocab.get(counter_vocab).increaseAsked();
+                if(isBackVisible == false){
+                    allVocab.get(counter_vocab).increaseKnown();
+                }
+                dbAdmin.updateAskedAndKnown(allVocab.get(counter_vocab));
                 handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -374,11 +406,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
     }
 
     private void correctResult() {
-        allVocab.get(counter_vocab).increaseAsked();
-        if(isBackVisible == false){
-            allVocab.get(counter_vocab).increaseKnown();
-        }
-        dbAdmin.updateAskedAndKnown(allVocab.get(counter_vocab));
+
 
         counter_vocab++;
 
@@ -389,8 +417,7 @@ public class ExpressLearnActivity extends AppCompatActivity {
     }
 
     private void wrongResult() {
-        allVocab.get(counter_vocab).resetKnown();
-        dbAdmin.updateAskedAndKnown(allVocab.get(counter_vocab));
+
 
         counter_wrong_answer++;
         vocab_knowing_language.setClickable(false);

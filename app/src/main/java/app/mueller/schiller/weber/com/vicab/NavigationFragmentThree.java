@@ -247,9 +247,5 @@ public class NavigationFragmentThree extends Fragment {
         }
     }
 
-    public ArrayList<VocItem> getVocItems(){
-        return vocItems;
-    }
-
 
 }
