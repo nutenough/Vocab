@@ -74,14 +74,15 @@
         android:layout_height="match_parent"
         android:gravity="bottom">
 
-        <Button
+        <ImageButton
             android:id="@+id/editVocabButtonLeft"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:layout_weight="1"
             android:background="@color/color_primary"
-            android:padding="30dp"
-            android:text="@string/edit_vocab_button_left"
+            android:scaleType="centerInside"
+            android:padding="20dp"
+            android:src="@drawable/arrow_left_white"
             android:textColor="@color/color_white"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
@@ -90,25 +91,24 @@
         <Button
             android:id="@+id/editVocabButtonfinished"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:layout_weight="0"
             android:background="@color/color_accent"
-            android:paddingTop="30dp"
             android:paddingLeft="60dp"
             android:paddingRight="60dp"
-            android:paddingBottom="30dp"
             android:text="@string/edit_vocab_finished"
             android:textColor="@color/color_white" />
 
 
-        <Button
+        <ImageButton
             android:id="@+id/editVocabButtonRight"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:layout_weight="1"
             android:background="@color/color_primary"
-            android:padding="30dp"
-            android:text="@string/edit_vocab_button_right"
+            android:scaleType="centerInside"
+            android:padding="20dp"
+            android:src="@drawable/arrow_right_white"
             android:textColor="@color/color_white"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
