@@ -204,12 +204,16 @@ public class NavigationFragmentTwo extends Fragment {
    }
 
     private void goToLearnActivity(int position){
-        Intent intent = new Intent(getActivity(), NavigationActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("listName", listItems.get(position).getName());
+        if(dbAdmin.getAllVocabForList(listItems.get(position).getName()).size() != 0) {
+            Intent intent = new Intent(getActivity(), NavigationActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("listName", listItems.get(position).getName());
 
-        intent.putExtras(bundle);
-        startActivity(intent);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }else{
+            Toast.makeText(getActivity(), getResources().getString(R.string.toast_no_vocabs), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void lookAllVocabInList(int position){
