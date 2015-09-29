@@ -8,10 +8,13 @@ import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -39,6 +42,8 @@ public class NavigationFragmentThree extends Fragment {
     private boolean verb;
     private boolean adjective;
     private boolean rest;
+    private TextView word_class;
+    private RelativeLayout relativeLayout_wordclass;
 
 
 
@@ -56,6 +61,7 @@ public class NavigationFragmentThree extends Fragment {
         return view;
     }
 
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -64,6 +70,21 @@ public class NavigationFragmentThree extends Fragment {
         initDB();
         setupCheckBoxes();
         setupCheckBoxListener();
+        setupLayoutForListLearning();
+    }
+
+    private void setupLayoutForListLearning() {
+        Bundle bundle2 = getActivity().getIntent().getExtras();
+        if (bundle2 != null) {
+            String listName = bundle2.getString("listName");
+            String title = "Du lernst " + "&#160&#160&#160&#8226&#160" + listName + "&#160&#8226";
+            getActivity().setTitle(Html.fromHtml(title));
+            word_class = (TextView) getActivity().findViewById(R.id.word_class);
+            relativeLayout_wordclass = (RelativeLayout) getActivity().findViewById(R.id.relative_layout_checkbox_word_class);
+            word_class.setVisibility(View.INVISIBLE);
+            relativeLayout_wordclass.setVisibility(View.INVISIBLE);
+
+        }
     }
 
     public static ArrayList<VocItem> getVocItems(){
@@ -116,28 +137,28 @@ public class NavigationFragmentThree extends Fragment {
             }
         });
 
-checkBox_verb.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        if(checkBox_verb.isChecked()){
-            verb = true;
-        }else{
-            verb = false;
-        }
-    }
-});
+        checkBox_verb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 if(checkBox_verb.isChecked()){
+                    verb = true;
+                }else{
+                    verb = false;
+                }
+                }
+            });
 
-checkBox_adjective.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
+        checkBox_adjective.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        if(checkBox_adjective.isChecked()){
-            adjective = true;
-        }else{
-            adjective = false;
-        }
-    }
-});
+            if(checkBox_adjective.isChecked()){
+                adjective = true;
+            }else{
+                adjective = false;
+                }
+                }
+            }  );
 
         checkBox_rest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,7 +170,6 @@ checkBox_adjective.setOnClickListener(new View.OnClickListener() {
                 }
             }
         });
-
 
 
     }
@@ -195,8 +215,6 @@ checkBox_adjective.setOnClickListener(new View.OnClickListener() {
 
                 if (finalVocItems.size() != 0 && (!noVocabs)) {
                     if (checkBox_mixed.isChecked() || checkBox_learning_to_knowing.isChecked() || checkBox_knowing_to_learning.isChecked()) {
-
-
 
                         Intent intent = new Intent(getActivity(), ExpressLearnActivity.class);
                         Bundle bundle = setupBundle();
@@ -260,6 +278,7 @@ checkBox_adjective.setOnClickListener(new View.OnClickListener() {
             String listName = bundle2.getString("listName");
 
             bundle.putString("listName", listName);
+            Log.d("12345", listName);
         }
         
         return bundle;
@@ -299,7 +318,6 @@ checkBox_adjective.setOnClickListener(new View.OnClickListener() {
         }
 
         if(!noun&& !verb && !adjective && !rest){
-            Log.d("9876", "TEST");
             finalVocItems.addAll(vocItems);
         }else {
 
@@ -307,9 +325,7 @@ checkBox_adjective.setOnClickListener(new View.OnClickListener() {
                 for (int i = 0; i < vocItems.size(); i++) {
                     if (vocItems.get(i).getWordType().equals("Substantiv")) {
                         finalVocItems.add(vocItems.get(i));
-                        Log.d("9876", vocItems.get(i).getWordType());
                     }
-
                 }
             }
             if (verb) {
@@ -317,7 +333,6 @@ checkBox_adjective.setOnClickListener(new View.OnClickListener() {
                     if (vocItems.get(i).getWordType().equals("Verb")) {
                         finalVocItems.add(vocItems.get(i));
                     }
-
                 }
             }
             if (adjective) {
@@ -325,25 +340,21 @@ checkBox_adjective.setOnClickListener(new View.OnClickListener() {
                     if (vocItems.get(i).getWordType().equals("Adjektiv")) {
                         finalVocItems.add(vocItems.get(i));
                     }
-
                 }
             }
             if (rest) {
                 for (int i = 0; i < vocItems.size(); i++) {
-                    if (vocItems.get(i).getWordType().equals("Sonstige")) {
+                    if (vocItems.get(i).getWordType().equals("Sonstiges")) {
                         finalVocItems.add(vocItems.get(i));
                     }
-
                 }
             }
+
         }
 
     }
 
-
-
-
-    }
+}
 
 
 

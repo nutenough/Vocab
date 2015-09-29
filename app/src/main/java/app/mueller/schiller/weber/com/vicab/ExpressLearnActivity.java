@@ -150,83 +150,6 @@ public class ExpressLearnActivity extends AppCompatActivity{
 
         if(!noun&& !verb && !adjective && !rest){
             finalVocItems.addAll(NavigationFragmentThree.getVocItems());
-            Log.d("9876", "TEST2ALL:" + finalVocItems.get(0).getWordType());
-        }
-        /*
-        allVocab.addAll(dbAdmin.getAllVocabForLanguage());
-        Log.d("Learn", "allItems: " + allVocab);
-
-        for(int i = 0; i < allVocab.size(); i++) {
-
-            if (allVocab.get(i).getImportance().equals("1.0")) {
-                if (allVocab.get(i).getKnown() > 4) {
-                    allVocab.remove(i);
-                    i = -1;
-                }
-            } else if (allVocab.get(i).getImportance().equals("2.0")) {
-                if (allVocab.get(i).getKnown() > 6) {
-                    allVocab.remove(i);
-                    i = -1;
-                }
-            } else if (allVocab.get(i).getImportance().equals("3.0")) {
-                if (allVocab.get(i).getKnown() > 7) {
-                    allVocab.remove(i);
-                    i = -1;
-                }
-            } else {
-                if (allVocab.get(i).getKnown() > 5) {
-                    allVocab.remove(i);
-                    i = -1;
-                }
-            }
-        }
-
-        if(!noun&& !verb && !adjective && !rest){
-            finalVocItems = allVocab;
-            Log.d("9876", "TEST2ALL");
-        }else {
-
-            if (noun) {
-                for (int i = 0; i < allVocab.size(); i++) {
-                    if (allVocab.get(i).getWordType().equals("Substantiv")) {
-                        finalVocItems.add(allVocab.get(i));
-                        Log.d("9876", "TESTSUBSTANGTIV");
-                    }
-
-                }
-            }
-            if (verb) {
-                for (int i = 0; i < allVocab.size(); i++) {
-                    if (allVocab.get(i).getWordType().equals("Verb")) {
-                        finalVocItems.add(allVocab.get(i));
-                        Log.d("9876", "VERB");
-                    }
-
-                }
-            }
-            if (adjective) {
-                for (int i = 0; i < allVocab.size(); i++) {
-                    if (allVocab.get(i).getWordType().equals("Adjektiv")) {
-                        finalVocItems.add(allVocab.get(i));
-                        Log.d("9876", "Adjektiv");
-                    }
-
-                }
-            }
-            if (rest) {
-                for (int i = 0; i < allVocab.size(); i++) {
-                    if (allVocab.get(i).getWordType().equals("Sonstige")) {
-                        finalVocItems.add(allVocab.get(i));
-                        Log.d("9876", "Sonstige");
-                    }
-
-                }
-            }
-        }
-        */
-
-        for(int i = 0; i < finalVocItems.size(); i++) {
-            Log.d("HILFE", finalVocItems.get(i).getSourceVocab());
         }
 
         allVocab.clear();
@@ -324,13 +247,6 @@ public class ExpressLearnActivity extends AppCompatActivity{
 
                 }
 
-                /*else{
-                    setRightOut.setTarget(vocab_learning_language_text_view);
-                    setLeftIn.setTarget(vocab_knowing_language_text_view);
-                    setRightOut.start();
-                    setLeftIn.start();
-                    isBackVisible = false;
-                }*/
             }
         });
 

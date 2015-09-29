@@ -70,7 +70,6 @@ public class NavigationFragmentSix extends Fragment {
 
         SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
             public boolean onQueryTextChange(String newText) {
-                // this is your adapter that will be filtered
 
                 if(newText.equals("")){
                     updateList();
@@ -80,7 +79,6 @@ public class NavigationFragmentSix extends Fragment {
             }
 
             public boolean onQueryTextSubmit(String query) {
-                //Here u can get the value "query" which is entered in the search box.
                 currentSearchList = knownVLItems;
 
                 String s = query.toLowerCase().trim();
