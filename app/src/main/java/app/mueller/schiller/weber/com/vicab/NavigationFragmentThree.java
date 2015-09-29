@@ -336,14 +336,7 @@ checkBox_adjective.setOnClickListener(new View.OnClickListener() {
 
                 }
             }
-
-            Log.d("TEST2", "wordType" + finalVocItems.get(0).getWordType()+ " alle boolean" + noun + verb+adjective+rest);
         }
-
-
-
-
-
 
     }
 
