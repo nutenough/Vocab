@@ -143,9 +143,9 @@ public class TextInputLearnActivity extends AppCompatActivity {
 
     private void fillListFromDB(){
         allVocab = new ArrayList<>();
-        allVocab.addAll(dbAdmin.getAllVocabForLanguage());
+        allVocab.addAll(NavigationFragmentThree.getVocItems());
         Log.d("Learn", "allItems: " + allVocab);
-
+        /*
         for(int i = 0; i < allVocab.size(); i++) {
 
             if (allVocab.get(i).getImportance().equals("1.0")) {
@@ -170,6 +170,7 @@ public class TextInputLearnActivity extends AppCompatActivity {
                 }
             }
         }
+        */
 
         listSize = allVocab.size();
         Collections.shuffle(allVocab);
